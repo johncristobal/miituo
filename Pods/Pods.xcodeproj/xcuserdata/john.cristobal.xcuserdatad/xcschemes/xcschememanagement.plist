@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-miituo.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-miituoTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-miituoUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Toaster.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>46C5DB70205DEEE783A8411EA285F540</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5BC765D62A8BCC8FFB3F94CDC04803E8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>94B8DD310C3910346B3C2B732A91DA23</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B33CC468DC1453D86C19DFE6ABC8A698</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E79FD259E839814251BA58AED5409481</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

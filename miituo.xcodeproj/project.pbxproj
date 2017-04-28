@@ -1,0 +1,980 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		122D5D57B8F5E48A668CA6B6 /* Pods_miituoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887A83E6CE7FEB5D4C9BF1BC /* Pods_miituoTests.framework */; };
+		4187C0B07740830F1CE16183 /* Pods_miituo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC520D97F506EDD84EA50B78 /* Pods_miituo.framework */; };
+		7D13F5661E9FE2F0001356D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */; };
+		7D13F5681E9FE2F0001356D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5671E9FE2F0001356D2 /* ViewController.swift */; };
+		7D13F56B1E9FE2F0001356D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D13F5691E9FE2F0001356D2 /* Main.storyboard */; };
+		7D13F56E1E9FE2F0001356D2 /* miituo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F56C1E9FE2F0001356D2 /* miituo.xcdatamodeld */; };
+		7D13F5701E9FE2F1001356D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D13F56F1E9FE2F1001356D2 /* Assets.xcassets */; };
+		7D13F5731E9FE2F1001356D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D13F5711E9FE2F1001356D2 /* LaunchScreen.storyboard */; };
+		7D13F57E1E9FE2F1001356D2 /* miituoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F57D1E9FE2F1001356D2 /* miituoTests.swift */; };
+		7D13F5891E9FE2F1001356D2 /* miituoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5881E9FE2F1001356D2 /* miituoUITests.swift */; };
+		7D19A1A31EAE83B500030A53 /* SwiftyAccordionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */; };
+		7D19A1A51EAE84F800030A53 /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */; };
+		7D19A1D81EAFDBC200030A53 /* TokenSmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */; };
+		7D19A1DB1EAFFDAA00030A53 /* miituoonb12.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7D19A1D91EAFFDAA00030A53 /* miituoonb12.mp4 */; };
+		7D19A1DC1EAFFDAA00030A53 /* miituoonb2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7D19A1DA1EAFFDAA00030A53 /* miituoonb2.mp4 */; };
+		7D19A1E01EB0009000030A53 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D19A1DF1EB0009000030A53 /* MediaPlayer.framework */; };
+		7D19A1E21EB0056B00030A53 /* TutoOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1E11EB0056B00030A53 /* TutoOneViewController.swift */; };
+		7D19A1E51EB0069D00030A53 /* TutoTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1E41EB0069D00030A53 /* TutoTwoViewController.swift */; };
+		7DC1AADA1EB29A21005F067F /* onb3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DC1AAD91EB29A21005F067F /* onb3.mp4 */; };
+		7DF282CE1EB0D7D1001A24C4 /* ciudad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B51EB0D7D1001A24C4 /* ciudad.png */; };
+		7DF282CF1EB0D7D1001A24C4 /* frontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B61EB0D7D1001A24C4 /* frontal.png */; };
+		7DF282D01EB0D7D1001A24C4 /* lateral-d.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B71EB0D7D1001A24C4 /* lateral-d.png */; };
+		7DF282D11EB0D7D1001A24C4 /* lateral-i.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B81EB0D7D1001A24C4 /* lateral-i.png */; };
+		7DF282D21EB0D7D1001A24C4 /* partetrasera.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B91EB0D7D1001A24C4 /* partetrasera.png */; };
+		7DF282D31EB0D7D1001A24C4 /* general.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282BA1EB0D7D1001A24C4 /* general.png */; };
+		7DF282D41EB0D7D1001A24C4 /* sini.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282BB1EB0D7D1001A24C4 /* sini.png */; };
+		7DF282D51EB0D7D1001A24C4 /* historial.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282BC1EB0D7D1001A24C4 /* historial.png */; };
+		7DF282D61EB0D7D1001A24C4 /* odo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282BD1EB0D7D1001A24C4 /* odo.png */; };
+		7DF282D71EB0D7D1001A24C4 /* pago.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282BE1EB0D7D1001A24C4 /* pago.png */; };
+		7DF282D81EB0D7D1001A24C4 /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282BF1EB0D7D1001A24C4 /* atlas.png */; };
+		7DF282D91EB0D7D1001A24C4 /* tdc.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C01EB0D7D1001A24C4 /* tdc.png */; };
+		7DF282DA1EB0D7D1001A24C4 /* mp.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C11EB0D7D1001A24C4 /* mp.png */; };
+		7DF282DB1EB0D7D1001A24C4 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C21EB0D7D1001A24C4 /* user.png */; };
+		7DF282DC1EB0D7D1001A24C4 /* foto.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C31EB0D7D1001A24C4 /* foto.png */; };
+		7DF282DD1EB0D7D1001A24C4 /* odo-az.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C41EB0D7D1001A24C4 /* odo-az.png */; };
+		7DF282DE1EB0D7D1001A24C4 /* pago.a.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C51EB0D7D1001A24C4 /* pago.a.png */; };
+		7DF282DF1EB0D7D1001A24C4 /* sini.a.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C61EB0D7D1001A24C4 /* sini.a.png */; };
+		7DF282E01EB0D7D1001A24C4 /* miituo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C71EB0D7D1001A24C4 /* miituo.png */; };
+		7DF282E11EB0D7D1001A24C4 /* general.g.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C81EB0D7D1001A24C4 /* general.g.png */; };
+		7DF282E21EB0D7D1001A24C4 /* historial-a.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282C91EB0D7D1001A24C4 /* historial-a.png */; };
+		7DF282E31EB0D7D1001A24C4 /* ayuda.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282CA1EB0D7D1001A24C4 /* ayuda.png */; };
+		7DF282E41EB0D7D1001A24C4 /* cerrars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282CB1EB0D7D1001A24C4 /* cerrars.png */; };
+		7DF282E51EB0D7D1001A24C4 /* Ajustes-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282CC1EB0D7D1001A24C4 /* Ajustes-50.png */; };
+		7DF282E61EB0D7D1001A24C4 /* Adelante-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282CD1EB0D7D1001A24C4 /* Adelante-50.png */; };
+		7DF282E81EB122E6001A24C4 /* SLR Camera Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282E71EB122E6001A24C4 /* SLR Camera Filled-50.png */; };
+		7DF282EA1EB21F82001A24C4 /* onboarding3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282E91EB21F82001A24C4 /* onboarding3.mp4 */; };
+		7DF282EC1EB21FCD001A24C4 /* TutoThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF282EB1EB21FCD001A24C4 /* TutoThreeViewController.swift */; };
+		7DF282EF1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */; };
+		7DF490021EA8EE9A00484E91 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */; };
+		7DF490041EA90AC100484E91 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF490031EA90AC100484E91 /* TutorialViewController.swift */; };
+		7DF70C471E9FEBF200F4AAA7 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */; };
+		7DF70C481E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C381E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift */; };
+		7DF70C491E9FEBF200F4AAA7 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C391E9FEBF200F4AAA7 /* CustomAlertViewController.swift */; };
+		7DF70C4B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C3B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift */; };
+		7DF70C501E9FEBF200F4AAA7 /* OdometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C401E9FEBF200F4AAA7 /* OdometerViewController.swift */; };
+		7DF70C511E9FEBF200F4AAA7 /* PhotosCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C411E9FEBF200F4AAA7 /* PhotosCarViewController.swift */; };
+		7DF70C521E9FEBF200F4AAA7 /* PolizasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C421E9FEBF200F4AAA7 /* PolizasTableViewCell.swift */; };
+		7DF70C531E9FEBF200F4AAA7 /* PolizasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C431E9FEBF200F4AAA7 /* PolizasViewController.swift */; };
+		7DF70C541E9FEBF200F4AAA7 /* ReportConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C441E9FEBF200F4AAA7 /* ReportConfirmViewController.swift */; };
+		7DF70C561E9FEBF200F4AAA7 /* Utilsmiituo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C461E9FEBF200F4AAA7 /* Utilsmiituo.swift */; };
+		B33D5430AAEBA414F37A2454 /* Pods_miituoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B98AFF777D7C823E5C7DB /* Pods_miituoUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7D13F57A1E9FE2F1001356D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D13F55A1E9FE2F0001356D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D13F5611E9FE2F0001356D2;
+			remoteInfo = miituo;
+		};
+		7D13F5851E9FE2F1001356D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D13F55A1E9FE2F0001356D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D13F5611E9FE2F0001356D2;
+			remoteInfo = miituo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F2E0A9A69A93B8DA77D302D /* Pods-miituoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-miituoTests/Pods-miituoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		63915B2B55526417DDD79F01 /* Pods-miituoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-miituoUITests/Pods-miituoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7CFC5ABE68FBB820B00A801F /* Pods-miituo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-miituo/Pods-miituo.debug.xcconfig"; sourceTree = "<group>"; };
+		7D13F5621E9FE2F0001356D2 /* miituo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = miituo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7D13F5671E9FE2F0001356D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7D13F56A1E9FE2F0001356D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7D13F56D1E9FE2F0001356D2 /* miituo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = miituo.xcdatamodel; sourceTree = "<group>"; };
+		7D13F56F1E9FE2F1001356D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7D13F5721E9FE2F1001356D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7D13F5741E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D13F5791E9FE2F1001356D2 /* miituoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = miituoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D13F57D1E9FE2F1001356D2 /* miituoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miituoTests.swift; sourceTree = "<group>"; };
+		7D13F57F1E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D13F5841E9FE2F1001356D2 /* miituoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = miituoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D13F5881E9FE2F1001356D2 /* miituoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miituoUITests.swift; sourceTree = "<group>"; };
+		7D13F58A1E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyAccordionCells.swift; sourceTree = "<group>"; };
+		7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
+		7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenSmsViewController.swift; sourceTree = "<group>"; };
+		7D19A1D91EAFFDAA00030A53 /* miituoonb12.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = miituoonb12.mp4; sourceTree = "<group>"; };
+		7D19A1DA1EAFFDAA00030A53 /* miituoonb2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = miituoonb2.mp4; sourceTree = "<group>"; };
+		7D19A1DF1EB0009000030A53 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		7D19A1E11EB0056B00030A53 /* TutoOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoOneViewController.swift; sourceTree = "<group>"; };
+		7D19A1E41EB0069D00030A53 /* TutoTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoTwoViewController.swift; sourceTree = "<group>"; };
+		7DC1AAD91EB29A21005F067F /* onb3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onb3.mp4; sourceTree = "<group>"; };
+		7DF282B51EB0D7D1001A24C4 /* ciudad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ciudad.png; path = images/ciudad.png; sourceTree = "<group>"; };
+		7DF282B61EB0D7D1001A24C4 /* frontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = frontal.png; path = images/frontal.png; sourceTree = "<group>"; };
+		7DF282B71EB0D7D1001A24C4 /* lateral-d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lateral-d.png"; path = "images/lateral-d.png"; sourceTree = "<group>"; };
+		7DF282B81EB0D7D1001A24C4 /* lateral-i.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lateral-i.png"; path = "images/lateral-i.png"; sourceTree = "<group>"; };
+		7DF282B91EB0D7D1001A24C4 /* partetrasera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = partetrasera.png; path = images/partetrasera.png; sourceTree = "<group>"; };
+		7DF282BA1EB0D7D1001A24C4 /* general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = general.png; path = images/general.png; sourceTree = "<group>"; };
+		7DF282BB1EB0D7D1001A24C4 /* sini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sini.png; path = images/sini.png; sourceTree = "<group>"; };
+		7DF282BC1EB0D7D1001A24C4 /* historial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = historial.png; path = images/historial.png; sourceTree = "<group>"; };
+		7DF282BD1EB0D7D1001A24C4 /* odo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = odo.png; path = images/odo.png; sourceTree = "<group>"; };
+		7DF282BE1EB0D7D1001A24C4 /* pago.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pago.png; path = images/pago.png; sourceTree = "<group>"; };
+		7DF282BF1EB0D7D1001A24C4 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = atlas.png; path = images/atlas.png; sourceTree = "<group>"; };
+		7DF282C01EB0D7D1001A24C4 /* tdc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tdc.png; path = images/tdc.png; sourceTree = "<group>"; };
+		7DF282C11EB0D7D1001A24C4 /* mp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mp.png; path = images/mp.png; sourceTree = "<group>"; };
+		7DF282C21EB0D7D1001A24C4 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user.png; path = images/user.png; sourceTree = "<group>"; };
+		7DF282C31EB0D7D1001A24C4 /* foto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = foto.png; path = images/foto.png; sourceTree = "<group>"; };
+		7DF282C41EB0D7D1001A24C4 /* odo-az.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "odo-az.png"; path = "images/odo-az.png"; sourceTree = "<group>"; };
+		7DF282C51EB0D7D1001A24C4 /* pago.a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pago.a.png; path = images/pago.a.png; sourceTree = "<group>"; };
+		7DF282C61EB0D7D1001A24C4 /* sini.a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sini.a.png; path = images/sini.a.png; sourceTree = "<group>"; };
+		7DF282C71EB0D7D1001A24C4 /* miituo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = miituo.png; path = images/miituo.png; sourceTree = "<group>"; };
+		7DF282C81EB0D7D1001A24C4 /* general.g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = general.g.png; path = images/general.g.png; sourceTree = "<group>"; };
+		7DF282C91EB0D7D1001A24C4 /* historial-a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "historial-a.png"; path = "images/historial-a.png"; sourceTree = "<group>"; };
+		7DF282CA1EB0D7D1001A24C4 /* ayuda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ayuda.png; path = images/ayuda.png; sourceTree = "<group>"; };
+		7DF282CB1EB0D7D1001A24C4 /* cerrars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cerrars.png; path = images/cerrars.png; sourceTree = "<group>"; };
+		7DF282CC1EB0D7D1001A24C4 /* Ajustes-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Ajustes-50.png"; path = "images/Ajustes-50.png"; sourceTree = "<group>"; };
+		7DF282CD1EB0D7D1001A24C4 /* Adelante-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Adelante-50.png"; path = "images/Adelante-50.png"; sourceTree = "<group>"; };
+		7DF282E71EB122E6001A24C4 /* SLR Camera Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SLR Camera Filled-50.png"; path = "images/SLR Camera Filled-50.png"; sourceTree = "<group>"; };
+		7DF282E91EB21F82001A24C4 /* onboarding3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding3.mp4; sourceTree = "<group>"; };
+		7DF282EB1EB21FCD001A24C4 /* TutoThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoThreeViewController.swift; sourceTree = "<group>"; };
+		7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOdoPopViewController.swift; sourceTree = "<group>"; };
+		7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		7DF490031EA90AC100484E91 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		7DF70C381E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOdometerViewController.swift; sourceTree = "<group>"; };
+		7DF70C391E9FEBF200F4AAA7 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		7DF70C3B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetallePolizaViewController.swift; sourceTree = "<group>"; };
+		7DF70C401E9FEBF200F4AAA7 /* OdometerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OdometerViewController.swift; sourceTree = "<group>"; };
+		7DF70C411E9FEBF200F4AAA7 /* PhotosCarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCarViewController.swift; sourceTree = "<group>"; };
+		7DF70C421E9FEBF200F4AAA7 /* PolizasTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolizasTableViewCell.swift; sourceTree = "<group>"; };
+		7DF70C431E9FEBF200F4AAA7 /* PolizasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolizasViewController.swift; sourceTree = "<group>"; };
+		7DF70C441E9FEBF200F4AAA7 /* ReportConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportConfirmViewController.swift; sourceTree = "<group>"; };
+		7DF70C461E9FEBF200F4AAA7 /* Utilsmiituo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilsmiituo.swift; sourceTree = "<group>"; };
+		887A83E6CE7FEB5D4C9BF1BC /* Pods_miituoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_miituoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93E10790E23261D437A41BAA /* Pods-miituo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituo.release.xcconfig"; path = "Pods/Target Support Files/Pods-miituo/Pods-miituo.release.xcconfig"; sourceTree = "<group>"; };
+		983683A9F9972386BC1DA56F /* Pods-miituoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-miituoUITests/Pods-miituoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AA4B98AFF777D7C823E5C7DB /* Pods_miituoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_miituoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAD7DC2DFCD640364BB8854E /* Pods-miituoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-miituoTests/Pods-miituoTests.release.xcconfig"; sourceTree = "<group>"; };
+		DC520D97F506EDD84EA50B78 /* Pods_miituo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_miituo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7D13F55F1E9FE2F0001356D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D19A1E01EB0009000030A53 /* MediaPlayer.framework in Frameworks */,
+				4187C0B07740830F1CE16183 /* Pods_miituo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D13F5761E9FE2F1001356D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				122D5D57B8F5E48A668CA6B6 /* Pods_miituoTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D13F5811E9FE2F1001356D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B33D5430AAEBA414F37A2454 /* Pods_miituoUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1136B1F6EEBD85B1C51C767B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D19A1DF1EB0009000030A53 /* MediaPlayer.framework */,
+				DC520D97F506EDD84EA50B78 /* Pods_miituo.framework */,
+				887A83E6CE7FEB5D4C9BF1BC /* Pods_miituoTests.framework */,
+				AA4B98AFF777D7C823E5C7DB /* Pods_miituoUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56ADED3464F72A221903612C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CFC5ABE68FBB820B00A801F /* Pods-miituo.debug.xcconfig */,
+				93E10790E23261D437A41BAA /* Pods-miituo.release.xcconfig */,
+				1F2E0A9A69A93B8DA77D302D /* Pods-miituoTests.debug.xcconfig */,
+				AAD7DC2DFCD640364BB8854E /* Pods-miituoTests.release.xcconfig */,
+				983683A9F9972386BC1DA56F /* Pods-miituoUITests.debug.xcconfig */,
+				63915B2B55526417DDD79F01 /* Pods-miituoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7D13F5591E9FE2F0001356D2 = {
+			isa = PBXGroup;
+			children = (
+				7D13F5641E9FE2F0001356D2 /* miituo */,
+				7D13F57C1E9FE2F1001356D2 /* miituoTests */,
+				7D13F5871E9FE2F1001356D2 /* miituoUITests */,
+				7D13F5631E9FE2F0001356D2 /* Products */,
+				56ADED3464F72A221903612C /* Pods */,
+				1136B1F6EEBD85B1C51C767B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7D13F5631E9FE2F0001356D2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D13F5621E9FE2F0001356D2 /* miituo.app */,
+				7D13F5791E9FE2F1001356D2 /* miituoTests.xctest */,
+				7D13F5841E9FE2F1001356D2 /* miituoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7D13F5641E9FE2F0001356D2 /* miituo */ = {
+			isa = PBXGroup;
+			children = (
+				7DC1AAD91EB29A21005F067F /* onb3.mp4 */,
+				7DF282E91EB21F82001A24C4 /* onboarding3.mp4 */,
+				7D19A1E31EB0057000030A53 /* Onboarding */,
+				7D19A1D91EAFFDAA00030A53 /* miituoonb12.mp4 */,
+				7D19A1DA1EAFFDAA00030A53 /* miituoonb2.mp4 */,
+				7D19A1A61EAFBAF600030A53 /* images */,
+				7D19A1A11EAE835300030A53 /* collapsecell */,
+				7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */,
+				7D13F5671E9FE2F0001356D2 /* ViewController.swift */,
+				7D13F5691E9FE2F0001356D2 /* Main.storyboard */,
+				7DF70C461E9FEBF200F4AAA7 /* Utilsmiituo.swift */,
+				7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */,
+				7DF490031EA90AC100484E91 /* TutorialViewController.swift */,
+				7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */,
+				7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */,
+				7DF70C3B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift */,
+				7DF70C411E9FEBF200F4AAA7 /* PhotosCarViewController.swift */,
+				7DF70C421E9FEBF200F4AAA7 /* PolizasTableViewCell.swift */,
+				7DF70C431E9FEBF200F4AAA7 /* PolizasViewController.swift */,
+				7DF70C401E9FEBF200F4AAA7 /* OdometerViewController.swift */,
+				7DF70C381E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift */,
+				7DF70C441E9FEBF200F4AAA7 /* ReportConfirmViewController.swift */,
+				7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */,
+				7DF70C391E9FEBF200F4AAA7 /* CustomAlertViewController.swift */,
+				7D13F56F1E9FE2F1001356D2 /* Assets.xcassets */,
+				7D13F5711E9FE2F1001356D2 /* LaunchScreen.storyboard */,
+				7D13F5741E9FE2F1001356D2 /* Info.plist */,
+				7D13F56C1E9FE2F0001356D2 /* miituo.xcdatamodeld */,
+			);
+			path = miituo;
+			sourceTree = "<group>";
+		};
+		7D13F57C1E9FE2F1001356D2 /* miituoTests */ = {
+			isa = PBXGroup;
+			children = (
+				7D13F57D1E9FE2F1001356D2 /* miituoTests.swift */,
+				7D13F57F1E9FE2F1001356D2 /* Info.plist */,
+			);
+			path = miituoTests;
+			sourceTree = "<group>";
+		};
+		7D13F5871E9FE2F1001356D2 /* miituoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7D13F5881E9FE2F1001356D2 /* miituoUITests.swift */,
+				7D13F58A1E9FE2F1001356D2 /* Info.plist */,
+			);
+			path = miituoUITests;
+			sourceTree = "<group>";
+		};
+		7D19A1A11EAE835300030A53 /* collapsecell */ = {
+			isa = PBXGroup;
+			children = (
+				7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */,
+				7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */,
+			);
+			name = collapsecell;
+			sourceTree = "<group>";
+		};
+		7D19A1A61EAFBAF600030A53 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7DF282E71EB122E6001A24C4 /* SLR Camera Filled-50.png */,
+				7DF282B51EB0D7D1001A24C4 /* ciudad.png */,
+				7DF282B61EB0D7D1001A24C4 /* frontal.png */,
+				7DF282B71EB0D7D1001A24C4 /* lateral-d.png */,
+				7DF282B81EB0D7D1001A24C4 /* lateral-i.png */,
+				7DF282B91EB0D7D1001A24C4 /* partetrasera.png */,
+				7DF282BA1EB0D7D1001A24C4 /* general.png */,
+				7DF282BB1EB0D7D1001A24C4 /* sini.png */,
+				7DF282BC1EB0D7D1001A24C4 /* historial.png */,
+				7DF282BD1EB0D7D1001A24C4 /* odo.png */,
+				7DF282BE1EB0D7D1001A24C4 /* pago.png */,
+				7DF282BF1EB0D7D1001A24C4 /* atlas.png */,
+				7DF282C01EB0D7D1001A24C4 /* tdc.png */,
+				7DF282C11EB0D7D1001A24C4 /* mp.png */,
+				7DF282C21EB0D7D1001A24C4 /* user.png */,
+				7DF282C31EB0D7D1001A24C4 /* foto.png */,
+				7DF282C41EB0D7D1001A24C4 /* odo-az.png */,
+				7DF282C51EB0D7D1001A24C4 /* pago.a.png */,
+				7DF282C61EB0D7D1001A24C4 /* sini.a.png */,
+				7DF282C71EB0D7D1001A24C4 /* miituo.png */,
+				7DF282C81EB0D7D1001A24C4 /* general.g.png */,
+				7DF282C91EB0D7D1001A24C4 /* historial-a.png */,
+				7DF282CA1EB0D7D1001A24C4 /* ayuda.png */,
+				7DF282CB1EB0D7D1001A24C4 /* cerrars.png */,
+				7DF282CC1EB0D7D1001A24C4 /* Ajustes-50.png */,
+				7DF282CD1EB0D7D1001A24C4 /* Adelante-50.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		7D19A1E31EB0057000030A53 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				7D19A1E11EB0056B00030A53 /* TutoOneViewController.swift */,
+				7D19A1E41EB0069D00030A53 /* TutoTwoViewController.swift */,
+				7DF282EB1EB21FCD001A24C4 /* TutoThreeViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7D13F5611E9FE2F0001356D2 /* miituo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D13F58D1E9FE2F1001356D2 /* Build configuration list for PBXNativeTarget "miituo" */;
+			buildPhases = (
+				D2764173AD5CC6A8D2B5B6D7 /* [CP] Check Pods Manifest.lock */,
+				7D13F55E1E9FE2F0001356D2 /* Sources */,
+				7D13F55F1E9FE2F0001356D2 /* Frameworks */,
+				7D13F5601E9FE2F0001356D2 /* Resources */,
+				472038D8E7E54978A478B2CF /* [CP] Embed Pods Frameworks */,
+				2CC5CE79B0DB55F4F9296355 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = miituo;
+			productName = miituo;
+			productReference = 7D13F5621E9FE2F0001356D2 /* miituo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7D13F5781E9FE2F1001356D2 /* miituoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D13F5901E9FE2F1001356D2 /* Build configuration list for PBXNativeTarget "miituoTests" */;
+			buildPhases = (
+				41B09EF2242FE13F19F23C52 /* [CP] Check Pods Manifest.lock */,
+				7D13F5751E9FE2F1001356D2 /* Sources */,
+				7D13F5761E9FE2F1001356D2 /* Frameworks */,
+				7D13F5771E9FE2F1001356D2 /* Resources */,
+				20874C4BD57A4CEA0B4B95B6 /* [CP] Embed Pods Frameworks */,
+				F5D49C59F74D1B1CC5EE1B35 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D13F57B1E9FE2F1001356D2 /* PBXTargetDependency */,
+			);
+			name = miituoTests;
+			productName = miituoTests;
+			productReference = 7D13F5791E9FE2F1001356D2 /* miituoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7D13F5831E9FE2F1001356D2 /* miituoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D13F5931E9FE2F1001356D2 /* Build configuration list for PBXNativeTarget "miituoUITests" */;
+			buildPhases = (
+				96AABF4CF4DD6EF3156DB54F /* [CP] Check Pods Manifest.lock */,
+				7D13F5801E9FE2F1001356D2 /* Sources */,
+				7D13F5811E9FE2F1001356D2 /* Frameworks */,
+				7D13F5821E9FE2F1001356D2 /* Resources */,
+				AB7246189E71305007411437 /* [CP] Embed Pods Frameworks */,
+				E05FB775EE328A4250D62BDE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D13F5861E9FE2F1001356D2 /* PBXTargetDependency */,
+			);
+			name = miituoUITests;
+			productName = miituoUITests;
+			productReference = 7D13F5841E9FE2F1001356D2 /* miituoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7D13F55A1E9FE2F0001356D2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "John A. Cristobal";
+				TargetAttributes = {
+					7D13F5611E9FE2F0001356D2 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = B4K4LB5Y7F;
+						ProvisioningStyle = Automatic;
+					};
+					7D13F5781E9FE2F1001356D2 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = B4K4LB5Y7F;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7D13F5611E9FE2F0001356D2;
+					};
+					7D13F5831E9FE2F1001356D2 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = B4K4LB5Y7F;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7D13F5611E9FE2F0001356D2;
+					};
+				};
+			};
+			buildConfigurationList = 7D13F55D1E9FE2F0001356D2 /* Build configuration list for PBXProject "miituo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7D13F5591E9FE2F0001356D2;
+			productRefGroup = 7D13F5631E9FE2F0001356D2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7D13F5611E9FE2F0001356D2 /* miituo */,
+				7D13F5781E9FE2F1001356D2 /* miituoTests */,
+				7D13F5831E9FE2F1001356D2 /* miituoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D13F5601E9FE2F0001356D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DF282D31EB0D7D1001A24C4 /* general.png in Resources */,
+				7DF282D81EB0D7D1001A24C4 /* atlas.png in Resources */,
+				7DF282D11EB0D7D1001A24C4 /* lateral-i.png in Resources */,
+				7DF282E21EB0D7D1001A24C4 /* historial-a.png in Resources */,
+				7DF282EA1EB21F82001A24C4 /* onboarding3.mp4 in Resources */,
+				7DF282D41EB0D7D1001A24C4 /* sini.png in Resources */,
+				7DF282E01EB0D7D1001A24C4 /* miituo.png in Resources */,
+				7DF282D21EB0D7D1001A24C4 /* partetrasera.png in Resources */,
+				7DF282DE1EB0D7D1001A24C4 /* pago.a.png in Resources */,
+				7DF282E61EB0D7D1001A24C4 /* Adelante-50.png in Resources */,
+				7DF282DF1EB0D7D1001A24C4 /* sini.a.png in Resources */,
+				7DF282D91EB0D7D1001A24C4 /* tdc.png in Resources */,
+				7DF282CF1EB0D7D1001A24C4 /* frontal.png in Resources */,
+				7DC1AADA1EB29A21005F067F /* onb3.mp4 in Resources */,
+				7D13F5731E9FE2F1001356D2 /* LaunchScreen.storyboard in Resources */,
+				7DF282E11EB0D7D1001A24C4 /* general.g.png in Resources */,
+				7DF282E51EB0D7D1001A24C4 /* Ajustes-50.png in Resources */,
+				7DF282DD1EB0D7D1001A24C4 /* odo-az.png in Resources */,
+				7DF282D51EB0D7D1001A24C4 /* historial.png in Resources */,
+				7D19A1DC1EAFFDAA00030A53 /* miituoonb2.mp4 in Resources */,
+				7DF282E41EB0D7D1001A24C4 /* cerrars.png in Resources */,
+				7DF282DA1EB0D7D1001A24C4 /* mp.png in Resources */,
+				7DF282DC1EB0D7D1001A24C4 /* foto.png in Resources */,
+				7D13F5701E9FE2F1001356D2 /* Assets.xcassets in Resources */,
+				7DF282DB1EB0D7D1001A24C4 /* user.png in Resources */,
+				7D13F56B1E9FE2F0001356D2 /* Main.storyboard in Resources */,
+				7DF282E81EB122E6001A24C4 /* SLR Camera Filled-50.png in Resources */,
+				7DF282D61EB0D7D1001A24C4 /* odo.png in Resources */,
+				7DF282E31EB0D7D1001A24C4 /* ayuda.png in Resources */,
+				7DF282D71EB0D7D1001A24C4 /* pago.png in Resources */,
+				7D19A1DB1EAFFDAA00030A53 /* miituoonb12.mp4 in Resources */,
+				7DF282D01EB0D7D1001A24C4 /* lateral-d.png in Resources */,
+				7DF282CE1EB0D7D1001A24C4 /* ciudad.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D13F5771E9FE2F1001356D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D13F5821E9FE2F1001356D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20874C4BD57A4CEA0B4B95B6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-miituoTests/Pods-miituoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2CC5CE79B0DB55F4F9296355 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-miituo/Pods-miituo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41B09EF2242FE13F19F23C52 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		472038D8E7E54978A478B2CF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-miituo/Pods-miituo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96AABF4CF4DD6EF3156DB54F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AB7246189E71305007411437 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-miituoUITests/Pods-miituoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2764173AD5CC6A8D2B5B6D7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E05FB775EE328A4250D62BDE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-miituoUITests/Pods-miituoUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5D49C59F74D1B1CC5EE1B35 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-miituoTests/Pods-miituoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7D13F55E1E9FE2F0001356D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D19A1A31EAE83B500030A53 /* SwiftyAccordionCells.swift in Sources */,
+				7DF70C521E9FEBF200F4AAA7 /* PolizasTableViewCell.swift in Sources */,
+				7DF70C481E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift in Sources */,
+				7DF70C4B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift in Sources */,
+				7DF70C541E9FEBF200F4AAA7 /* ReportConfirmViewController.swift in Sources */,
+				7D13F56E1E9FE2F0001356D2 /* miituo.xcdatamodeld in Sources */,
+				7DF70C561E9FEBF200F4AAA7 /* Utilsmiituo.swift in Sources */,
+				7DF70C491E9FEBF200F4AAA7 /* CustomAlertViewController.swift in Sources */,
+				7DF490041EA90AC100484E91 /* TutorialViewController.swift in Sources */,
+				7D13F5681E9FE2F0001356D2 /* ViewController.swift in Sources */,
+				7D19A1D81EAFDBC200030A53 /* TokenSmsViewController.swift in Sources */,
+				7D19A1E21EB0056B00030A53 /* TutoOneViewController.swift in Sources */,
+				7DF70C501E9FEBF200F4AAA7 /* OdometerViewController.swift in Sources */,
+				7DF70C531E9FEBF200F4AAA7 /* PolizasViewController.swift in Sources */,
+				7DF282EC1EB21FCD001A24C4 /* TutoThreeViewController.swift in Sources */,
+				7D19A1E51EB0069D00030A53 /* TutoTwoViewController.swift in Sources */,
+				7D13F5661E9FE2F0001356D2 /* AppDelegate.swift in Sources */,
+				7D19A1A51EAE84F800030A53 /* PerfilViewController.swift in Sources */,
+				7DF490021EA8EE9A00484E91 /* OnboardingViewController.swift in Sources */,
+				7DF70C511E9FEBF200F4AAA7 /* PhotosCarViewController.swift in Sources */,
+				7DF282EF1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift in Sources */,
+				7DF70C471E9FEBF200F4AAA7 /* ApiClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D13F5751E9FE2F1001356D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D13F57E1E9FE2F1001356D2 /* miituoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D13F5801E9FE2F1001356D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D13F5891E9FE2F1001356D2 /* miituoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7D13F57B1E9FE2F1001356D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D13F5611E9FE2F0001356D2 /* miituo */;
+			targetProxy = 7D13F57A1E9FE2F1001356D2 /* PBXContainerItemProxy */;
+		};
+		7D13F5861E9FE2F1001356D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D13F5611E9FE2F0001356D2 /* miituo */;
+			targetProxy = 7D13F5851E9FE2F1001356D2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7D13F5691E9FE2F0001356D2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D13F56A1E9FE2F0001356D2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7D13F5711E9FE2F1001356D2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D13F5721E9FE2F1001356D2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7D13F58B1E9FE2F1001356D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7D13F58C1E9FE2F1001356D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7D13F58E1E9FE2F1001356D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CFC5ABE68FBB820B00A801F /* Pods-miituo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = B4K4LB5Y7F;
+				INFOPLIST_FILE = miituo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.payasyoudrive.miituo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		7D13F58F1E9FE2F1001356D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93E10790E23261D437A41BAA /* Pods-miituo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = B4K4LB5Y7F;
+				INFOPLIST_FILE = miituo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.payasyoudrive.miituo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		7D13F5911E9FE2F1001356D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F2E0A9A69A93B8DA77D302D /* Pods-miituoTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B4K4LB5Y7F;
+				INFOPLIST_FILE = miituoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miituo.miituoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/miituo.app/miituo";
+			};
+			name = Debug;
+		};
+		7D13F5921E9FE2F1001356D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAD7DC2DFCD640364BB8854E /* Pods-miituoTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B4K4LB5Y7F;
+				INFOPLIST_FILE = miituoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miituo.miituoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/miituo.app/miituo";
+			};
+			name = Release;
+		};
+		7D13F5941E9FE2F1001356D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 983683A9F9972386BC1DA56F /* Pods-miituoUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = B4K4LB5Y7F;
+				INFOPLIST_FILE = miituoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miituo.miituoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = miituo;
+			};
+			name = Debug;
+		};
+		7D13F5951E9FE2F1001356D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63915B2B55526417DDD79F01 /* Pods-miituoUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = B4K4LB5Y7F;
+				INFOPLIST_FILE = miituoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.miituo.miituoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = miituo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7D13F55D1E9FE2F0001356D2 /* Build configuration list for PBXProject "miituo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D13F58B1E9FE2F1001356D2 /* Debug */,
+				7D13F58C1E9FE2F1001356D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D13F58D1E9FE2F1001356D2 /* Build configuration list for PBXNativeTarget "miituo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D13F58E1E9FE2F1001356D2 /* Debug */,
+				7D13F58F1E9FE2F1001356D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D13F5901E9FE2F1001356D2 /* Build configuration list for PBXNativeTarget "miituoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D13F5911E9FE2F1001356D2 /* Debug */,
+				7D13F5921E9FE2F1001356D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D13F5931E9FE2F1001356D2 /* Build configuration list for PBXNativeTarget "miituoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D13F5941E9FE2F1001356D2 /* Debug */,
+				7D13F5951E9FE2F1001356D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7D13F56C1E9FE2F0001356D2 /* miituo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7D13F56D1E9FE2F0001356D2 /* miituo.xcdatamodel */,
+			);
+			currentVersion = 7D13F56D1E9FE2F0001356D2 /* miituo.xcdatamodel */;
+			path = miituo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 7D13F55A1E9FE2F0001356D2 /* Project object */;
+}

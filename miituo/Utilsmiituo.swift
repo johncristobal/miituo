@@ -12,6 +12,10 @@ import Toaster
 //function to show toast
 func showmessage(message: String){
     
-    Toast(text: message).show()
+    ToastView.appearance().bottomOffsetPortrait = 90.0
+    //ToastView.appearance().backgroundColor = UIColor.blue
+    let to = Toast(text: message)
+    to.show()
+    //Toast(text: message).show()
 }
 

@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import CoreData
 
 var odometroanteriorlast = ""
+var odometroaactuallast = ""
 var kilometrosrecorridoslast = ""
 var tarifaporkmlast = ""
 var primalast = ""
 var basemeslast = ""
 var promolast = ""
 var totalapagarlast = ""
+var derechopolizad = ""
+var esperando = ""
+
+var tarifaneeeta = ""
 
 class ConfirmOdoPopViewController: UIViewController {
     
@@ -23,17 +29,19 @@ class ConfirmOdoPopViewController: UIViewController {
     @IBOutlet var labelodo: UILabel!
     
     //@IBOutlet var labelodometro: UILabel!
-    let alertaloading = UIAlertController(title: nil, message: "Subiendo odómetro...", preferredStyle: .alert)
+    let alertaloading = UIAlertController(title: "Odómetro", message: "Subiendo información...", preferredStyle: .alert)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        labelodo.text = odometro
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+
+        //set number odometre
+        labelodo.text = numberFormatter.string(from: NSNumber(value: Int(odometro)!))//odometro
         
         view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
-        
         rowsel = Int(valueToPass)!
     }
 
@@ -41,10 +49,15 @@ class ConfirmOdoPopViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     @IBAction func closePop(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        DispatchQueue.global(qos: .userInitiated).async {
+            DispatchQueue.main.async {
+                //self.dismiss(animated: true, completion: {
+                    self.returntoodometer()
+                //})
+            }
+        }
     }
     
     @IBAction func sendOdometrofinal(_ sender: Any) {
@@ -122,8 +135,8 @@ class ConfirmOdoPopViewController: UIViewController {
          do {
          guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,
          options: []) as? [String: Any] else {
-         print("Could not get JSON from responseData as dictionary")
-         return
+             print("Could not get JSON from responseData as dictionary")
+            return
          }
          print("The todo is: " + receivedTodo.description)
          print("The todo is message:  \(receivedTodo["Message"] as! String)")
@@ -152,12 +165,43 @@ class ConfirmOdoPopViewController: UIViewController {
             //si es true o false => pasa sin problermas y cierra
             if valordevuelto == "true"{
                 
-                var refreshAlert = UIAlertController(title: "Tu información ha sido actualizada", message: "Gracias", preferredStyle: UIAlertControllerStyle.alert)
+                var refreshAlert = UIAlertController(title: "Gracias", message: "Tu información ha sido actualizada.", preferredStyle: UIAlertControllerStyle.alert)
                 
                 refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                     
-                    self.launcpolizas()
+                    do{
+                        //UpdatereportStet from CoreData
+                        //store do core data
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        let context = appDelegate.persistentContainer.viewContext
+                        let requestpolizas = NSFetchRequest<NSFetchRequestResult>(entityName: "Polizas")
+                        
+                        //var fetchRequest = NSFetchRequest(entityName: "LoginData")
+                        requestpolizas.predicate = NSPredicate(format: "nopoliza = %@", arregloPolizas[self.rowsel]["nopoliza"] as! String)
+                        
+                        let test = try context.fetch(requestpolizas)
+                        if test.count == 1
+                        {
+                            let objectUpdate = test[0] as! NSManagedObject
+                            objectUpdate.setValue("12", forKey: "reportstate")
+                            objectUpdate.setValue(odometro, forKey: "lastodometer")
+                            objectUpdate.setValue("true", forKey: "vehiclepie")
+                            objectUpdate.setValue("true", forKey: "odometerpie")
+                            do{
+                                try context.save()
+                            }
+                            catch
+                            {
+                                print(error)
+                            }
+                        }
+                        
+                        
+                    }catch {
+                        showmessage(message: "Error al actualizar estatus")
+                    }
                     
+                    self.launcpolizas()
                 }))
                 
                 self.present(refreshAlert, animated: true)
@@ -273,7 +317,9 @@ class ConfirmOdoPopViewController: UIViewController {
                         
                         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                             
-                            self.dismiss(animated: true, completion: nil)
+                            self.dismiss(animated: true, completion: {
+                                self.returntoodometer()
+                            })
                             
                             //self.launcpolizas()
                             
@@ -301,38 +347,85 @@ class ConfirmOdoPopViewController: UIViewController {
                             
                             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                                 
-                                self.dismiss(animated: true, completion: nil)
-
-                                //self.launcpolizas()
-                                
+                                self.dismiss(animated: true, completion: {
+                                    self.returntoodometer()
+                                })
                             }))
-                            
                             self.present(refreshAlert, animated: true)
                         })
                     }
                     else {
                     
+                        //Dismiss alertdialog....
                         self.alertaloading.dismiss(animated: true, completion: {
+                            
+                            let totalmestemp = receivedTodo["Amount"] as! Float
+                            totalapagarlast = String(totalmestemp)
+                            //datareturned["odohoy"] = String(describing:totalmes)
+                            
+                            /*Recuperamos valores de fee,promo y derecho*/
+                            let tarifafijames = receivedTodo["Parameters"] as! NSArray
+                            print("Numero de datos en tarifa mes: \(tarifafijames.count)")
                         
-                        let totalmes = receivedTodo["Amount"]
-                        //datareturned["odohoy"] = String(describing:totalmes)
-                    
-                        let tarifafijames = receivedTodo["Parameters"] as! NSArray
-                        tarifaporkmlast = (tarifafijames[0] as AnyObject).value(forKey: "Amount") as! String
-                        promolast = (tarifafijames[1] as AnyObject).value(forKey: "Amount") as! String
-                    
-                        print("tarifafjia: \(tarifaporkmlast)")
-                        print("promo: \(promolast)")
-                    
-                        //update values to send to the cystom alert
-                        //odometro = String(describing:promocion)
-                        odometro = cadena
+                            if tarifafijames.count == 3{
+                                
+                                let tarifakmtemp = (tarifafijames[0] as AnyObject).value(forKey: "Amount") as! Float
+                                basemeslast = String(tarifakmtemp)
+                                let dereccc = (tarifafijames[1] as AnyObject).value(forKey: "Amount") as! Float
+                                derechopolizad = String(dereccc)
+                                let promolasttemp = (tarifafijames[2] as AnyObject).value(forKey: "Amount") as! Float
+                                promolast = String(promolasttemp)
+                                
+                            } else if tarifafijames.count == 2{
+                                
+                                let tarifakmtemp = (tarifafijames[0] as AnyObject).value(forKey: "Amount") as! Float
+                                basemeslast = String(tarifakmtemp)
+                                let promolasttemp = (tarifafijames[1] as AnyObject).value(forKey: "Amount") as! Float
+                                promolast = String(promolasttemp)
+                            }
+                            
+                            /*Recuperamos odometro anteruo y actual registrado*/
+                            let odometros = receivedTodo["FormulaChilds"] as! NSArray
+                            let datainicial = (odometros[0] as! NSDictionary)
+
+                            let datosodometros = datainicial["FormulaChilds"] as! NSArray
+                            let masdatosodo = datosodometros[0] as! NSDictionary
+                            
+                            let ahorasiodos = masdatosodo["Parameters"] as! NSArray
+                            let odometrofinalnuevo = (ahorasiodos[0] as AnyObject).value(forKey: "Amount") as! Int
+                            let odometrofinalanterior = (ahorasiodos[1] as AnyObject).value(forKey: "Amount") as! Int
+
+                            odometroanteriorlast = String(odometrofinalanterior)
+                            odometroaactuallast = String(odometrofinalnuevo)
+                            
+                            /*Recuepramos kms recorridos*/
+                            let cantidadderecorridos = masdatosodo["Amount"] as! Int
+                            kilometrosrecorridoslast = String(cantidadderecorridos)
+                            
+                            /*Recuperamos tarifa fija....*/
+                            let tarifaarreglo = datainicial["Parameters"] as! NSArray
+                            let feefinal = (tarifaarreglo[0] as AnyObject).value(forKey: "Amount") as! Double
+                            tarifaporkmlast = String(feefinal)
+                            
+                            /*Tarfia neta*/
+                            let tarifaneta = datainicial["Amount"] as! Float
+                            tarifaneeeta = String(tarifaneta)
+
+                            //let masdatos = receivedTodo["FormulaChilds"] as! NSArray
+                            //let datosneta = masdatos[0] as! NSArray
+                            
+                            print("tarifafjia: \(tarifaporkmlast)")
+                            print("promo: \(promolast)")
                         
-                        //semaphore.signal();
-                    
-                        //DispatchQueue.global(qos: .userInitiated).async { // 1
-                        //let overlayImage = self.faceOverlayImageFromImage(self.image)
-                        //DispatchQueue.main.async { // 2
+                            //update values to send to the cystom alert
+                            //odometro = String(describing:promocion)
+                            odometro = cadena
+                            
+                            //semaphore.signal();
+                        
+                            //DispatchQueue.global(qos: .userInitiated).async { // 1
+                            //let overlayImage = self.faceOverlayImageFromImage(self.image)
+                            //DispatchQueue.main.async { // 2
                             
                             if odometro != "no" {
                                 //show alert with data
@@ -344,7 +437,7 @@ class ConfirmOdoPopViewController: UIViewController {
                                 self.present(myAlert, animated: true, completion: nil)
                             }
                         //}
-                    })
+                        })
                     }
                 }
                 
@@ -358,7 +451,6 @@ class ConfirmOdoPopViewController: UIViewController {
         //semaphore.wait()
         //let resut = semaphore.wait(timeout: DispatchTime(uptimeNanoseconds: 2000000000))
         //print("Semaforo:\(resut)")
-        
         
         print("Out of here")
     }
@@ -377,16 +469,28 @@ class ConfirmOdoPopViewController: UIViewController {
         present(alertaloading, animated: true, completion: nil)
     }
     
-    /*func closeloading(){
-        alertaloading.dismiss(animated: false, completion: nil)
-    }*/
-    
     func launcpolizas(){
         //launch view to confirm odometer
         let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
         
         //openview
         self.present(odometerview, animated: true, completion: nil)
+    }
+    
+    func returntoodometer(){
+        //launch view to confirm odometer
+        /*let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
+        
+        //openview
+        self.present(odometerview, animated: true, completion: nil)
+        */
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let myAlert = storyboard.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
+        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        
+        self.present(myAlert, animated: true, completion: nil)
 
     }
     

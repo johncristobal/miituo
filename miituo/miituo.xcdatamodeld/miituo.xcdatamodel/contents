@@ -5,6 +5,7 @@
         <attribute name="idpoliza" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="insurance" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastodometer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="limitefecha" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="nopoliza" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="odometerpie" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rate" optional="YES" attributeType="String" syncable="YES"/>
@@ -37,7 +38,7 @@
         <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Polizas" inverseName="newRelationship" inverseEntity="Polizas" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Polizas" positionX="-9" positionY="36" width="128" height="178"/>
+        <element name="Polizas" positionX="-9" positionY="36" width="128" height="225"/>
         <element name="Users" positionX="-173" positionY="36" width="128" height="163"/>
         <element name="Vehiculos" positionX="160" positionY="36" width="128" height="193"/>
     </elements>

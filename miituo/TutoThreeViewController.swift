@@ -50,13 +50,21 @@ class TutoThreeViewController: UIViewController {
         //viewone.layer.zPosition = 0;
         
         // begin implementing the avplayer
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
         
+        print("Ancho: \(screenWidth)")
+        print("Alto: \(screenHeight)")
+
         player3 = AVPlayer(url: videoURL as URL)
         player3?.actionAtItemEnd = .none
         player3?.isMuted = true
         
         let playerLayer = AVPlayerLayer(player: player3)
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        if screenHeight < 560 {
+            playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        }
         //playerLayer.zPosition = -1
         
         playerLayer.frame = viewvideo.frame

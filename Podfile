@@ -9,6 +9,9 @@ target 'miituo' do
 
 pod 'Toaster', '~> 2.0'
 pod 'SideMenu'
+pod 'SwiftGifOrigin', '~> 1.6.1'
+pod 'Firebase/Core'
+pod 'Firebase/Messaging'
 
   target 'miituoTests' do
     inherit! :search_paths

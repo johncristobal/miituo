@@ -51,13 +51,21 @@ class TutoOneViewController: UIViewController {
         //viewone.layer.zPosition = 0;
         
         // begin implementing the avplayer
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        print("Ancho: \(screenWidth)")
+        print("Alto: \(screenHeight)")
         
         player = AVPlayer(url: videoURL as URL)
         player?.actionAtItemEnd = .none
         player?.isMuted = true
     
         let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        if screenHeight < 560 {
+            playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        }
         //playerLayer.zPosition = -1
         
         playerLayer.frame = viewone.frame

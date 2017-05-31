@@ -27,13 +27,20 @@ class TokenSmsViewController: UIViewController {
     @IBAction func launchpolizas(_ sender: Any) {
         
         //validate toke -- else showmessage
-        
+        if tokensms.text == ""{
+            
+            showmessage(message: "Favor de colocar token")
+            
+        } else {
         //call verify token to validate token...
+        
+        //set default to save onboarding set already
         
         //and launch polizas view -- just launch (the data is already loaded)
         //launch second view with data - show table and polizas
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
         self.present(vc, animated: true, completion: nil)
+        }
         
     }
     

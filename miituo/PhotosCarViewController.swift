@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 var picker = UIImagePickerController()
 
@@ -27,6 +28,8 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
     
     var rowsel = 0;
     
+    let alertaloading = UIAlertController(title: nil, message: "Subiendo fotos...", preferredStyle: .alert)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,6 +84,8 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         } else if imagenselected == 2 {
             frontpic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
             frontflag = 1
+            //just here save the picture...to show in App
+            savePicture()
             //let imagennn = info[UIImagePickerControllerOriginalImage] as? UIImage
         } else if imagenselected == 3 {
             izquierdopic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -92,6 +97,41 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
             //let imagennn = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
     }
+    
+    func savePicture(){
+        PHPhotoLibrary.shared().performChanges({
+        PHAssetChangeRequest.creationRequestForAsset(from: self.frontpic.image!)
+        }, completionHandler: { success, error in
+        if success {
+        // Saved successfully!
+        if let data = UIImagePNGRepresentation(self.frontpic.image!) {
+
+            let polizatemp = arregloPolizas[self.rowsel]["nopoliza"]!
+            let filename = self.getDocumentsDirectory().appendingPathComponent("frontal_\(polizatemp).png")
+            try? data.write(to: filename)
+            
+            print("imagen guardada")
+        }
+        }
+        else if let error = error {
+        // Save photo failed with error
+            print("Error guardando imagen -- 1")
+        }
+        else {
+        // Save photo failed with no error
+            print("Error guardando imagen -- 2")
+        }
+        })
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        //let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -117,7 +157,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         var maxWidth : CGFloat = image.size.width/4//400.0
         var imgRatio : CGFloat = actualWidth/actualHeight
         var maxRatio : CGFloat = maxWidth/maxHeight
-        var compressionQuality : CGFloat = 0.5
+        var compressionQuality : CGFloat = 0.9
         
         if (actualHeight > maxHeight || actualWidth > maxWidth){
             if(imgRatio < maxRatio){
@@ -154,7 +194,8 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         //showmessage(message: "Enviando información")
         if rigthflag == 1 && leftflag == 1 && frontflag == 1 && backflag == 1{
             //send all picturec...loop to get all the iamges and send them
-            
+            openloading(mensaje: "Subiendo fotos...")
+
             for index in 0...3 {
                 
                 if index == 0{
@@ -165,6 +206,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
                 if index == 1{
                     let imagennn = frontpic.image
                     let idpic = "1"
+                    //saveimage(imagenn: imagennn!)
                     sendimagenes(imagenn: imagennn!,idpic: idpic)
                 }
                 if index == 2{
@@ -181,9 +223,12 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
             
             //At last...open the new viewcontrooler
             //Open view odometer to get picture of odometer
-            let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
-            //openview
-            self.present(odometerview, animated: true, completion: nil)
+            alertaloading.dismiss(animated: true, completion: {
+
+                let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
+                //openview
+                self.present(odometerview, animated: true, completion: nil)
+            })
             
         }else{
             showmessage(message: "Capturar todas las fotografìas solicitadas")
@@ -230,7 +275,8 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
             showmessage(message: "Capturar todas las fotografìas solicitadas")
         }
     }*/
-    
+
+//************************ send image to WS********************************************//
     func sendimagenes(imagenn:UIImage, idpic:String){
             
         //compress image
@@ -245,9 +291,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         //print(strBase64)
         
         /// ----------- send iamge ------------ ///
-        //let todosEndpoint: String = "http://192.168.1.109:1000/api/ImageProcessing/ConfirmOdometer"
         let todosEndpoint: String = "\(ip)ImageProcessing/"
-        //let todosEndpoint: String = "http://192.168.1.109:1000/api/ClientUser/"
         
         guard let todosURL = URL(string: todosEndpoint) else {
             print("Error: cannot create URL")
@@ -312,4 +356,37 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         }
         task.resume()
     }
+    
+    func openloading(mensaje: String){
+        
+        alertaloading.view.tintColor = UIColor.black
+        //CGRect(x: 1, y: 5, width: self.view.frame.size.width - 20, height: 120))
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:10, y:5, width:50, height:50)) as UIActivityIndicatorView
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        alertaloading.view.addSubview(loadingIndicator)
+        present(alertaloading, animated: true, completion: nil)
+    }
+    
+//************************ save just one image to app********************************************//
+    /*func saveimage(imagenn:UIImage){
+        UIImageWriteToSavedPhotosAlbum(imagenn, self, #selector(imagealert(_:didFinishSavingWithError:contextInfo:)), nil)
+
+    }
+    
+    //MARK: - Add image to Library
+    func imagealert(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }*/
 }

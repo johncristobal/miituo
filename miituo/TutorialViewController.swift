@@ -13,6 +13,7 @@ class TutorialViewController: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet var butonStart: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
 
     var tutorialPageViewController: OnboardingViewController? {
@@ -30,6 +31,8 @@ class TutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        butonStart.isHidden = true
+        
         // Do any additional setup after loading the view.
         pageControl.addTarget(self, action: "didChangePageControlValue", for: .valueChanged)
     }
@@ -45,8 +48,12 @@ class TutorialViewController: UIViewController {
     
     func didChangePageControlValue() {
         tutorialPageViewController?.scrollToViewController(index: pageControl.currentPage)
+        print("Aqui change")
     }
     
+    
+    @IBAction func launchMain(_ sender: Any) {
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -70,6 +77,14 @@ extension TutorialViewController: OnboardingViewControllerDelegate {
     
     func onboardingViewController(tutorialPageViewController: OnboardingViewController, didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
+        
+        if index == 2 {
+            butonStart.isHidden = false
+        }else{
+            butonStart.isHidden = true
+        }
+        
+        print("Aqui...\(index)")
     }
     
 }

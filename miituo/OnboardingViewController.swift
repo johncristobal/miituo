@@ -15,8 +15,8 @@ class OnboardingViewController: UIPageViewController {
     fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newColoredViewController(color: "first"),
                 self.newColoredViewController(color: "second"),
-                self.newColoredViewController(color: "third"),
-                self.newColoredViewController(color: "four")]
+                self.newColoredViewController(color: "third")]
+                //self.newColoredViewController(color: "four")]
     }()
     
     override func viewDidLoad() {

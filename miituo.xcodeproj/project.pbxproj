@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		122D5D57B8F5E48A668CA6B6 /* Pods_miituoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887A83E6CE7FEB5D4C9BF1BC /* Pods_miituoTests.framework */; };
 		4187C0B07740830F1CE16183 /* Pods_miituo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC520D97F506EDD84EA50B78 /* Pods_miituo.framework */; };
+		7D085BE11EC4F0E000AD7890 /* cameraRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D085BE01EC4F0E000AD7890 /* cameraRect.png */; };
+		7D09111D1EB90D8200444F2F /* miituosplash.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D09111C1EB90D8200444F2F /* miituosplash.gif */; };
+		7D0911231EB915F000444F2F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0911221EB915F000444F2F /* SplashViewController.swift */; };
+		7D0911251EB9283500444F2F /* splash.mov in Resources */ = {isa = PBXBuildFile; fileRef = 7D0911241EB9283500444F2F /* splash.mov */; };
+		7D0911271EB934A000444F2F /* launch.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7D0911261EB934A000444F2F /* launch.mp4 */; };
+		7D09112B1EBA0F6A00444F2F /* SiniestroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D09112A1EBA0F6A00444F2F /* SiniestroViewController.swift */; };
+		7D09112D1EBA30A900444F2F /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D09112C1EBA30A900444F2F /* MenuTableViewController.swift */; };
+		7D0C391D1EB3D883000F4241 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0C391C1EB3D883000F4241 /* CustomAlertViewController.swift */; };
+		7D0EB7B21ECA47A70057D68A /* Camera_100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0EB7B11ECA47A70057D68A /* Camera_100.png */; };
+		7D0EB7DC1ECB8E120057D68A /* herne.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D0EB7DA1ECB8E120057D68A /* herne.ttf */; };
+		7D0EB7DD1ECB8E120057D68A /* herne1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D0EB7DB1ECB8E120057D68A /* herne1.ttf */; };
 		7D13F5661E9FE2F0001356D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */; };
 		7D13F5681E9FE2F0001356D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5671E9FE2F0001356D2 /* ViewController.swift */; };
 		7D13F56B1E9FE2F0001356D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D13F5691E9FE2F0001356D2 /* Main.storyboard */; };
@@ -25,7 +36,12 @@
 		7D19A1E01EB0009000030A53 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D19A1DF1EB0009000030A53 /* MediaPlayer.framework */; };
 		7D19A1E21EB0056B00030A53 /* TutoOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1E11EB0056B00030A53 /* TutoOneViewController.swift */; };
 		7D19A1E51EB0069D00030A53 /* TutoTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1E41EB0069D00030A53 /* TutoTwoViewController.swift */; };
+		7D66777D1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7D66777C1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf */; };
+		7D66777F1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7D66777E1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf */; };
+		7D70138C1ED6291A00F04BC5 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70138B1ED6291A00F04BC5 /* Reach.swift */; };
+		7D70138E1ED7412800F04BC5 /* comp31.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7D70138D1ED7412800F04BC5 /* comp31.mp4 */; };
 		7DC1AADA1EB29A21005F067F /* onb3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DC1AAD91EB29A21005F067F /* onb3.mp4 */; };
+		7DDB23C41ED3939600D0D075 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */; };
 		7DF282CE1EB0D7D1001A24C4 /* ciudad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B51EB0D7D1001A24C4 /* ciudad.png */; };
 		7DF282CF1EB0D7D1001A24C4 /* frontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B61EB0D7D1001A24C4 /* frontal.png */; };
 		7DF282D01EB0D7D1001A24C4 /* lateral-d.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B71EB0D7D1001A24C4 /* lateral-d.png */; };
@@ -55,18 +71,20 @@
 		7DF282EA1EB21F82001A24C4 /* onboarding3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282E91EB21F82001A24C4 /* onboarding3.mp4 */; };
 		7DF282EC1EB21FCD001A24C4 /* TutoThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF282EB1EB21FCD001A24C4 /* TutoThreeViewController.swift */; };
 		7DF282EF1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */; };
+		7DF29AAC1ED4AD21008493B5 /* cameramini.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF29AAB1ED4AD21008493B5 /* cameramini.png */; };
 		7DF490021EA8EE9A00484E91 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */; };
 		7DF490041EA90AC100484E91 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF490031EA90AC100484E91 /* TutorialViewController.swift */; };
 		7DF70C471E9FEBF200F4AAA7 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */; };
 		7DF70C481E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C381E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift */; };
-		7DF70C491E9FEBF200F4AAA7 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C391E9FEBF200F4AAA7 /* CustomAlertViewController.swift */; };
-		7DF70C4B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C3B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift */; };
 		7DF70C501E9FEBF200F4AAA7 /* OdometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C401E9FEBF200F4AAA7 /* OdometerViewController.swift */; };
 		7DF70C511E9FEBF200F4AAA7 /* PhotosCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C411E9FEBF200F4AAA7 /* PhotosCarViewController.swift */; };
 		7DF70C521E9FEBF200F4AAA7 /* PolizasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C421E9FEBF200F4AAA7 /* PolizasTableViewCell.swift */; };
 		7DF70C531E9FEBF200F4AAA7 /* PolizasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C431E9FEBF200F4AAA7 /* PolizasViewController.swift */; };
 		7DF70C541E9FEBF200F4AAA7 /* ReportConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C441E9FEBF200F4AAA7 /* ReportConfirmViewController.swift */; };
 		7DF70C561E9FEBF200F4AAA7 /* Utilsmiituo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C461E9FEBF200F4AAA7 /* Utilsmiituo.swift */; };
+		7DFCD0231EDCA8D600E53193 /* DetalleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD0221EDCA8D600E53193 /* DetalleViewController.swift */; };
+		7DFCD0281EDDBDF100E53193 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD0271EDDBDF100E53193 /* SWRevealViewController.m */; };
+		7DFCD02A1EDF04E800E53193 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD0291EDF04E800E53193 /* MenuController.swift */; };
 		B33D5430AAEBA414F37A2454 /* Pods_miituoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B98AFF777D7C823E5C7DB /* Pods_miituoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +109,17 @@
 		1F2E0A9A69A93B8DA77D302D /* Pods-miituoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-miituoTests/Pods-miituoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		63915B2B55526417DDD79F01 /* Pods-miituoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-miituoUITests/Pods-miituoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7CFC5ABE68FBB820B00A801F /* Pods-miituo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-miituo/Pods-miituo.debug.xcconfig"; sourceTree = "<group>"; };
+		7D085BE01EC4F0E000AD7890 /* cameraRect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cameraRect.png; path = images/cameraRect.png; sourceTree = "<group>"; };
+		7D09111C1EB90D8200444F2F /* miituosplash.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = miituosplash.gif; path = images/miituosplash.gif; sourceTree = "<group>"; };
+		7D0911221EB915F000444F2F /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		7D0911241EB9283500444F2F /* splash.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = splash.mov; sourceTree = "<group>"; };
+		7D0911261EB934A000444F2F /* launch.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = launch.mp4; path = images/launch.mp4; sourceTree = "<group>"; };
+		7D09112A1EBA0F6A00444F2F /* SiniestroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiniestroViewController.swift; sourceTree = "<group>"; };
+		7D09112C1EBA30A900444F2F /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		7D0C391C1EB3D883000F4241 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		7D0EB7B11ECA47A70057D68A /* Camera_100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Camera_100.png; path = images/Camera_100.png; sourceTree = "<group>"; };
+		7D0EB7DA1ECB8E120057D68A /* herne.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = herne.ttf; path = font/herne.ttf; sourceTree = "<group>"; };
+		7D0EB7DB1ECB8E120057D68A /* herne1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = herne1.ttf; path = font/herne1.ttf; sourceTree = "<group>"; };
 		7D13F5621E9FE2F0001356D2 /* miituo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = miituo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D13F5671E9FE2F0001356D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +130,7 @@
 		7D13F5741E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D13F5791E9FE2F1001356D2 /* miituoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = miituoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D13F57D1E9FE2F1001356D2 /* miituoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miituoTests.swift; sourceTree = "<group>"; };
-		7D13F57F1E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D13F57F1E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = miituoTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		7D13F5841E9FE2F1001356D2 /* miituoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = miituoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D13F5881E9FE2F1001356D2 /* miituoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miituoUITests.swift; sourceTree = "<group>"; };
 		7D13F58A1E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -113,7 +142,13 @@
 		7D19A1DF1EB0009000030A53 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7D19A1E11EB0056B00030A53 /* TutoOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoOneViewController.swift; sourceTree = "<group>"; };
 		7D19A1E41EB0069D00030A53 /* TutoTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoTwoViewController.swift; sourceTree = "<group>"; };
+		7D66777C1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-rounded-lt-pro-regular-591ddce3ae197.otf"; sourceTree = "<group>"; };
+		7D66777E1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-rounded-lt-pro-bold-591dedad134cf.otf"; sourceTree = "<group>"; };
+		7D70138B1ED6291A00F04BC5 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
+		7D70138D1ED7412800F04BC5 /* comp31.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = comp31.mp4; sourceTree = "<group>"; };
 		7DC1AAD91EB29A21005F067F /* onb3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onb3.mp4; sourceTree = "<group>"; };
+		7DDB23BE1ED36E9F00D0D075 /* miituo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = miituo.entitlements; sourceTree = "<group>"; };
+		7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7DF282B51EB0D7D1001A24C4 /* ciudad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ciudad.png; path = images/ciudad.png; sourceTree = "<group>"; };
 		7DF282B61EB0D7D1001A24C4 /* frontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = frontal.png; path = images/frontal.png; sourceTree = "<group>"; };
 		7DF282B71EB0D7D1001A24C4 /* lateral-d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lateral-d.png"; path = "images/lateral-d.png"; sourceTree = "<group>"; };
@@ -143,18 +178,22 @@
 		7DF282E91EB21F82001A24C4 /* onboarding3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding3.mp4; sourceTree = "<group>"; };
 		7DF282EB1EB21FCD001A24C4 /* TutoThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoThreeViewController.swift; sourceTree = "<group>"; };
 		7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOdoPopViewController.swift; sourceTree = "<group>"; };
+		7DF29AAB1ED4AD21008493B5 /* cameramini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cameramini.png; path = images/cameramini.png; sourceTree = "<group>"; };
 		7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7DF490031EA90AC100484E91 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		7DF70C381E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOdometerViewController.swift; sourceTree = "<group>"; };
-		7DF70C391E9FEBF200F4AAA7 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
-		7DF70C3B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetallePolizaViewController.swift; sourceTree = "<group>"; };
 		7DF70C401E9FEBF200F4AAA7 /* OdometerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OdometerViewController.swift; sourceTree = "<group>"; };
 		7DF70C411E9FEBF200F4AAA7 /* PhotosCarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCarViewController.swift; sourceTree = "<group>"; };
 		7DF70C421E9FEBF200F4AAA7 /* PolizasTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolizasTableViewCell.swift; sourceTree = "<group>"; };
 		7DF70C431E9FEBF200F4AAA7 /* PolizasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolizasViewController.swift; sourceTree = "<group>"; };
 		7DF70C441E9FEBF200F4AAA7 /* ReportConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportConfirmViewController.swift; sourceTree = "<group>"; };
 		7DF70C461E9FEBF200F4AAA7 /* Utilsmiituo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilsmiituo.swift; sourceTree = "<group>"; };
+		7DFCD0221EDCA8D600E53193 /* DetalleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleViewController.swift; sourceTree = "<group>"; };
+		7DFCD0251EDDBDF100E53193 /* miituo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "miituo-Bridging-Header.h"; sourceTree = "<group>"; };
+		7DFCD0261EDDBDF100E53193 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		7DFCD0271EDDBDF100E53193 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		7DFCD0291EDF04E800E53193 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		887A83E6CE7FEB5D4C9BF1BC /* Pods_miituoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_miituoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E10790E23261D437A41BAA /* Pods-miituo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituo.release.xcconfig"; path = "Pods/Target Support Files/Pods-miituo/Pods-miituo.release.xcconfig"; sourceTree = "<group>"; };
 		983683A9F9972386BC1DA56F /* Pods-miituoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-miituoUITests/Pods-miituoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -220,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				7D13F5641E9FE2F0001356D2 /* miituo */,
-				7D13F57C1E9FE2F1001356D2 /* miituoTests */,
 				7D13F5871E9FE2F1001356D2 /* miituoUITests */,
 				7D13F5631E9FE2F0001356D2 /* Products */,
 				56ADED3464F72A221903612C /* Pods */,
@@ -241,6 +279,17 @@
 		7D13F5641E9FE2F0001356D2 /* miituo */ = {
 			isa = PBXGroup;
 			children = (
+				7DFCD0291EDF04E800E53193 /* MenuController.swift */,
+				7DFCD0241EDDBDC200E53193 /* SWRevealViewController */,
+				7D70138D1ED7412800F04BC5 /* comp31.mp4 */,
+				7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */,
+				7DDB23BE1ED36E9F00D0D075 /* miituo.entitlements */,
+				7D66777E1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf */,
+				7D66777C1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf */,
+				7D0EB7DA1ECB8E120057D68A /* herne.ttf */,
+				7D0EB7DB1ECB8E120057D68A /* herne1.ttf */,
+				7D0911261EB934A000444F2F /* launch.mp4 */,
+				7D0911241EB9283500444F2F /* splash.mov */,
 				7DC1AAD91EB29A21005F067F /* onb3.mp4 */,
 				7DF282E91EB21F82001A24C4 /* onboarding3.mp4 */,
 				7D19A1E31EB0057000030A53 /* Onboarding */,
@@ -250,25 +299,26 @@
 				7D19A1A11EAE835300030A53 /* collapsecell */,
 				7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */,
 				7D13F5671E9FE2F0001356D2 /* ViewController.swift */,
+				7D09112C1EBA30A900444F2F /* MenuTableViewController.swift */,
 				7D13F5691E9FE2F0001356D2 /* Main.storyboard */,
 				7DF70C461E9FEBF200F4AAA7 /* Utilsmiituo.swift */,
+				7D09112A1EBA0F6A00444F2F /* SiniestroViewController.swift */,
 				7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */,
-				7DF490031EA90AC100484E91 /* TutorialViewController.swift */,
-				7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */,
 				7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */,
-				7DF70C3B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift */,
-				7DF70C411E9FEBF200F4AAA7 /* PhotosCarViewController.swift */,
 				7DF70C421E9FEBF200F4AAA7 /* PolizasTableViewCell.swift */,
 				7DF70C431E9FEBF200F4AAA7 /* PolizasViewController.swift */,
+				7DF70C411E9FEBF200F4AAA7 /* PhotosCarViewController.swift */,
 				7DF70C401E9FEBF200F4AAA7 /* OdometerViewController.swift */,
 				7DF70C381E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift */,
 				7DF70C441E9FEBF200F4AAA7 /* ReportConfirmViewController.swift */,
 				7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */,
-				7DF70C391E9FEBF200F4AAA7 /* CustomAlertViewController.swift */,
+				7D0C391C1EB3D883000F4241 /* CustomAlertViewController.swift */,
 				7D13F56F1E9FE2F1001356D2 /* Assets.xcassets */,
 				7D13F5711E9FE2F1001356D2 /* LaunchScreen.storyboard */,
 				7D13F5741E9FE2F1001356D2 /* Info.plist */,
 				7D13F56C1E9FE2F0001356D2 /* miituo.xcdatamodeld */,
+				7D13F57C1E9FE2F1001356D2 /* miituoTests */,
+				7D70138B1ED6291A00F04BC5 /* Reach.swift */,
 			);
 			path = miituo;
 			sourceTree = "<group>";
@@ -276,11 +326,11 @@
 		7D13F57C1E9FE2F1001356D2 /* miituoTests */ = {
 			isa = PBXGroup;
 			children = (
-				7D13F57D1E9FE2F1001356D2 /* miituoTests.swift */,
 				7D13F57F1E9FE2F1001356D2 /* Info.plist */,
+				7D13F57D1E9FE2F1001356D2 /* miituoTests.swift */,
 			);
 			path = miituoTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		7D13F5871E9FE2F1001356D2 /* miituoUITests */ = {
 			isa = PBXGroup;
@@ -296,6 +346,7 @@
 			children = (
 				7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */,
 				7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */,
+				7DFCD0221EDCA8D600E53193 /* DetalleViewController.swift */,
 			);
 			name = collapsecell;
 			sourceTree = "<group>";
@@ -303,6 +354,10 @@
 		7D19A1A61EAFBAF600030A53 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7DF29AAB1ED4AD21008493B5 /* cameramini.png */,
+				7D0EB7B11ECA47A70057D68A /* Camera_100.png */,
+				7D085BE01EC4F0E000AD7890 /* cameraRect.png */,
+				7D09111C1EB90D8200444F2F /* miituosplash.gif */,
 				7DF282E71EB122E6001A24C4 /* SLR Camera Filled-50.png */,
 				7DF282B51EB0D7D1001A24C4 /* ciudad.png */,
 				7DF282B61EB0D7D1001A24C4 /* frontal.png */,
@@ -336,11 +391,24 @@
 		7D19A1E31EB0057000030A53 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				7DF490031EA90AC100484E91 /* TutorialViewController.swift */,
+				7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */,
 				7D19A1E11EB0056B00030A53 /* TutoOneViewController.swift */,
 				7D19A1E41EB0069D00030A53 /* TutoTwoViewController.swift */,
 				7DF282EB1EB21FCD001A24C4 /* TutoThreeViewController.swift */,
+				7D0911221EB915F000444F2F /* SplashViewController.swift */,
 			);
 			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		7DFCD0241EDDBDC200E53193 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DFCD0261EDDBDF100E53193 /* SWRevealViewController.h */,
+				7DFCD0271EDDBDF100E53193 /* SWRevealViewController.m */,
+				7DFCD0251EDDBDF100E53193 /* miituo-Bridging-Header.h */,
+			);
+			name = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,8 +488,20 @@
 				TargetAttributes = {
 					7D13F5611E9FE2F0001356D2 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = B4K4LB5Y7F;
+						DevelopmentTeam = 954C95V3JL;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					7D13F5781E9FE2F1001356D2 = {
 						CreatedOnToolsVersion = 8.3;
@@ -463,13 +543,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DF282D31EB0D7D1001A24C4 /* general.png in Resources */,
+				7D0EB7DD1ECB8E120057D68A /* herne1.ttf in Resources */,
 				7DF282D81EB0D7D1001A24C4 /* atlas.png in Resources */,
+				7DF29AAC1ED4AD21008493B5 /* cameramini.png in Resources */,
 				7DF282D11EB0D7D1001A24C4 /* lateral-i.png in Resources */,
 				7DF282E21EB0D7D1001A24C4 /* historial-a.png in Resources */,
+				7D0911251EB9283500444F2F /* splash.mov in Resources */,
 				7DF282EA1EB21F82001A24C4 /* onboarding3.mp4 in Resources */,
 				7DF282D41EB0D7D1001A24C4 /* sini.png in Resources */,
 				7DF282E01EB0D7D1001A24C4 /* miituo.png in Resources */,
 				7DF282D21EB0D7D1001A24C4 /* partetrasera.png in Resources */,
+				7DDB23C41ED3939600D0D075 /* GoogleService-Info.plist in Resources */,
+				7D085BE11EC4F0E000AD7890 /* cameraRect.png in Resources */,
+				7D0911271EB934A000444F2F /* launch.mp4 in Resources */,
 				7DF282DE1EB0D7D1001A24C4 /* pago.a.png in Resources */,
 				7DF282E61EB0D7D1001A24C4 /* Adelante-50.png in Resources */,
 				7DF282DF1EB0D7D1001A24C4 /* sini.a.png in Resources */,
@@ -477,15 +563,20 @@
 				7DF282CF1EB0D7D1001A24C4 /* frontal.png in Resources */,
 				7DC1AADA1EB29A21005F067F /* onb3.mp4 in Resources */,
 				7D13F5731E9FE2F1001356D2 /* LaunchScreen.storyboard in Resources */,
+				7D0EB7B21ECA47A70057D68A /* Camera_100.png in Resources */,
+				7D66777F1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf in Resources */,
 				7DF282E11EB0D7D1001A24C4 /* general.g.png in Resources */,
 				7DF282E51EB0D7D1001A24C4 /* Ajustes-50.png in Resources */,
 				7DF282DD1EB0D7D1001A24C4 /* odo-az.png in Resources */,
+				7D0EB7DC1ECB8E120057D68A /* herne.ttf in Resources */,
 				7DF282D51EB0D7D1001A24C4 /* historial.png in Resources */,
 				7D19A1DC1EAFFDAA00030A53 /* miituoonb2.mp4 in Resources */,
 				7DF282E41EB0D7D1001A24C4 /* cerrars.png in Resources */,
 				7DF282DA1EB0D7D1001A24C4 /* mp.png in Resources */,
 				7DF282DC1EB0D7D1001A24C4 /* foto.png in Resources */,
 				7D13F5701E9FE2F1001356D2 /* Assets.xcassets in Resources */,
+				7D09111D1EB90D8200444F2F /* miituosplash.gif in Resources */,
+				7D70138E1ED7412800F04BC5 /* comp31.mp4 in Resources */,
 				7DF282DB1EB0D7D1001A24C4 /* user.png in Resources */,
 				7D13F56B1E9FE2F0001356D2 /* Main.storyboard in Resources */,
 				7DF282E81EB122E6001A24C4 /* SLR Camera Filled-50.png in Resources */,
@@ -495,6 +586,7 @@
 				7D19A1DB1EAFFDAA00030A53 /* miituoonb12.mp4 in Resources */,
 				7DF282D01EB0D7D1001A24C4 /* lateral-d.png in Resources */,
 				7DF282CE1EB0D7D1001A24C4 /* ciudad.png in Resources */,
+				7D66777D1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,22 +752,28 @@
 				7D19A1A31EAE83B500030A53 /* SwiftyAccordionCells.swift in Sources */,
 				7DF70C521E9FEBF200F4AAA7 /* PolizasTableViewCell.swift in Sources */,
 				7DF70C481E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift in Sources */,
-				7DF70C4B1E9FEBF200F4AAA7 /* DetallePolizaViewController.swift in Sources */,
 				7DF70C541E9FEBF200F4AAA7 /* ReportConfirmViewController.swift in Sources */,
+				7DFCD0231EDCA8D600E53193 /* DetalleViewController.swift in Sources */,
+				7DFCD0281EDDBDF100E53193 /* SWRevealViewController.m in Sources */,
+				7D0911231EB915F000444F2F /* SplashViewController.swift in Sources */,
 				7D13F56E1E9FE2F0001356D2 /* miituo.xcdatamodeld in Sources */,
+				7DFCD02A1EDF04E800E53193 /* MenuController.swift in Sources */,
 				7DF70C561E9FEBF200F4AAA7 /* Utilsmiituo.swift in Sources */,
-				7DF70C491E9FEBF200F4AAA7 /* CustomAlertViewController.swift in Sources */,
 				7DF490041EA90AC100484E91 /* TutorialViewController.swift in Sources */,
+				7D0C391D1EB3D883000F4241 /* CustomAlertViewController.swift in Sources */,
 				7D13F5681E9FE2F0001356D2 /* ViewController.swift in Sources */,
 				7D19A1D81EAFDBC200030A53 /* TokenSmsViewController.swift in Sources */,
 				7D19A1E21EB0056B00030A53 /* TutoOneViewController.swift in Sources */,
 				7DF70C501E9FEBF200F4AAA7 /* OdometerViewController.swift in Sources */,
 				7DF70C531E9FEBF200F4AAA7 /* PolizasViewController.swift in Sources */,
+				7D09112B1EBA0F6A00444F2F /* SiniestroViewController.swift in Sources */,
 				7DF282EC1EB21FCD001A24C4 /* TutoThreeViewController.swift in Sources */,
 				7D19A1E51EB0069D00030A53 /* TutoTwoViewController.swift in Sources */,
+				7D70138C1ED6291A00F04BC5 /* Reach.swift in Sources */,
 				7D13F5661E9FE2F0001356D2 /* AppDelegate.swift in Sources */,
 				7D19A1A51EAE84F800030A53 /* PerfilViewController.swift in Sources */,
 				7DF490021EA8EE9A00484E91 /* OnboardingViewController.swift in Sources */,
+				7D09112D1EBA30A900444F2F /* MenuTableViewController.swift in Sources */,
 				7DF70C511E9FEBF200F4AAA7 /* PhotosCarViewController.swift in Sources */,
 				7DF282EF1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift in Sources */,
 				7DF70C471E9FEBF200F4AAA7 /* ApiClient.swift in Sources */,
@@ -755,6 +853,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Leonardo Cortina Riveroll (E76TC722VF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -833,14 +932,21 @@
 			baseConfigurationReference = 7CFC5ABE68FBB820B00A801F /* Pods-miituo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = miituo/miituo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Leonardo Cortina Riveroll (E76TC722VF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B4K4LB5Y7F;
+				DEVELOPMENT_TEAM = 954C95V3JL;
 				INFOPLIST_FILE = miituo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.payasyoudrive.miituo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "miituo/miituo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -849,14 +955,19 @@
 			baseConfigurationReference = 93E10790E23261D437A41BAA /* Pods-miituo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = miituo/miituo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B4K4LB5Y7F;
+				DEVELOPMENT_TEAM = 954C95V3JL;
 				INFOPLIST_FILE = miituo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.payasyoudrive.miituo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "miituo/miituo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

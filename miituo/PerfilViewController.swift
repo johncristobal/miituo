@@ -32,8 +32,36 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.setup()
         self.table.estimatedRowHeight = 45
         self.table.rowHeight = UITableViewAutomaticDimension
+        
+        carrolabel.text = arreglocarro[Int(valueToPass)!]["descripcion"] as! String
+        
+        polizalabel.text = arregloPolizas[Int(valueToPass)!]["nopoliza"] as! String
+        
+        placaslabel.text = ""
+        
+        //set picture loaded
+        let pliza = arregloPolizas[Int(valueToPass)!]["nopoliza"]! as String
+        let fileManager = FileManager.default
+        let filename = getDocumentsDirectory().appendingPathComponent("frontal_\(pliza).png")
+        if fileManager.fileExists(atPath: filename.path){
+            let image = UIImage(contentsOfFile: filename.path)
+            imagencarro.layer.cornerRadius = 20.0
+            //cell.imagecar.transform = cell.imagecar.transform.rotated(by: CGFloat(Double.pi/2))
+            imagencarro.layer.masksToBounds = true
+            imagencarro.image = image
+        }else{
+            print("No existe foto")
+        }
     }
-
+    
+    func getDocumentsDirectory() -> URL {
+        //let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,8 +90,8 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 11"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 12"))*/
         self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Tu auto"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Modelo: \(arreglocarro[Int(valueToPass)!]["model"]!)"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Placas: \(arreglocarro[Int(valueToPass)!]["plates"]!)"))
+        self.cells.append(SwiftyAccordionCells.Item(value: "Modelo: \(arreglocarro[Int(valueToPass)!]["model"]!)"))
         /*self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 1"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 2"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 3"))
@@ -72,14 +100,13 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 6"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 7"))*/
         self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Tu odómetro"))
+        self.cells.append(SwiftyAccordionCells.Item(value: "Último odómetro: \(arregloPolizas[Int(valueToPass)!]["lastodometer"]!)"))
         /*self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 1"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 2"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 3"))*/
-        self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Tu cobertura"))
-        self.cells.append(SwiftyAccordionCells.Item(value: arreglocarro[Int(valueToPass)!]["plates"]!))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 2"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 3"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 4"))
+        
+        //self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Tu cobertura"))
+        //self.cells.append(SwiftyAccordionCells.Item(value: arreglocarro[Int(valueToPass)!]["plates"]!))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,10 +126,12 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if item as? SwiftyAccordionCells.HeaderItem != nil {
                 //cell.backgroundColor = UIColor.lightGray
                 cell.accessoryType = .none
-                cell.textLabel?.textColor = UIColor(red: CGFloat((00 & 0xFF0000) >> 16) / 255.0, green: CGFloat((200 & 0x00FF00) >> 8) / 255.0, blue: CGFloat((255 & 0x0000FF)) / 255.0, alpha: CGFloat(1.0))
+                cell.textLabel?.font = UIFont(name: "DIN Next Rounded LT Pro", size: 16.0)
+                cell.textLabel?.textColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
             } else {
                 cell.backgroundColor = UIColor.clear
                 cell.textLabel?.textColor = UIColor.black
+                cell.textLabel?.font = UIFont(name: "DIN Next Rounded LT Pro", size: 13.0)
                 if isChecked {
                     cell.accessoryType = .checkmark
                 } else {

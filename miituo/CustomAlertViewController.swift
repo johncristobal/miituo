@@ -37,7 +37,6 @@ class CustomAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        valordevuelto = ""
         //perogress...
         /*let flag = true
          while flag {
@@ -46,6 +45,15 @@ class CustomAlertViewController: UIViewController {
          }
          }*/
         
+        cargarinformacion();
+        
+        view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+    }
+    
+    func cargarinformacion(){
+
+        valordevuelto = ""
+
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = NumberFormatter.Style.decimal
         //let finalnumber = numberFormatter.string(from: NSNumber(value: largeNumber))
@@ -53,24 +61,33 @@ class CustomAlertViewController: UIViewController {
         if odometro != "" {
             let valuehoy: Float = Float(odometro)!
             //odometrohoy.text = numberFormatter.string(from: NSNumber(value: Int(odometro)!))//odometro
-            odometrohoy.text = "\(String.localizedStringWithFormat("%.2f", valuehoy))"
-
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            
+            odometrohoy.text = numberFormatter.string(from: NSNumber(value: Int(odometro)!))
+            
+            //odometrohoy.text = "\(String.localizedStringWithFormat("%.2f", valuehoy))"
+            
             let valueanterior: Float = Float(odometroanteriorlast)!
             //odometroanterior.text = numberFormatter.string(from: NSNumber(value: Int(odometroanteriorlast)!))//odometroanteriorlast
-            odometroanterior.text = "\(String.localizedStringWithFormat("%.2f", valueanterior))"
+            //odometroanterior.text = "\(String.localizedStringWithFormat("%.2f", valueanterior))"
+            
+            odometroanterior.text = numberFormatter.string(from: NSNumber(value: Int(odometroanteriorlast)!))
             
             let valuerecorridos: Float = Float(kilometrosrecorridoslast)!
             //kilometrosrecorridos.text = numberFormatter.string(from: NSNumber(value: Int(kilometrosrecorridoslast)!))//kilometrosrecorridoslast
-            kilometrosrecorridos.text = "\(String.localizedStringWithFormat("%.2f", valuerecorridos))"
-
+            //kilometrosrecorridos.text = "\(String.localizedStringWithFormat("%.2f", valuerecorridos))"
+            
+            kilometrosrecorridos.text = numberFormatter.string(from: NSNumber(value: Int(kilometrosrecorridoslast)!))
+            
             //let otrostring = Float(tarifaporkmlast)
             let otrokmlast = numberFormatter.string(from: NSNumber(value: Double(tarifaporkmlast)!))
             tarifaporkm.text = "$ \((otrokmlast!))"
-
+            
             //basemes.text = "$ \(basemeslast)"
             let value: Float = Float(basemeslast)!
-            basemes.text = "$ \(String.localizedStringWithFormat("%.2f", value))"
-
+            basemes.text = "$ \(String.localizedStringWithFormat("%.2f", round(value)))"
+            
             //let otrototal = numberFormatter.string(from: NSNumber(value: Double(totalapagarlast)!))
             let valuetotal: Float = Float(totalapagarlast)!
             totalapagar.text = "$ \(String.localizedStringWithFormat("%.2f", valuetotal))"
@@ -104,8 +121,6 @@ class CustomAlertViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         rowsel = Int(valueToPass)!
-        
-        view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
     }
     
     override func didReceiveMemoryWarning() {
@@ -255,7 +270,7 @@ class CustomAlertViewController: UIViewController {
                                     print("SALIDN3O....3")
                                     //refreshAlert.dismiss(animated: true, completion: {
                                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                    let myAlert = storyboard.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+                                    let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
                                     myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                                     myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                                     
@@ -302,11 +317,15 @@ class CustomAlertViewController: UIViewController {
                                 //self.present(vc, animated: true, completion: nil)
                                 
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let myAlert = storyboard.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+                                let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
+                                
                                 myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                                 myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                                 
+                                //launch second view with data - show table and polizas
+                                //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
                                 self.present(myAlert, animated: true, completion: nil)
+
 
                             //})
                         }))

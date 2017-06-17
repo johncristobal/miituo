@@ -6,6 +6,7 @@
 //  Copyright © 2017 VERA. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import Toaster
 
@@ -18,4 +19,3 @@ func showmessage(message: String){
     to.show()
     //Toast(text: message).show()
 }
-

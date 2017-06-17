@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Photos
 import SystemConfiguration
+import UserNotifications
 
 var alertaloading:UIAlertController? = nil
 var polizaparasms:String? = ""
@@ -24,18 +25,38 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
     @IBOutlet var label: UILabel!
     @IBOutlet var telefono: UITextField!
 
-    @IBOutlet var fototemp: UIImageView!    
-    
+    @IBOutlet var fototemp: UIImageView!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let application: UIApplication = UIApplication.shared
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            //UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            
+            // For iOS 10 data message (sent via FCM)
+            //FIRMessaging.messaging().remoteMessageDelegate = self
+            
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
         /*let largeNumber = 31908551587
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = NumberFormatter.Style.decimal
         let finalnumber = numberFormatter.string(from: NSNumber(value: largeNumber))
         telefono.text = finalnumber*/
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        /*let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         fototemp.isUserInteractionEnabled = true
         fototemp.addGestureRecognizer(tapGestureRecognizer)
 
@@ -49,7 +70,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
             fototemp.image = image
         }else{
             print("No existe foto")
-        }
+        }*/
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
         Reach().monitorReachabilityChanges()
@@ -75,7 +96,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         }*/
         
         //Code to launch picture and watch picture
-        let imageView = tapGestureRecognizer.view as! UIImageView
+        /*let imageView = tapGestureRecognizer.view as! UIImageView
         let newImageView = UIImageView(image: imageView.image)
         
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .beginFromCurrentState, animations: {
@@ -89,7 +110,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
             self.view.addSubview(newImageView)
             self.navigationController?.isNavigationBarHidden = true
             self.tabBarController?.tabBar.isHidden = true
-        },completion: {_ in})
+        },completion: {_ in})*/
     }
     
     func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
@@ -101,7 +122,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         picker.dismiss(animated: true, completion: nil)
 
-        fototemp.layer.cornerRadius = 20.0
+        /*fototemp.layer.cornerRadius = 20.0
         fototemp.layer.masksToBounds = true
         fototemp.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
@@ -123,7 +144,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
             else {
                 // Save photo failed with no error
             }
-        })
+        })*/
     }
     
     func getDocumentsDirectory() -> URL {
@@ -187,15 +208,17 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         alertaloading?.view.addSubview(loadingIndicator)
         present(alertaloading!, animated: true, completion: nil)
         
-        //DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).async {
         //update token
         self.sendToken(telefono: cel as! String)
         //get data from WS
-        self.getJson(telefon: cel as! String);
+        //self.getJson(telefon: cel as! String);
+        getJson(telefon: cel as! String, vistafrom: self);
+
         //get data from WS
         //self.getSms(telefon: cel as! String);
         
-        //DispatchQueue.main.async {
+        DispatchQueue.main.async {
         //self.imageView.image = image
         //launch second view with data - show table and polizas
         //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
@@ -223,8 +246,8 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
          self.launchtoken()
          }*/
         //})
-        //}
-        //}
+        }
+        }
         
     }
     
@@ -266,7 +289,9 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
             //update token
             self.sendToken(telefono: tel)
             //get data from WS
-            self.getJson(telefon: tel);
+            //self.getJson(telefon: tel);
+            getJson(telefon: tel as! String, vistafrom: self);
+
             //get data from WS
             self.getSms(telefon: tel);
 
@@ -297,9 +322,18 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
 /*********************** launch polizas***************************************************/
     func launchpolizas(){
         //launch second view with data - show table and polizas
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
-        self.present(vc, animated: true, completion: nil)
+        /*let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+        self.present(vc, animated: true, completion: nil)*/
 
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
+        
+        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        
+        //launch second view with data - show table and polizas
+        //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+        self.present(myAlert, animated: true, completion: nil)
     }
 
 /*********************** launch token***************************************************/
@@ -403,7 +437,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
     }
     
 //*******************Function to get data with the celphone*********************************************
-    func getJson(telefon:String){
+    /*func getJson(telefon:String){
         
         print("getjson: \(telefon)")
         
@@ -608,7 +642,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         }
         
         loadTask.resume()
-    }
+    }*/
     
 //*******************Function to get data with the celphone*********************************************
     func getSms(telefon:String){

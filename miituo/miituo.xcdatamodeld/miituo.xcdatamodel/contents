@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Polizas" representedClassName="Polizas" syncable="YES" codeGenerationType="class">
-        <attribute name="idcliente" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="idcliente" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="idpoliza" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="insurance" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastodometer" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,7 +17,7 @@
     <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="class">
         <attribute name="celphone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="correo" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mothername" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,7 +39,7 @@
     </entity>
     <elements>
         <element name="Polizas" positionX="-9" positionY="36" width="128" height="225"/>
-        <element name="Users" positionX="-173" positionY="36" width="128" height="163"/>
+        <element name="Users" positionX="-173" positionY="36" width="128" height="165"/>
         <element name="Vehiculos" positionX="160" positionY="36" width="128" height="193"/>
     </elements>
 </model>

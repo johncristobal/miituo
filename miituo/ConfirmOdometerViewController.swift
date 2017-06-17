@@ -14,7 +14,11 @@ class ConfirmOdometerViewController: UIViewController {
 
     //@IBOutlet var textres: UITextField!
 
+    @IBOutlet var textoantes: UILabel!
+    @IBOutlet var lastodo: UITextField!
     @IBOutlet var textres: UITextField!
+    
+    @IBOutlet var upconstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +37,20 @@ class ConfirmOdometerViewController: UIViewController {
         if valordevuelto != "1000" {
             textres.text = valordevuelto
         }*/
-        
+        odometrouno = ""
         textres.text = odometrouno
-
+        
+        let rowsel = Int(valueToPass)!
+        let poliza = arregloPolizas[rowsel]["lastodometer"]! as String
+        print("idpoliza----------------\(poliza)")
+        lastodo.text = poliza
+        
+        if poliza == "0"{
+            
+            //lastodo.isHidden = true
+            //textoantes.isHidden = true
+            //upconstraint.constant = -25
+        }
     }
 
     override func didReceiveMemoryWarning() {

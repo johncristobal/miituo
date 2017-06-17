@@ -85,7 +85,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
             frontpic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
             frontflag = 1
             //just here save the picture...to show in App
-            savePicture()
+            //savePicture()
             //let imagennn = info[UIImagePickerControllerOriginalImage] as? UIImage
         } else if imagenselected == 3 {
             izquierdopic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -103,15 +103,15 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         PHAssetChangeRequest.creationRequestForAsset(from: self.frontpic.image!)
         }, completionHandler: { success, error in
         if success {
-        // Saved successfully!
-        if let data = UIImagePNGRepresentation(self.frontpic.image!) {
+            // Saved successfully!
+            if let data = UIImagePNGRepresentation(self.frontpic.image!) {
 
-            let polizatemp = arregloPolizas[self.rowsel]["nopoliza"]!
-            let filename = self.getDocumentsDirectory().appendingPathComponent("frontal_\(polizatemp).png")
-            try? data.write(to: filename)
-            
-            print("imagen guardada")
-        }
+                let polizatemp = arregloPolizas[self.rowsel]["nopoliza"]!
+                let filename = self.getDocumentsDirectory().appendingPathComponent("frontal_\(polizatemp).png")
+                try? data.write(to: filename)
+                
+                print("imagen guardada")
+            }
         }
         else if let error = error {
         // Save photo failed with error
@@ -138,16 +138,6 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     func compressImage(image:UIImage) -> Data {
         // Reducing file size to a 10th
         
@@ -221,6 +211,9 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
                 }
             }
             
+            //Gurdamos fotgrafia
+            savePicture()
+            
             //At last...open the new viewcontrooler
             //Open view odometer to get picture of odometer
             alertaloading.dismiss(animated: true, completion: {
@@ -290,7 +283,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         
         //print(strBase64)
         
-        /// ----------- send iamge ------------ ///
+        /// ----------- send image ------------ ///
         let todosEndpoint: String = "\(ip)ImageProcessing/"
         
         guard let todosURL = URL(string: todosEndpoint) else {
@@ -315,7 +308,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
             let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
             todosUrlRequest.httpBody = jsonTodo
             
-            print(jsonString)
+            //print(jsonString)
         } catch {
             print("Error: cannot create JSON from todo")
             return

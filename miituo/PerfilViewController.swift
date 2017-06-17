@@ -76,8 +76,8 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //self.enter.layer.cornerRadius = 4
         
         self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Tu información"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Nombre: \(arreglo[Int(valueToPass)!]["name"]!)"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Celular: \(arreglo[Int(valueToPass)!]["celphone"]!)"))
+        self.cells.append(SwiftyAccordionCells.Item(value: "Nombre: \(arreglo[Int(0)]["name"]!)"))
+        self.cells.append(SwiftyAccordionCells.Item(value: "Celular: \(arreglo[Int(0)]["celphone"]!)"))
         /*self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 2"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 3"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 4"))
@@ -125,13 +125,16 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             if item as? SwiftyAccordionCells.HeaderItem != nil {
                 //cell.backgroundColor = UIColor.lightGray
+                cell.imageView?.image = UIImage(named: "blackflecha.png")
+                
                 cell.accessoryType = .none
-                cell.textLabel?.font = UIFont(name: "DIN Next Rounded LT Pro", size: 16.0)
+                cell.backgroundColor = UIColor.clear
+                cell.textLabel?.font = UIFont(name: "DIN Next Rounded LT Pro", size: 21.0)
                 cell.textLabel?.textColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
             } else {
                 cell.backgroundColor = UIColor.clear
                 cell.textLabel?.textColor = UIColor.black
-                cell.textLabel?.font = UIFont(name: "DIN Next Rounded LT Pro", size: 13.0)
+                cell.textLabel?.font = UIFont(name: "DIN Next Rounded LT Pro", size: 18.0)
                 if isChecked {
                     cell.accessoryType = .checkmark
                 } else {
@@ -157,12 +160,13 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.contentView.backgroundColor = UIColor.white
+        cell?.backgroundColor = UIColor.white
+
         let item = self.cells.items[(indexPath as NSIndexPath).row]
-        
+
         if item is SwiftyAccordionCells.HeaderItem {
-            
-            let cell = tableView.cellForRow(at: indexPath)
-            cell?.backgroundColor = UIColor.clear
 
             if self.selectedHeaderIndex == nil {
                 self.selectedHeaderIndex = (indexPath as NSIndexPath).row

@@ -10,16 +10,32 @@ import UIKit
 import Foundation
 import CoreData
 
-//let ip = "http://192.168.1.26:1000/api/"
+//let ip = "http://192.168.1.31:1000/api/"
 
 //let ip = "http://192.168.1.109:1003/api/"
 
-//let ip = "http://miituodev.sytes.net:1001/api/"
+let ip = "http://miituodev.sytes.net:1001/api/" //DEV
 
-let ip = "http://miituodev.sytes.net:1003/api/"
+//let ip = "http://miituodev.sytes.net:1003/api/"   //QAS
+
+var idticket = ""
+
+/*********************** launch polizas***************************************************/
+func launchpolizas(vista: UIViewController){
+    
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
+    
+    myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+    myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+    
+    //launch second view with data - show table and polizas
+    //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+    vista.present(myAlert, animated: true, completion: nil)
+}
 
 //*******************Function to get data with the celphone*********************************************
-/*func getJson(telefon:String){
+func getJson(telefon:String, vistafrom: UIViewController){
     
     print("getjson: \(telefon)")
     
@@ -27,15 +43,23 @@ let ip = "http://miituodev.sytes.net:1003/api/"
     let session = URLSession.shared
     let loadTask = session.dataTask(with: url){(data,response,error) in
         if error != nil {
-            //showmessage(message: "Error de conexiòn: \(error)")
+            showmessage(message: "Error de conexión...")
+            //After for to save polizas....
+            alertaloadingSplash?.dismiss(animated: true, completion: {
+                launchpolizas(vista: vistafrom)
+            })
+            //return
         } else {
             if let urlContent = data{
-                
                 do{
                     let json = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                     
                     guard let temp = json.value(forKey: "Client") else{
-                        //error
+                        //print(temp)
+                        print("error")
+                        alertaloadingSplash?.dismiss(animated: true, completion: {
+                            launchpolizas(vista: vistafrom)
+                        })
                         return
                     }
                     
@@ -67,49 +91,62 @@ let ip = "http://miituodev.sytes.net:1003/api/"
                     //forach to get all tjhe polizas here :) ***************************************
                     for index in 0...cliente.count-1{
                         
-                        let cli = cliente[index] as! NSDictionary
+                    //let cli = cliente[0] as! NSDictionary
+                    let cli = cliente[index] as! NSDictionary
+                    
+                    //get client y save data
+                    let newUser = NSEntityDescription.insertNewObject(forEntityName: "Users", into: context)
+                    let idcliente = cli.value(forKey: "Id") as! Int
+                    print("from here: \(idcliente)")
+                    newUser.setValue(idcliente, forKey: "id")
+                    //managedObject Core Data
+                    //let noolizasss = (poli["NoPolicy"] as! String).description
+                    let lastnma = (cli["LastName"] as! String).description
+                    newUser.setValue(lastnma, forKey: "lastname")
+                    let motherna = (cli["MotherName"] as! String).description
+                    newUser.setValue(motherna, forKey: "mothername")
+                    let nameee = (cli["Name"] as! String).description
+                    newUser.setValue(nameee, forKey: "name")
+                    let tokene = ""//(cli["Token"] as! String).description
+                    newUser.setValue(tokene, forKey: "token")
+                    //let celppp = String(describing: (cli["Celphone"]))
+                    newUser.setValue(telefon, forKey: "celphone")
+                    
+                    do {
+                        try context.save()
+                        print("Saved client")
+                    } catch {
+                        showmessage(message: "Error al guardar datos")
+                    }
+                    
+                    //get data from client....
+                    let polizas = json.value(forKey: "Policies") as! NSArray
+                    print("numero de polizas retornadas: \(polizas.count)")
                         
-                        //get client y save data
-                        let newUser = NSEntityDescription.insertNewObject(forEntityName: "Users", into: context)
-                        let idcliente = cli.value(forKey: "Id") as! Int
-                        print("from here: \(idcliente)")
-                        newUser.setValue(idcliente, forKey: "id")
-                        //managedObject Core Data
-                        //let noolizasss = (poli["NoPolicy"] as! String).description
-                        let lastnma = (cli["LastName"] as! String).description
-                        newUser.setValue(lastnma, forKey: "lastname")
-                        let motherna = (cli["MotherName"] as! String).description
-                        newUser.setValue(motherna, forKey: "mothername")
-                        let nameee = (cli["Name"] as! String).description
-                        newUser.setValue(nameee, forKey: "name")
-                        let tokene = ""//(cli["Token"] as! String).description
-                        newUser.setValue(tokene, forKey: "token")
-                        //let celppp = String(describing: (cli["Celphone"]))
-                        newUser.setValue(telefon, forKey: "celphone")
-                        
-                        do {
-                            try context.save()
-                            print("Saved client")
-                        } catch {
-                            showmessage(message: "Error al guardar datos")
-                        }
-                        
-                        //get data from client....
-                        let polizas = json.value(forKey: "Policies") as! NSArray
-                        print("numero de polizas retornadas: \(polizas.count)")
-                        
-                        
-                        //for poli in polizas as! NSDictionary{
+                    //for index in 0...polizas.count-1{
                         let poli = polizas[index] as! NSDictionary
                         
                         print("poliza: \(poli)")
-                        //print("numero de polizas\(poli.count)")
-                        
                         //now the turn os for polizas
                         let newPoli = NSEntityDescription.insertNewObject(forEntityName: "Polizas", into: context)
                         
+                        //fecha...
+                        let dateString = (poli["LimitReportDate"] as! String).description
+                        //let dateString = "2014-01-12"
+                        //let fullNameArr = dateString.components(separatedBy: "T")
+                        let dateFormatter = DateFormatter()
+                        let localeStr = "us" // this will succeed
+                        dateFormatter.locale = NSLocale(localeIdentifier: localeStr) as Locale!
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+                        let s = dateFormatter.date(from:dateString)
+                        dateFormatter.dateFormat = "dd-MM-yyyy"
+                        let dateStringfin = dateFormatter.string(from:s!)
+                        print("fecha linite: \(dateStringfin)")
+                        newPoli.setValue(s, forKey: "limitefecha")
+                        
                         print("idcliente\(idcliente)")
                         newPoli.setValue(idcliente, forKey: "idcliente")
+                        
                         //managedObject Core Data
                         let insu = poli["InsuranceCarrier"] as! NSDictionary
                         newPoli.setValue(insu["Name"], forKey: "insurance")
@@ -191,13 +228,34 @@ let ip = "http://miituodev.sytes.net:1003/api/"
                             showmessage(message: "Error al guardar datos")
                         }
                         
-                        alertaloadingSplash?.dismiss(animated: true, completion: {
-                            self.launchpolizas()
-                        })
-                        //}
+                        //lest try get ticket
+                        if let tick = poli["Tickets"] as? NSNull{
+                            print("null")
+                        }else{
+                            let ticket = poli["Tickets"] as! NSArray //as! NSArray
+                            
+                            if ticket.count == 0{
+                                print("null")
+                            }else{
+                                let idticketdic = ticket[0] as! NSDictionary
+                                
+                                //print(idticketdic["Id"])
+                                if reportsta == "15" || reportsta == "14" {
+                                    idticket = (idticketdic["Id"] as! Int).description
+                                    print(idticket)
+                                }
+                            }
+                        }
+                        
                     }
                     
-                } catch{
+                    //After for to save polizas....
+                    alertaloadingSplash?.dismiss(animated: true, completion: {
+                        launchpolizas(vista: vistafrom)
+                    })
+                    //}
+                    
+                } catch {
                     showmessage(message: "Error en JSON datos polizas.")
                 }
                 
@@ -209,6 +267,6 @@ let ip = "http://miituodev.sytes.net:1003/api/"
             }
         }
     }
-    
     loadTask.resume()
-}*/
+}
+

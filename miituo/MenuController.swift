@@ -10,6 +10,8 @@ import UIKit
 
 class MenuController: UITableViewController {
 
+    @IBOutlet var tableview: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,14 +20,98 @@ class MenuController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        tableview.separatorStyle = UITableViewCellSeparatorStyle.none;
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        //Define el contenido de la celda
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
 
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none;
+        
+        return cell
+    }*/
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("---")
+        print(indexPath.row)
+        print("---")
+        
+        /*if indexPath.row == 0 {
+            dismiss(animated: true, completion: nil)
+        }else*/
+        
+        if indexPath.row == 0 {
+            
+            
+            
+            /*let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let myAlert = storyboard.instantiateViewController(withIdentifier: "fourSB") as! ViewController
+            
+            var refreshAlert = UIAlertController(title: "miituo", message: "versión 1.0", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let action = (UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                
+                print("Cerrando...")
+                
+                //DispatchQueue.global(qos: .userInitiated).async {
+                //   DispatchQueue.main.async {
+                
+                //self.dismiss(animated: true, completion: nil)
+                //}
+                //}
+            }))
+            refreshAlert.addAction(action)
+            present(refreshAlert, animated: true)*/
+        }
+        else if indexPath.row == 2 {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let myAlert = storyboard.instantiateViewController(withIdentifier: "flash") as! SplashViewController
+            
+            var refreshAlert = UIAlertController(title: "Atención", message: "¿Desea cerrar sesión?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let action = (UIAlertAction(title: "Sí", style: .default, handler: { (action: UIAlertAction!) in
+                
+                print("Cerrando...")
+                
+                //DispatchQueue.global(qos: .userInitiated).async {
+                //   DispatchQueue.main.async {
+                
+                //self.dismiss(animated: true, completion: nil)
+                //self.dismiss(animated: true, completion: {
+                 
+                 let prefs = UserDefaults.standard
+                 prefs.removeObject(forKey:"tutoya")
+                 prefs.removeObject(forKey:"celular")
+                 
+                 //myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                 //myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                 
+                 self.present(myAlert, animated: true, completion: nil)
+                //})
+                //}
+                //}
+            }))
+            
+            refreshAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
+             
+             print("Nada...")
+             
+             }))
+        
+            refreshAlert.addAction(action)
+            present(refreshAlert, animated: true)
+        }
+    }
     
     // MARK: - Table view data source
 

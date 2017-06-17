@@ -22,6 +22,12 @@ var esperando = ""
 
 var tarifaneeeta = ""
 
+var fiva = ""
+var ivait = ""
+var ivaderecho = ""
+
+var lastvalordev = ""
+
 class ConfirmOdoPopViewController: UIViewController {
     
     var rowsel = 0
@@ -43,6 +49,19 @@ class ConfirmOdoPopViewController: UIViewController {
         
         view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
         rowsel = Int(valueToPass)!
+        
+        odometroanteriorlast = ""
+        odometroaactuallast = ""
+        kilometrosrecorridoslast = ""
+        tarifaporkmlast = ""
+        primalast = ""
+        basemeslast = ""
+        promolast = ""
+        totalapagarlast = ""
+        derechopolizad = ""
+        esperando = ""
+        
+        tarifaneeeta = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,11 +82,390 @@ class ConfirmOdoPopViewController: UIViewController {
     @IBAction func sendOdometrofinal(_ sender: Any) {
         
         //dijo que si...enviamos odometro
+        //Para cancelacion y ajuste es el mismo flujo
         if tipoodometro == "first"{
             enviarodometro()
         }else if tipoodometro == "mensual" {
             sendReportOdometer()
         }
+        else if tipoodometro == "cancela" {
+            ajustaReportOdometer()
+        }
+        else if tipoodometro == "ajuste" {
+            ajustaReportOdometer()
+        }
+    }
+
+//***************************Function updatetcasification*********************************************
+    func upstatecasification()
+    {
+        /// ----------- send confirmreport ------------ ///
+        //Para actualizar el campo de Id_Estatus de la tabla de Clientes_Ticket
+        let todosEndpoint: String = "\(ip)UpStateCasification"
+        
+        guard let todosURL = URL(string: todosEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        var todosUrlRequest = URLRequest(url: todosURL)
+        todosUrlRequest.httpMethod = "PUT"
+        todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let newTodo: [String: Any] = ["Id":idticket,"sTiket":7,"GodinName":"App","GodynSolution":""]
+        
+        let jsonTodo: Data
+        do {
+            jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
+            todosUrlRequest.httpBody = jsonTodo
+            
+            let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
+            print("CASIFICATION \(jsonString)")
+            
+        } catch {
+            print("Error: cannot create JSON from todo")
+            return
+        }
+        
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: todosUrlRequest) {
+            (data, response, error) in
+            guard error == nil else {
+                print("error calling POST on /todos/1")
+                print(error)
+                return
+            }
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            if let httpResponse = response as? HTTPURLResponse {
+                print("error \(httpResponse.statusCode)")
+                print("error \(httpResponse.description)")
+                //print("error \(httpResponse.)")
+                if httpResponse.statusCode == 200{
+                    if let str = String(data: responseData, encoding: String.Encoding.utf8) {
+                        print("Valor de retorno: \(str)")
+                        valordevuelto = str
+                        
+                    } else {
+                        print("not a valid UTF-8 sequence")
+                    }
+                }
+            }
+            
+            // parse the result as JSON, since that's what the API provides
+            do {
+                guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,
+                                                                          options: []) as? [String: Any] else {
+                                                                            print("Could not get JSON from responseData as dictionary")
+                                                                            return
+                }
+                print("The todo is: " + receivedTodo.description)
+                
+                self.alertaloading.dismiss(animated: true, completion: {
+                    
+                    print("Valoe ------------ devuelto ----------")
+                    print(valordevuelto)
+                    
+                    let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                        
+                            self.launcpolizas()
+                    }))
+                    
+                    self.present(refreshAlert, animated: true, completion: nil)
+                })
+            } catch  {
+                print("error parsing response from POST on /todos")
+            }
+        }
+        task.resume()
+    }
+    
+//***************************update dometer tkcet***************************************
+    func ticketupload(){
+
+        //Se actualiza el  odometro en la tabla de Clientes ticket en el campo
+        let todosEndpoint: String = "\(ip)Ticket/"
+        
+        guard let todosURL = URL(string: todosEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        var todosUrlRequest = URLRequest(url: todosURL)
+        todosUrlRequest.httpMethod = "PUT"
+        todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        //let newTodo: [String: Any] = ["Celphone":"5534959778","Id":"0","Token":"aaaaaaaaaaa"]
+        let newTodo: [String: Any] = ["OdomCorrect": 0, "OdomMoment": odometro, "idTicket":idticket, "idPolicy":arregloPolizas[self.rowsel]["nopoliza"]]
+        
+        let jsonTodo: Data
+        do {
+            jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
+            let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
+            todosUrlRequest.httpBody = jsonTodo
+            
+            print("Ticket json: \(jsonString)")
+        } catch {
+            print("Error: cannot create JSON from todo")
+            return
+        }
+        
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: todosUrlRequest) {
+            (data, response, error) in
+            guard error == nil else {
+                print("error calling POST on /todos/1")
+                alertaloadingSplash?.dismiss(animated: true, completion: {
+                    self.launcpolizas()
+                })
+                return
+            }
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            if let httpResponse = response as? HTTPURLResponse {
+                print("error \(httpResponse.statusCode)")
+                print("error \(httpResponse.description)")
+                //print("error \(httpResponse.)")
+                if httpResponse.statusCode == 200{
+                    if let str = String(data: responseData, encoding: String.Encoding.utf8) {
+                        print("Valor de retorno: \(str)")
+                        valordevuelto = str
+                    } else {
+                        print("not a valid UTF-8 sequence")
+                    }
+                }
+            }
+            
+            // parse the result as JSON, since that's what the API provides
+            do {
+                guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,
+                                                                          options: []) as? [String: Any] else {
+                                                                            print("Could not get JSON from responseData as dictionary")
+                                                                            return
+                }
+                print("The todo is: " + receivedTodo.description)
+                
+                self.alertaloading.dismiss(animated: true, completion: {
+                    
+                    print("Valoe ------------ devuelto ----------")
+                    print(valordevuelto)
+                    
+                    let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                        
+                        self.launcpolizas()
+                    }))
+                    
+                    self.present(refreshAlert, animated: true, completion: nil)
+                })
+            } catch  {
+                print("error parsing response from POST on /todos")
+                return
+            }
+        }
+        task.resume()
+    }
+
+//***************************update status poliza*********************************************
+    func updatestatus(){
+        
+        let todosEndpoint: String = "\(ip)Policy/UpdatePolicyStatusReport/\(arregloPolizas[rowsel]["idpoliza"] as! String)/12"
+
+        guard let todosURL = URL(string: todosEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        var todosUrlRequest = URLRequest(url: todosURL)
+        todosUrlRequest.httpMethod = "PUT"
+        todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        /*let jsonTodo: Data
+        do {
+            jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
+            let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
+            todosUrlRequest.httpBody = jsonTodo
+            
+            print("LAast json - json: \(jsonString)")
+        } catch {
+            print("Error: cannot create JSON from todo")
+            return
+        }*/
+        
+        let session = URLSession.shared
+        let loadTask = session.dataTask(with: todosUrlRequest){(data,response,error) in
+            
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            if error != nil {
+                showmessage(message: "Error de conexión...")
+                //After for to save polizas....
+                alertaloadingSplash?.dismiss(animated: true, completion: {
+                    self.launcpolizas()
+                })
+                //return
+            }
+            //else {
+                //if let urlContent = data{
+                    //do{
+                        //let json = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        
+                        if let httpResponse = response as? HTTPURLResponse {
+                            print("error \(httpResponse.statusCode)")
+                            print("error \(httpResponse.description)")
+                            //print("error \(httpResponse.)")
+                            if httpResponse.statusCode == 200{
+                                if let str = String(data: responseData, encoding: String.Encoding.utf8) {
+                                    print("Valor de retorno: \(str)")
+                                    lastvalordev = str
+                                } else {
+                                    print("not a valid UTF-8 sequence")
+                                }
+                            }
+                        }
+                        
+                        // parse the result as JSON, since that's what the API provides
+                        do {
+                            guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,options: []) as? [String: Any] else {
+                                    print("Could not get JSON from responseData as dictionary")
+                                    return
+                                }
+                            print("The todo is: " + receivedTodo.description)
+                            
+                            /*guard let todoID = receivedTodo["id"] as? Int else {
+                                print("Could not get todoID as int from JSON")
+                                return
+                            }
+                            print("The ID is: \(todoID)")*/
+                            
+                            self.alertaloading.dismiss(animated: true, completion: {
+                                
+                                print("Valoe ------------ devuelto ----------")
+                                print(lastvalordev)
+                                
+                                let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
+                                
+                                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                    
+                                    self.launcpolizas()
+                                }))
+                                
+                                self.present(refreshAlert, animated: true, completion: nil)
+                            })
+                            
+                        } catch  {
+                            print("error parsing response from POST on /todos")
+                            //return
+                        }
+                        /*guard let temp = json.value(forKey: "Client") else{
+                            //print(temp)
+                            print("error")
+                            alertaloadingSplash?.dismiss(animated: true, completion: {
+                                launchpolizas(vista: vistafrom)
+                            })
+                            return
+                        }*/
+                    //} catch {
+                        //showmessage(message: "Error en JSON datos polizas.")
+                    //}
+                //}else{
+                //    showmessage(message: "Sin conexión a Internet. Actualice información más tarde.")
+                //}
+            //}
+            }
+         loadTask.resume()
+        
+         while true {
+         if lastvalordev != ""{
+         break;
+         }
+         }
+        
+         alertaloading.dismiss(animated: true, completion: {
+         print("Valor ------------ devuelto ----------")
+         print(lastvalordev)
+         
+         //si es true o false => pasa sin problermas y cierra
+         if lastvalordev == "true"{
+            
+            do{
+                //UpdatereportStet from CoreData
+                //store do core data
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let requestpolizas = NSFetchRequest<NSFetchRequestResult>(entityName: "Polizas")
+                
+                //var fetchRequest = NSFetchRequest(entityName: "LoginData")
+                requestpolizas.predicate = NSPredicate(format: "nopoliza = %@", arregloPolizas[self.rowsel]["nopoliza"] as! String)
+                
+                let test = try context.fetch(requestpolizas)
+                if test.count == 1
+                {
+                    let objectUpdate = test[0] as! NSManagedObject
+                    
+                    objectUpdate.setValue("12", forKey: "reportstate")
+                    objectUpdate.setValue(odometro, forKey: "lastodometer")
+                    
+                    do{
+                        try context.save()
+                    }
+                    catch
+                    {
+                        print(error)
+                    }
+                }
+            }catch {
+                showmessage(message: "Error al actualizar estatus")
+            }
+            
+            let refreshAlert = UIAlertController(title: "Odómetro", message: "Información del odómetro actualizada correctamente.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                
+                self.launcpolizas()
+            }))
+            
+            self.present(refreshAlert, animated: true, completion: nil)
+         
+         }
+         else
+         {
+             var refreshAlert = UIAlertController(title: "Atención", message: "Error al cargar información, intente más tarde", preferredStyle: UIAlertControllerStyle.alert)
+             
+             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+             
+                self.launcpolizas()
+             }))
+             
+             self.present(refreshAlert, animated: true)
+         }
+         })
+    }
+    
+//***************************Function to send token to ws*********************************************
+    func ajustaReportOdometer(){
+
+        //open alert to sincronizar
+        openloading(mensaje: "Subiendo información...")
+        
+        //servicio para actualiza status en UpStateCasification------------------------------------
+        upstatecasification();  //ok
+        ticketupload();
+        updatestatus();
     }
     
 //enviar odometro first time-----------------------------------------------------------------------
@@ -81,8 +479,8 @@ class ConfirmOdoPopViewController: UIViewController {
          let todosEndpoint: String = "\(ip)ImageProcessing/ConfirmOdometer"
         
          guard let todosURL = URL(string: todosEndpoint) else {
-         print("Error: cannot create URL")
-         return
+             print("Error: cannot create URL")
+             return
          }
          
          var todosUrlRequest = URLRequest(url: todosURL)
@@ -117,18 +515,19 @@ class ConfirmOdoPopViewController: UIViewController {
          print("Error: did not receive data")
          return
          }
+            
          if let httpResponse = response as? HTTPURLResponse {
-         print("error \(httpResponse.statusCode)")
-         print("error \(httpResponse.description)")
-         //print("error \(httpResponse.)")
-         if httpResponse.statusCode == 200{
-         if let str = String(data: responseData, encoding: String.Encoding.utf8) {
-         print("Valor de retorno: \(str)")
-         valordevuelto = str
-         } else {
-         print("not a valid UTF-8 sequence")
-         }
-         }
+             print("error \(httpResponse.statusCode)")
+             print("error \(httpResponse.description)")
+             //print("error \(httpResponse.)")
+             if httpResponse.statusCode == 200{
+                 if let str = String(data: responseData, encoding: String.Encoding.utf8) {
+                 print("Valor de retorno: \(str)")
+                 valordevuelto = str
+                 } else {
+                    print("not a valid UTF-8 sequence")
+                 }
+             }
          }
          
          // parse the result as JSON, since that's what the API provides
@@ -143,7 +542,7 @@ class ConfirmOdoPopViewController: UIViewController {
             showmessage(message: receivedTodo["Message"] as! String)
          valordevuelto = receivedTodo["Message"] as! String
          } catch  {
-         print("error parsing response from POST on /todos")
+            print("error parsing response from POST on /todos")
          //return
          }
          }
@@ -159,7 +558,7 @@ class ConfirmOdoPopViewController: UIViewController {
         //closeloading()
     
         alertaloading.dismiss(animated: true, completion: {
-            print("Valoe ------------ devuelro ----------")
+            print("Valor ------------ devuelto ----------")
             print(valordevuelto)
 
             //si es true o false => pasa sin problermas y cierra
@@ -196,7 +595,6 @@ class ConfirmOdoPopViewController: UIViewController {
                             }
                         }
                         
-                        
                     }catch {
                         showmessage(message: "Error al actualizar estatus")
                     }
@@ -212,7 +610,6 @@ class ConfirmOdoPopViewController: UIViewController {
                 refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                     
                     self.launcpolizas()
-                    
                 }))
                 
                 self.present(refreshAlert, animated: true)
@@ -261,6 +658,10 @@ class ConfirmOdoPopViewController: UIViewController {
         do {
             jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
             todosUrlRequest.httpBody = jsonTodo
+            
+            let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
+            print(jsonString)
+
         } catch {
             print("Error: cannot create JSON from todo")
             return
@@ -367,24 +768,79 @@ class ConfirmOdoPopViewController: UIViewController {
                             let tarifafijames = receivedTodo["Parameters"] as! NSArray
                             print("Numero de datos en tarifa mes: \(tarifafijames.count)")
                         
-                            if tarifafijames.count == 3{
+                            if tarifafijames.count == 12{
+                                let tarifakmtemp = (tarifafijames[0] as AnyObject).value(forKey: "Amount") as! Double
+
+                                let dereccc = (tarifafijames[1] as AnyObject).value(forKey: "Amount") as! Double
+
+                                let promolasttemp = (tarifafijames[2] as AnyObject).value(forKey: "Amount") as! Double
                                 
-                                let tarifakmtemp = (tarifafijames[0] as AnyObject).value(forKey: "Amount") as! Float
-                                basemeslast = String(tarifakmtemp)
-                                let dereccc = (tarifafijames[1] as AnyObject).value(forKey: "Amount") as! Float
-                                derechopolizad = String(dereccc)
-                                let promolasttemp = (tarifafijames[2] as AnyObject).value(forKey: "Amount") as! Float
+                                let feefinal = (tarifafijames[3] as AnyObject).value(forKey: "Amount") as! Double
+
+                                let odometrofinalnuevo = (tarifafijames[4] as AnyObject).value(forKey: "Amount") as! Int
+                                let odometrofinalanterior = (tarifafijames[5] as AnyObject).value(forKey: "Amount") as! Int
+                                
+                                let cantidadderecorridos = (tarifafijames[6] as AnyObject).value(forKey: "Amount") as! Int
+
+                                let tarifaneta = (tarifafijames[8] as AnyObject).value(forKey: "Amount") as! Double
+
+                                let ivafee = (tarifafijames[9] as AnyObject).value(forKey: "Amount") as! Double
+
+                                let ivaneta = (tarifafijames[10] as AnyObject).value(forKey: "Amount") as! Double
+
+                                let ivadp = (tarifafijames[11] as AnyObject).value(forKey: "Amount") as! Double
+                                
+                                derechopolizad = String(dereccc + ivadp)
+                                basemeslast = String(tarifakmtemp + ivafee)
                                 promolast = String(promolasttemp)
+                                tarifaporkmlast = String(feefinal)
                                 
-                            } else if tarifafijames.count == 2{
+                                odometroanteriorlast = String(odometrofinalanterior)
+                                odometroaactuallast = String(odometrofinalnuevo)
+                                kilometrosrecorridoslast = String(cantidadderecorridos)
                                 
-                                let tarifakmtemp = (tarifafijames[0] as AnyObject).value(forKey: "Amount") as! Float
-                                basemeslast = String(tarifakmtemp)
-                                let promolasttemp = (tarifafijames[1] as AnyObject).value(forKey: "Amount") as! Float
+                                tarifaneeeta = String(tarifaneta + ivaneta)
+
+                                fiva = String(ivafee)
+                                ivait = String(ivaneta)
+                                ivaderecho = String(ivadp)
+                                
+                            } else if tarifafijames.count == 10{
+                                let tarifakmtemp = (tarifafijames[0] as AnyObject).value(forKey: "Amount") as! Double
+                                
+                                let promolasttemp = (tarifafijames[1] as AnyObject).value(forKey: "Amount") as! Double
+                                
+                                let feefinal = (tarifafijames[2] as AnyObject).value(forKey: "Amount") as! Double
+                                
+                                let odometrofinalnuevo = (tarifafijames[3] as AnyObject).value(forKey: "Amount") as! Int
+                                let odometrofinalanterior = (tarifafijames[4] as AnyObject).value(forKey: "Amount") as! Int
+                                
+                                let cantidadderecorridos = (tarifafijames[5] as AnyObject).value(forKey: "Amount") as! Int
+                                
+                                let tarifaneta = (tarifafijames[7] as AnyObject).value(forKey: "Amount") as! Double
+                                
+                                let ivafee = (tarifafijames[8] as AnyObject).value(forKey: "Amount") as! Double
+                                
+                                let ivaneta = (tarifafijames[9] as AnyObject).value(forKey: "Amount") as! Double
+                                
+                                //derechopolizad = String(dereccc + ivadp)
+                                basemeslast = String(tarifakmtemp + ivafee)
                                 promolast = String(promolasttemp)
+                                tarifaporkmlast = String(feefinal)
+                                
+                                odometroanteriorlast = String(odometrofinalanterior)
+                                odometroaactuallast = String(odometrofinalnuevo)
+                                kilometrosrecorridoslast = String(cantidadderecorridos)
+                                
+                                tarifaneeeta = String(tarifaneta + ivaneta)
+                                
+                                fiva = String(ivafee)
+                                ivait = String(ivaneta)
+                                //ivaderecho = String(ivadp)
                             }
                             
-                            /*Recuperamos odometro anteruo y actual registrado*/
+                            /*
+                            //Recuperamos odometro anteruo y actual registrado
                             let odometros = receivedTodo["FormulaChilds"] as! NSArray
                             let datainicial = (odometros[0] as! NSDictionary)
 
@@ -398,28 +854,26 @@ class ConfirmOdoPopViewController: UIViewController {
                             odometroanteriorlast = String(odometrofinalanterior)
                             odometroaactuallast = String(odometrofinalnuevo)
                             
-                            /*Recuepramos kms recorridos*/
+                            //Recuepramos kms recorridos
                             let cantidadderecorridos = masdatosodo["Amount"] as! Int
                             kilometrosrecorridoslast = String(cantidadderecorridos)
                             
-                            /*Recuperamos tarifa fija....*/
+                            //Recuperamos tarifa fija....
                             let tarifaarreglo = datainicial["Parameters"] as! NSArray
                             let feefinal = (tarifaarreglo[0] as AnyObject).value(forKey: "Amount") as! Double
                             tarifaporkmlast = String(feefinal)
                             
-                            /*Tarfia neta*/
+                            //Tarfia neta
                             let tarifaneta = datainicial["Amount"] as! Float
                             tarifaneeeta = String(tarifaneta)
 
-                            //let masdatos = receivedTodo["FormulaChilds"] as! NSArray
-                            //let datosneta = masdatos[0] as! NSArray
-                            
                             print("tarifafjia: \(tarifaporkmlast)")
                             print("promo: \(promolast)")
                         
                             //update values to send to the cystom alert
                             //odometro = String(describing:promocion)
                             odometro = cadena
+                            */
                             
                             //semaphore.signal();
                         
@@ -455,7 +909,7 @@ class ConfirmOdoPopViewController: UIViewController {
         print("Out of here")
     }
 
-//------------------------loading page------------------------------------
+//loading----------------------------------------------------------------------------
     func openloading(mensaje: String){
         
         alertaloading.view.tintColor = UIColor.black
@@ -468,15 +922,27 @@ class ConfirmOdoPopViewController: UIViewController {
         alertaloading.view.addSubview(loadingIndicator)
         present(alertaloading, animated: true, completion: nil)
     }
-    
+
+//elaunch polizas----------------------------------------------------------------------------
     func launcpolizas(){
         //launch view to confirm odometer
-        let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+        /*let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
         
         //openview
-        self.present(odometerview, animated: true, completion: nil)
+        self.present(odometerview, animated: true, completion: nil)*/
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
+        
+        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        
+        //launch second view with data - show table and polizas
+        //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+        self.present(myAlert, animated: true, completion: nil)
     }
     
+//regresa a doometro----------------------------------------------------------------------------
     func returntoodometer(){
         //launch view to confirm odometer
         /*let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
@@ -491,17 +957,6 @@ class ConfirmOdoPopViewController: UIViewController {
         myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         
         self.present(myAlert, animated: true, completion: nil)
-
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

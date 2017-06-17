@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import Toaster
 
 var odometro = ""
 var flag = false
@@ -54,7 +55,10 @@ class ReportConfirmViewController: UIViewController {
         if odometroaenviar == "" {
             showmessage(message: "Colocar confirmación de odómetro")
         }else if odometroaenviar != odometrouno {
-            showmessage(message: "Los odómetros no coinciden, favor de verificar.")
+            ToastView.appearance().bottomOffsetPortrait = 350.0
+            //ToastView.appearance().backgroundColor = UIColor.blue
+            let to = Toast(text: "Los odómetros no coinciden")
+            to.show()
         }
         else{
             odometro = odometroaenviar

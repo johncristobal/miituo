@@ -6,6 +6,8 @@
 //  Copyright © 2017 VERA. All rights reserved.
 //
 
+import CoreLocation
+
 import UIKit
 import CoreData
 
@@ -18,7 +20,11 @@ var arregloPolizas = [[String:String]]()
 var arreglocarro = [[String:String]]()
 var celular = ""
 
-class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+var flagcontrol = "0"
+
+var valornum:Double = 0.0
+
+class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,CLLocationManagerDelegate {
 
     @IBOutlet var tableview: UITableView!
         
@@ -31,9 +37,16 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var namelabel: UILabel!
     @IBOutlet var leyendalabel: UILabel!
     
+    let manager = CLLocationManager()
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
+
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
 
         /*labelnombre.font = UIFont(name: "herne1.ttf", size: 16.0)
         
@@ -50,12 +63,12 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         /*SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "derechomenu") as? UISideMenuNavigationController*/
         
-        
-        /*if self.revealViewController() != nil {
+        if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
-            menuButton.action = "revealToggle:"
+            menuButton.action = "rightRevealToggle:"
+            
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }*/
+        }
         
         // Enable gestures. The left and/or right menus must be set up above for these to work.
         // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
@@ -67,7 +80,7 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //refresh
         refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Actualizando")
+        refreshControl.attributedTitle = NSAttributedString(string: "")
         //refreshControl.addTarget(self, action: "refresh:", for: UIControlEvents.valueChanged)
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         tableview.addSubview(refreshControl)
@@ -78,20 +91,26 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         uploadDataFromDB()
     }
 
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+         let location = locations[0]
+         
+         //speed = String(location.speed)
+         //print(speed)
+         
+         valornum = Double(location.speed)
+     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    /*func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
-    }*/
     func uploadDataFromDB(){
         arreglo = [[String:String]]()
         arregloPolizas = [[String:String]]()
         arreglocarro = [[String:String]]()
         
-        print("Herefisrt")
+        //print("Herefisrt")
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -227,10 +246,28 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func refresh(sender:AnyObject) {
         // Code to refresh table view
+        flagcontrol = "0"
         print("refreshing")
         if let cel = UserDefaults.standard.value(forKey: "celular") {
-            celular = cel as! String
-            getJson(telefon: celular)
+            DispatchQueue.global(qos: .userInitiated).async {
+
+                celular = cel as! String
+                self.getJson(telefon: celular)
+                //getJson(telefon: celular, vistafrom: self);
+                DispatchQueue.main.async {
+                    while true{
+                        if flagcontrol != "0"{
+                            break
+                        }
+                    }
+                    
+                    //if flagcontrol == "1"{
+                    self.uploadDataFromDB()
+                    self.tableview.reloadData()
+                    self.refreshControl.endRefreshing()
+                    //}s
+                }
+            }
         }
     }
     
@@ -252,7 +289,6 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
 // ******************************** show image when clic on image ************************************* //
     func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        
         //Code to launch camera and take picture
         /*if UIImagePickerController.isSourceTypeAvailable(.camera) {
          //let picker = UIImagePickerController()
@@ -265,7 +301,7 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
          }*/
         
         //Code to launch picture and watch picture
-        let imageView = tapGestureRecognizer.view as! UIImageView
+        /*let imageView = tapGestureRecognizer.view as! UIImageView
         let newImageView = UIImageView(image: imageView.image)
         
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .beginFromCurrentState, animations: {
@@ -279,7 +315,7 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.view.addSubview(newImageView)
             self.navigationController?.isNavigationBarHidden = true
             self.tabBarController?.tabBar.isHidden = true
-        },completion: {_ in})
+        },completion: {_ in})*/
     }
     
 // ******************************** full image when clic on image ************************************* //
@@ -314,6 +350,11 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.imagecar.image = image
         }else{
             print("No existe foto")
+            let image = UIImage(named: "foto.png")
+            cell.imagecar.layer.cornerRadius = 20.0
+            //cell.imagecar.transform = cell.imagecar.transform.rotated(by: CGFloat(Double.pi/2))
+            cell.imagecar.layer.masksToBounds = true
+            cell.imagecar.image = image
         }
         
         //Set value to poliza
@@ -324,22 +365,36 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         let odometerpie = (arregloPolizas[indexPath.row]["odometerpie"]! as String)
         let vehiclepie = (arregloPolizas[indexPath.row]["vehiclepie"]! as String)
 
-        if reportstate == "14" {
-            cell.imageicon.backgroundColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
-            cell.labelalerta.textColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
+        if reportstate == "15" {
+            //cell.imageicon.backgroundColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
+            //cell.labelalerta.textColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
             //UIColor.red
+            cell.imageicon.backgroundColor = UIColor.red
+            cell.labelalerta.textColor = UIColor.red
+            cell.labelalerta.text = "Solicitud de ajuste odómetro"
+        }
+        if reportstate == "14" {
+            //cell.imageicon.backgroundColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
+            //cell.labelalerta.textColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
+            //UIColor.red
+            cell.imageicon.backgroundColor = UIColor.red
+            cell.labelalerta.textColor = UIColor.red
             cell.labelalerta.text = "Solicitud de cancelación voluntaria"
         }
         if reportstate == "13" {
-            cell.imageicon.backgroundColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
-            cell.labelalerta.textColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
+            //cell.imageicon.backgroundColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
+            //cell.labelalerta.textColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
+            cell.imageicon.backgroundColor = UIColor.red
+            cell.labelalerta.textColor = UIColor.red
+
             //UIColor.red
             cell.labelalerta.text = "Es hora de reportar tu odómetro"
         }
         if reportstate == "12" {
-//            cell.imageicon.backgroundColor = UIColor.init(red: 0.0, green: 200.0, blue: 255.0, alpha: 1.0)
             cell.imageicon.backgroundColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
             cell.labelalerta.textColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
+            //cell.imageicon.backgroundColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
+            //cell.labelalerta.textColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
             
             //cell.labelalerta.textColor = UIColor.init(red: 0.0, green: 200.0, blue: 255.0, alpha: 1.0)
             cell.labelalerta.text = "Ver información"
@@ -350,7 +405,6 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.labelalerta.textColor = UIColor.red
             cell.labelalerta.text = "No has enviado fotos de tu auto"
         }
-
         
         //cell background
         cell.contentView.backgroundColor = UIColor.clear
@@ -392,26 +446,49 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Odometerpie: \(odometerpie)")
         print("vehiclepie: \(vehiclepie)")
         
-        //check the options to show the specific viewcontroller
-        if vehiclepie == "false" && odometerpie == "false" {
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "photoscar") as! PhotosCarViewController
-            //vc.cadenas = valueToPass
-            self.present(vc, animated: true, completion: nil)
-        }else if vehiclepie == "true" && odometerpie == "false" {
-            tipoodometro = "first"
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
-            //vc.cadenas = valueToPass
-            self.present(vc, animated: true, completion: nil)
-            //first validte repotstate
-        }else if reportstate == "13" {
-            tipoodometro = "mensual"
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
-            //vc.cadenas = valueToPass
-            self.present(vc, animated: true, completion: nil)
-        }else {
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarview") //as! DetallePolizaViewController
-            //vc.cadenas = valueToPass
-            self.present(vc!, animated: true, completion: nil)
+        if valornum >= 10.0 {
+            //print("lanzamos alerta")
+            let refreshAlert = UIAlertController(title: "¡Vas Manejando!", message: "Reporta más tarde…", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                self.tableview.reloadData()
+
+                //self.launcpolizas()
+            }))
+            present(refreshAlert, animated: true, completion: nil)
+        }else{
+            //check the options to show the specific viewcontroller
+            if vehiclepie == "false" && odometerpie == "false" {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "photoscar") as! PhotosCarViewController
+                //vc.cadenas = valueToPass
+                self.present(vc, animated: true, completion: nil)
+            }else if vehiclepie == "true" && odometerpie == "false" {
+                tipoodometro = "first"
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
+                //vc.cadenas = valueToPass
+                self.present(vc, animated: true, completion: nil)
+                //first validte repotstate
+            }else if reportstate == "13" {
+                tipoodometro = "mensual"
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
+                //vc.cadenas = valueToPass
+                self.present(vc, animated: true, completion: nil)
+            }else if reportstate == "14" {
+                tipoodometro = "cancela"
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
+                //vc.cadenas = valueToPass
+                self.present(vc, animated: true, completion: nil)
+            }else if reportstate == "15" {
+                tipoodometro = "ajuste"
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
+                //vc.cadenas = valueToPass
+                self.present(vc, animated: true, completion: nil)
+            }
+            else {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabbarview") //as! DetallePolizaViewController
+                //vc.cadenas = valueToPass
+                self.present(vc!, animated: true, completion: nil)
+            }
         }
         //performSegue(withIdentifier: "seguewithid", sender: self)
     }
@@ -435,7 +512,15 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         let session = URLSession.shared;
         let loadTask = session.dataTask(with: url){(data,response,error) in
             if error != nil {
-                showmessage(message: "Error de conexiòn \(error)")
+                showmessage(message: "Error de conexión. Intente más tarde...")
+                
+                //now upload
+                /*self.uploadDataFromDB()
+                self.tableview.reloadData()
+                self.refreshControl.endRefreshing()
+                */
+                flagcontrol = "2"
+                //return
             } else {
                 if let urlContent = data{
                     
@@ -475,6 +560,7 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                         for index in 0...cliente.count-1{
 
                         let cli = cliente[index] as! NSDictionary
+                        //let cli = cliente[0] as! NSDictionary
                         
                         //get client y save data
                         let newUser = NSEntityDescription.insertNewObject(forEntityName: "Users", into: context)
@@ -515,7 +601,8 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                         let polizas = json.value(forKey: "Policies") as! NSArray
                         print("numero de polizas retornadas: \(polizas.count)")
                         
-                            //for poli in polizas as! NSDictionary{
+                        //for index in 0...polizas.count-1{
+                            
                             let poli = polizas[index] as! NSDictionary
                             
                             print("poliza: \(poli)")
@@ -618,15 +705,36 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 
                                 print("Saved vehicle")
                                 
+                                //lest try get ticket
+                                if let tick = poli["Tickets"] as? NSNull{
+                                    print("null")
+                                }else{
+                                    let ticket = poli["Tickets"] as! NSArray //as! NSArray
+                                    
+                                    if ticket.count == 0{
+                                        print("null")
+                                    }else{
+                                        let idticketdic = ticket[0] as! NSDictionary
+                                        
+                                        //print(idticketdic["Id"])
+                                        if reportsta == "15" || reportsta == "14" {
+                                            idticket = (idticketdic["Id"] as! Int).description
+                                            print(idticket)
+                                        }
+                                    }
+                                }
+                                
                             } catch {
                                 showmessage(message: "Error al guardar datos")
                             }
                         }
                         
                         //now upload
-                        self.uploadDataFromDB()
+                        /*self.uploadDataFromDB()
                         self.tableview.reloadData()
-                        self.refreshControl.endRefreshing()
+                        self.refreshControl.endRefreshing()*/
+                        
+                        flagcontrol = "1"
                         
                     } catch{
                         showmessage(message: "Error en JSON datos polizas.")
@@ -640,5 +748,6 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         loadTask.resume()
+        
     }
 }

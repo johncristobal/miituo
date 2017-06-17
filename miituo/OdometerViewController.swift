@@ -7,15 +7,20 @@
 //
 
 import UIKit
+//import CoreLocation
 
 var picker2 = UIImagePickerController()
 
 var valordevuelto = ""
 var odometerflag = 0
 
+var speed = ""
+
 class OdometerViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
 
     @IBOutlet var imageodometer: UIImageView!
+    @IBOutlet var openCamera: UIButton!
+    
     //@IBOutlet var odometrouno: UITextField!
     //@IBOutlet var odometrodos: UITextField!
     
@@ -27,8 +32,15 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
     
     let alertaloading = UIAlertController(title: "Registro de odómetro", message: "Subiendo imagen...", preferredStyle: .alert)
 
+    //let manager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //manager.delegate = self
+        //manager.desiredAccuracy = kCLLocationAccuracyBest
+        //manager.requestWhenInUseAuthorization()
+        //manager.startUpdatingLocation()
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         
@@ -40,11 +52,33 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         let poliza = arregloPolizas[rowsel]["idpoliza"]! as String
         print("idpoliza----------------\(poliza)")
 
+        odometerflag = 0
+
         // Do any additional setup after loading the view.
         //let image = UIImage(named: "miituo.png")
         //alertaloading.setValue(image, forKey: "image")
     }
 
+    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        
+        //speed = String(location.speed)
+        //print(speed)
+        
+        let valornum:Double = Double(location.speed)
+        
+        if valornum >= 5.0 {
+            //print("lanzamos alerta")
+            let refreshAlert = UIAlertController(title: "¡Vas Manejando!", message: "Tranquilo, no pasa nada si reportas cuando llegues a tu destino.  Sigue disfrutando del camino…", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                
+                self.launcpolizas()                
+            }))
+            present(refreshAlert, animated: true, completion: nil)
+        }
+    }*/
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,12 +104,20 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         imageodometer.image = info[UIImagePickerControllerOriginalImage] as? UIImage
 
         odometerflag = 1
+        
+        openCamera.setTitle("Continuar", for: .normal)
     }
     
     @IBAction func listoOdometer(_ sender: Any) {
-        if odometerflag == 1{
+        if odometerflag == 1 {
             let imagennn = imageodometer.image
-            let idpic = "5"
+            
+            var idpic = "5"
+            if tipoodometro == "cancela"{
+                idpic = "6"
+            }else{
+                idpic = "5"
+            }
             sendimagenes(imagenn: imagennn!,idpic: idpic)
             
         }else {
@@ -126,10 +168,10 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         }
         
         //var rect = CGRect(0.0, 0.0, actualWidth, actualHeight);
-        var rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: actualWidth, height: actualHeight));
+        let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: actualWidth, height: actualHeight));
         UIGraphicsBeginImageContext(rect.size);
         image.draw(in: rect)
-        var img = UIGraphicsGetImageFromCurrentImageContext();
+        let img = UIGraphicsGetImageFromCurrentImageContext();
         let imageData = UIImagePNGRepresentation(img!);
         UIGraphicsEndImageContext();
         
@@ -163,6 +205,10 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         do {
             jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
             todosUrlRequest.httpBody = jsonTodo
+            
+            let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
+            print(jsonString)
+            
         } catch {
             print("Error: cannot create JSON from todo")
             return
@@ -189,6 +235,14 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
                     if let str = String(data: responseData, encoding: String.Encoding.utf8) {
                         print("Valor de retorno: \(str)")
                         valordevuelto = str
+                        self.alertaloading.dismiss(animated: true, completion: {
+                            let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
+                            
+                            odometerview.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+                            
+                            //openview
+                            self.present(odometerview, animated: true, completion: nil)
+                        })
                     } else {
                         print("not a valid UTF-8 sequence")
                     }
@@ -210,7 +264,33 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
                     return
                 }
                 print("The ID is: \(todoID)")*/
-            } catch  {
+                if valordevuelto != "1000" {
+                    self.alertaloading.dismiss(animated: true, completion: {
+                        
+                        print("Valoe ------------ devuelto ----------")
+                        print(valordevuelto)
+                        
+                        let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
+                        
+                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                            
+                            self.launcpolizas()
+                        }))
+                        
+                        self.present(refreshAlert, animated: true, completion: nil)
+                    })
+                }else{
+                    self.alertaloading.dismiss(animated: true, completion: {
+                        let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
+                        
+                        odometerview.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+                        
+                        //openview
+                        self.present(odometerview, animated: true, completion: nil)
+                    })
+                }
+                
+            } catch {
                 print("error parsing response from POST on /todos")
                 //return
             }
@@ -218,22 +298,14 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         task.resume()
         
         //DispatchQueue.main.async {
-        while true {
+        /*while true {
             if valordevuelto != ""{
                 break;
             }
-        }
+        }*/
         
         //--------------------------------------validamos informacion.................................
         //if valordevuelto == "true"{
-        alertaloading.dismiss(animated: true, completion: {
-            let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
-       
-            odometerview.modalPresentationStyle = UIModalPresentationStyle.pageSheet
-            
-            //openview
-            self.present(odometerview, animated: true, completion: nil)
-        })
         
         /*
 **************
@@ -282,6 +354,32 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         
     }
 
+    @IBAction func cameraLaunch(_ sender: Any) {
+        
+        if odometerflag == 1{
+            let imagennn = imageodometer.image
+            var idpic = "5"
+            if tipoodometro == "cancela"{
+                idpic = "6"
+            }else{
+                idpic = "5"
+            }
+
+            sendimagenes(imagenn: imagennn!,idpic: idpic)
+            
+        }else {
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                //let picker = UIImagePickerController()
+                picker2.delegate = self
+                picker2.sourceType = UIImagePickerControllerSourceType.camera
+                picker2.allowsEditing = true
+                self.present(picker2, animated: true)
+            } else {
+                print("can't find camera")
+            }
+        }
+    }
+    
     //Launch alerta
     func openloading(mensaje: String){
         
@@ -320,5 +418,25 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         
         textField.resignFirstResponder()
         return true
-    }    
+    }
+    
+//elaunch polizas----------------------------------------------------------------------------
+    func launcpolizas(){
+        //launch view to confirm odometer
+        /*let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+         
+         //openview
+         self.present(odometerview, animated: true, completion: nil)*/
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
+        
+        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        
+        //launch second view with data - show table and polizas
+        //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+        self.present(myAlert, animated: true, completion: nil)
+    }
+    
 }

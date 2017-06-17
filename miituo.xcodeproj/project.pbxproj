@@ -42,6 +42,7 @@
 		7D70138E1ED7412800F04BC5 /* comp31.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7D70138D1ED7412800F04BC5 /* comp31.mp4 */; };
 		7DC1AADA1EB29A21005F067F /* onb3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DC1AAD91EB29A21005F067F /* onb3.mp4 */; };
 		7DDB23C41ED3939600D0D075 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */; };
+		7DEA3FAB1EEF0B42009D3E98 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DEA3FAA1EEF0B42009D3E98 /* CoreLocation.framework */; };
 		7DF282CE1EB0D7D1001A24C4 /* ciudad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B51EB0D7D1001A24C4 /* ciudad.png */; };
 		7DF282CF1EB0D7D1001A24C4 /* frontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B61EB0D7D1001A24C4 /* frontal.png */; };
 		7DF282D01EB0D7D1001A24C4 /* lateral-d.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF282B71EB0D7D1001A24C4 /* lateral-d.png */; };
@@ -72,6 +73,9 @@
 		7DF282EC1EB21FCD001A24C4 /* TutoThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF282EB1EB21FCD001A24C4 /* TutoThreeViewController.swift */; };
 		7DF282EF1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */; };
 		7DF29AAC1ED4AD21008493B5 /* cameramini.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF29AAB1ED4AD21008493B5 /* cameramini.png */; };
+		7DF3565D1EE59BB00047C3B0 /* CotizaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3565C1EE59BB00047C3B0 /* CotizaViewController.swift */; };
+		7DF356601EE8570C0047C3B0 /* AppUtiliti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF3565F1EE8570C0047C3B0 /* AppUtiliti.swift */; };
+		7DF356B71EE86BC10047C3B0 /* seguroatlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF356B61EE86BC10047C3B0 /* seguroatlas.png */; };
 		7DF490021EA8EE9A00484E91 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */; };
 		7DF490041EA90AC100484E91 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF490031EA90AC100484E91 /* TutorialViewController.swift */; };
 		7DF70C471E9FEBF200F4AAA7 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */; };
@@ -85,6 +89,13 @@
 		7DFCD0231EDCA8D600E53193 /* DetalleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD0221EDCA8D600E53193 /* DetalleViewController.swift */; };
 		7DFCD0281EDDBDF100E53193 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD0271EDDBDF100E53193 /* SWRevealViewController.m */; };
 		7DFCD02A1EDF04E800E53193 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD0291EDF04E800E53193 /* MenuController.swift */; };
+		7DFCD0311EDF339000E53193 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD0301EDF339000E53193 /* HelpViewController.swift */; };
+		7DFCD0331EE078FC00E53193 /* flecha.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFCD0321EE078FC00E53193 /* flecha.png */; };
+		7DFCD0351EE07A6800E53193 /* blackflecha.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFCD0341EE07A6800E53193 /* blackflecha.png */; };
+		7DFCD0371EE0840F00E53193 /* AcercaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD0361EE0840F00E53193 /* AcercaViewController.swift */; };
+		7DFCD0391EE0878D00E53193 /* cerrar.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFCD0381EE0878D00E53193 /* cerrar.png */; };
+		7DFCD03B1EE0888E00E53193 /* PrivacidadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFCD03A1EE0888E00E53193 /* PrivacidadViewController.swift */; };
+		7DFCD03D1EE1BD9A00E53193 /* Flecha ampliar-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DFCD03C1EE1BD9A00E53193 /* Flecha ampliar-15.png */; };
 		B33D5430AAEBA414F37A2454 /* Pods_miituoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4B98AFF777D7C823E5C7DB /* Pods_miituoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +160,7 @@
 		7DC1AAD91EB29A21005F067F /* onb3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onb3.mp4; sourceTree = "<group>"; };
 		7DDB23BE1ED36E9F00D0D075 /* miituo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = miituo.entitlements; sourceTree = "<group>"; };
 		7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7DEA3FAA1EEF0B42009D3E98 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7DF282B51EB0D7D1001A24C4 /* ciudad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ciudad.png; path = images/ciudad.png; sourceTree = "<group>"; };
 		7DF282B61EB0D7D1001A24C4 /* frontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = frontal.png; path = images/frontal.png; sourceTree = "<group>"; };
 		7DF282B71EB0D7D1001A24C4 /* lateral-d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lateral-d.png"; path = "images/lateral-d.png"; sourceTree = "<group>"; };
@@ -179,6 +191,9 @@
 		7DF282EB1EB21FCD001A24C4 /* TutoThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoThreeViewController.swift; sourceTree = "<group>"; };
 		7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOdoPopViewController.swift; sourceTree = "<group>"; };
 		7DF29AAB1ED4AD21008493B5 /* cameramini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cameramini.png; path = images/cameramini.png; sourceTree = "<group>"; };
+		7DF3565C1EE59BB00047C3B0 /* CotizaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CotizaViewController.swift; sourceTree = "<group>"; };
+		7DF3565F1EE8570C0047C3B0 /* AppUtiliti.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtiliti.swift; sourceTree = "<group>"; };
+		7DF356B61EE86BC10047C3B0 /* seguroatlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seguroatlas.png; path = images/seguroatlas.png; sourceTree = "<group>"; };
 		7DF490011EA8EE9A00484E91 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7DF490031EA90AC100484E91 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -194,6 +209,13 @@
 		7DFCD0261EDDBDF100E53193 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		7DFCD0271EDDBDF100E53193 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		7DFCD0291EDF04E800E53193 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		7DFCD0301EDF339000E53193 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		7DFCD0321EE078FC00E53193 /* flecha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flecha.png; sourceTree = "<group>"; };
+		7DFCD0341EE07A6800E53193 /* blackflecha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackflecha.png; sourceTree = "<group>"; };
+		7DFCD0361EE0840F00E53193 /* AcercaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcercaViewController.swift; sourceTree = "<group>"; };
+		7DFCD0381EE0878D00E53193 /* cerrar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cerrar.png; sourceTree = "<group>"; };
+		7DFCD03A1EE0888E00E53193 /* PrivacidadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacidadViewController.swift; sourceTree = "<group>"; };
+		7DFCD03C1EE1BD9A00E53193 /* Flecha ampliar-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Flecha ampliar-15.png"; sourceTree = "<group>"; };
 		887A83E6CE7FEB5D4C9BF1BC /* Pods_miituoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_miituoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E10790E23261D437A41BAA /* Pods-miituo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituo.release.xcconfig"; path = "Pods/Target Support Files/Pods-miituo/Pods-miituo.release.xcconfig"; sourceTree = "<group>"; };
 		983683A9F9972386BC1DA56F /* Pods-miituoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miituoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-miituoUITests/Pods-miituoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DEA3FAB1EEF0B42009D3E98 /* CoreLocation.framework in Frameworks */,
 				7D19A1E01EB0009000030A53 /* MediaPlayer.framework in Frameworks */,
 				4187C0B07740830F1CE16183 /* Pods_miituo.framework in Frameworks */,
 			);
@@ -234,6 +257,7 @@
 		1136B1F6EEBD85B1C51C767B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DEA3FAA1EEF0B42009D3E98 /* CoreLocation.framework */,
 				7D19A1DF1EB0009000030A53 /* MediaPlayer.framework */,
 				DC520D97F506EDD84EA50B78 /* Pods_miituo.framework */,
 				887A83E6CE7FEB5D4C9BF1BC /* Pods_miituoTests.framework */,
@@ -279,7 +303,7 @@
 		7D13F5641E9FE2F0001356D2 /* miituo */ = {
 			isa = PBXGroup;
 			children = (
-				7DFCD0291EDF04E800E53193 /* MenuController.swift */,
+				7DF3565E1EE6DCCA0047C3B0 /* MenuSlide */,
 				7DFCD0241EDDBDC200E53193 /* SWRevealViewController */,
 				7D70138D1ED7412800F04BC5 /* comp31.mp4 */,
 				7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */,
@@ -299,6 +323,7 @@
 				7D19A1A11EAE835300030A53 /* collapsecell */,
 				7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */,
 				7D13F5671E9FE2F0001356D2 /* ViewController.swift */,
+				7DFCD0291EDF04E800E53193 /* MenuController.swift */,
 				7D09112C1EBA30A900444F2F /* MenuTableViewController.swift */,
 				7D13F5691E9FE2F0001356D2 /* Main.storyboard */,
 				7DF70C461E9FEBF200F4AAA7 /* Utilsmiituo.swift */,
@@ -319,6 +344,7 @@
 				7D13F56C1E9FE2F0001356D2 /* miituo.xcdatamodeld */,
 				7D13F57C1E9FE2F1001356D2 /* miituoTests */,
 				7D70138B1ED6291A00F04BC5 /* Reach.swift */,
+				7DF3565F1EE8570C0047C3B0 /* AppUtiliti.swift */,
 			);
 			path = miituo;
 			sourceTree = "<group>";
@@ -354,6 +380,11 @@
 		7D19A1A61EAFBAF600030A53 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7DF356B61EE86BC10047C3B0 /* seguroatlas.png */,
+				7DFCD03C1EE1BD9A00E53193 /* Flecha ampliar-15.png */,
+				7DFCD0381EE0878D00E53193 /* cerrar.png */,
+				7DFCD0341EE07A6800E53193 /* blackflecha.png */,
+				7DFCD0321EE078FC00E53193 /* flecha.png */,
 				7DF29AAB1ED4AD21008493B5 /* cameramini.png */,
 				7D0EB7B11ECA47A70057D68A /* Camera_100.png */,
 				7D085BE01EC4F0E000AD7890 /* cameraRect.png */,
@@ -399,6 +430,17 @@
 				7D0911221EB915F000444F2F /* SplashViewController.swift */,
 			);
 			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		7DF3565E1EE6DCCA0047C3B0 /* MenuSlide */ = {
+			isa = PBXGroup;
+			children = (
+				7DFCD0301EDF339000E53193 /* HelpViewController.swift */,
+				7DFCD0361EE0840F00E53193 /* AcercaViewController.swift */,
+				7DFCD03A1EE0888E00E53193 /* PrivacidadViewController.swift */,
+				7DF3565C1EE59BB00047C3B0 /* CotizaViewController.swift */,
+			);
+			name = MenuSlide;
 			sourceTree = "<group>";
 		};
 		7DFCD0241EDDBDC200E53193 /* SWRevealViewController */ = {
@@ -548,6 +590,7 @@
 				7DF29AAC1ED4AD21008493B5 /* cameramini.png in Resources */,
 				7DF282D11EB0D7D1001A24C4 /* lateral-i.png in Resources */,
 				7DF282E21EB0D7D1001A24C4 /* historial-a.png in Resources */,
+				7DFCD0391EE0878D00E53193 /* cerrar.png in Resources */,
 				7D0911251EB9283500444F2F /* splash.mov in Resources */,
 				7DF282EA1EB21F82001A24C4 /* onboarding3.mp4 in Resources */,
 				7DF282D41EB0D7D1001A24C4 /* sini.png in Resources */,
@@ -569,6 +612,7 @@
 				7DF282E51EB0D7D1001A24C4 /* Ajustes-50.png in Resources */,
 				7DF282DD1EB0D7D1001A24C4 /* odo-az.png in Resources */,
 				7D0EB7DC1ECB8E120057D68A /* herne.ttf in Resources */,
+				7DF356B71EE86BC10047C3B0 /* seguroatlas.png in Resources */,
 				7DF282D51EB0D7D1001A24C4 /* historial.png in Resources */,
 				7D19A1DC1EAFFDAA00030A53 /* miituoonb2.mp4 in Resources */,
 				7DF282E41EB0D7D1001A24C4 /* cerrars.png in Resources */,
@@ -578,6 +622,8 @@
 				7D09111D1EB90D8200444F2F /* miituosplash.gif in Resources */,
 				7D70138E1ED7412800F04BC5 /* comp31.mp4 in Resources */,
 				7DF282DB1EB0D7D1001A24C4 /* user.png in Resources */,
+				7DFCD0351EE07A6800E53193 /* blackflecha.png in Resources */,
+				7DFCD03D1EE1BD9A00E53193 /* Flecha ampliar-15.png in Resources */,
 				7D13F56B1E9FE2F0001356D2 /* Main.storyboard in Resources */,
 				7DF282E81EB122E6001A24C4 /* SLR Camera Filled-50.png in Resources */,
 				7DF282D61EB0D7D1001A24C4 /* odo.png in Resources */,
@@ -587,6 +633,7 @@
 				7DF282D01EB0D7D1001A24C4 /* lateral-d.png in Resources */,
 				7DF282CE1EB0D7D1001A24C4 /* ciudad.png in Resources */,
 				7D66777D1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf in Resources */,
+				7DFCD0331EE078FC00E53193 /* flecha.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,7 +797,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D19A1A31EAE83B500030A53 /* SwiftyAccordionCells.swift in Sources */,
+				7DFCD0371EE0840F00E53193 /* AcercaViewController.swift in Sources */,
 				7DF70C521E9FEBF200F4AAA7 /* PolizasTableViewCell.swift in Sources */,
+				7DFCD03B1EE0888E00E53193 /* PrivacidadViewController.swift in Sources */,
 				7DF70C481E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift in Sources */,
 				7DF70C541E9FEBF200F4AAA7 /* ReportConfirmViewController.swift in Sources */,
 				7DFCD0231EDCA8D600E53193 /* DetalleViewController.swift in Sources */,
@@ -758,6 +807,7 @@
 				7D0911231EB915F000444F2F /* SplashViewController.swift in Sources */,
 				7D13F56E1E9FE2F0001356D2 /* miituo.xcdatamodeld in Sources */,
 				7DFCD02A1EDF04E800E53193 /* MenuController.swift in Sources */,
+				7DF356601EE8570C0047C3B0 /* AppUtiliti.swift in Sources */,
 				7DF70C561E9FEBF200F4AAA7 /* Utilsmiituo.swift in Sources */,
 				7DF490041EA90AC100484E91 /* TutorialViewController.swift in Sources */,
 				7D0C391D1EB3D883000F4241 /* CustomAlertViewController.swift in Sources */,
@@ -777,6 +827,8 @@
 				7DF70C511E9FEBF200F4AAA7 /* PhotosCarViewController.swift in Sources */,
 				7DF282EF1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift in Sources */,
 				7DF70C471E9FEBF200F4AAA7 /* ApiClient.swift in Sources */,
+				7DF3565D1EE59BB00047C3B0 /* CotizaViewController.swift in Sources */,
+				7DFCD0311EDF339000E53193 /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

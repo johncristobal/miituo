@@ -12,6 +12,10 @@ class MenuController: UITableViewController {
 
     @IBOutlet var tableview: UITableView!
     
+    @IBOutlet var nombre: UILabel!
+    
+    //@IBOutlet var holasection: UITableViewSection!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +26,8 @@ class MenuController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         tableview.separatorStyle = UITableViewCellSeparatorStyle.none;
-
+        
+        nombre.text = nombrecliente
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,8 +56,6 @@ class MenuController: UITableViewController {
         
         if indexPath.row == 0 {
             
-            
-            
             /*let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let myAlert = storyboard.instantiateViewController(withIdentifier: "fourSB") as! ViewController
             
@@ -72,10 +75,10 @@ class MenuController: UITableViewController {
             refreshAlert.addAction(action)
             present(refreshAlert, animated: true)*/
         }
-        else if indexPath.row == 2 {
+        else if indexPath.row == 3 {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let myAlert = storyboard.instantiateViewController(withIdentifier: "flash") as! SplashViewController
+            let myAlert = storyboard.instantiateViewController(withIdentifier: "fourSB") as! ViewController
             
             var refreshAlert = UIAlertController(title: "Atención", message: "¿Desea cerrar sesión?", preferredStyle: UIAlertControllerStyle.alert)
             

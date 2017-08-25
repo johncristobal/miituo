@@ -39,7 +39,7 @@ class PrivacidadViewController: UIViewController {
             "    <body>\n" +
             "        <div>\n" +
             "            <h4>1. Generales</h4>\n" +
-            "            <p align=\"justify\">\n" +
+            "            <p align=\"left\">\n" +
             "            Su privacidad y confianza son muy importantes para Pay As You Drive Technologies, S.A de C.V., (\"Pay As You\n" +
             "            Drive\") por tal motivo este aviso de privacidad (el \"Aviso de Privacidad\") est&aacute; dise&ntilde;ado para informar a nuestros\n" +
             "            clientes la forma en que se recaba la informaci&oacute;n y el uso que se le da a la misma con el objeto de salvaguardar\n" +
@@ -61,14 +61,14 @@ class PrivacidadViewController: UIViewController {
             "            </p>\n" +
             "            \n" +
             "            <h4>2. Identidad y domicilio de Pay As You Drive</h4>\n" +
-            "            <p align=\"justify\">\n" +
+            "            <p align=\"left\">\n" +
             "            Pay As You Drive, es una sociedad mexicana debidamente constituida y v&aacute;lidamente existente de conformidad\n" +
             "            con las leyes de los Estados Unidos Mexicanos, con domicilio en Bosques de Duraznos No. 61, Piso 12, Colonia\n" +
             "            Bosques de las Lomas, C&oacute;digo Postal 11700, Ciudad de M&eacute;xico, M&eacute;xico. \n" +
             "            </p>\n" +
             "            \n" +
             "            <h4>3. Datos Personales que se recaban</h4>\n" +
-            "            <p align=\"justify\">\n" +
+            "            <p align=\"left\">\n" +
             "            Los datos personales que Pay As You Drive, podr&aacute; recabar, son &uacute;nicamente aquellos que estrictamente sean\n" +
             "            necesarios para establecer una relaci&oacute;n comercial con nuestros clientes y poderles ofrecer el seguro comercial\n" +
             "            m&aacute;s conveniente para su perfil. Dicha informaci&oacute;n puede ser recabada mediante nuestro sitio online y a trav&eacute;s de\n" +
@@ -92,7 +92,7 @@ class PrivacidadViewController: UIViewController {
             "            </p>\n" +
             "            \n" +
             "            <h4>4. Tratamiento de la informaci&oacute;n</h4>\n" +
-            "            <p align=\"justify\">\n" +
+            "            <p align=\"left\">\n" +
             "                Los datos personales que recabamos de nuestros clientes, los utilizaremos para las siguientes finalidades que\n" +
             "                dividimos en primarias y secundarias.\n" +
             "                <br><br>\n" +
@@ -130,7 +130,7 @@ class PrivacidadViewController: UIViewController {
             "            </p>\n" +
             "            \n" +
             "            <h4>5. Negativa para uso de informaci&oacute;n para finalidades secundarias o accesorias</h4>\n" +
-            "            <p align=\"justify\">\n" +
+            "            <p align=\"left\">\n" +
             "                En caso de que cualquiera de nuestros clientes no desee que sus datos personales sean utilizados para\n" +
             "                cualquiera de las finalidades secundarias aqu&iacute; establecidas, podr&aacute; en cualquier momento enviar a nuestro correo\n" +
             "                electr&oacute;nico de contacto diana.ocampo@miituo.com la manifestaci&oacute;n de su negativa, en el entendido de que a\n" +
@@ -141,7 +141,7 @@ class PrivacidadViewController: UIViewController {
             "            </p>\n" +
             "\n" +
             "            <h4>6. Sobre datos personales sensibles</h4>\n" +
-            "            <p align=\"justify\">                \n" +
+            "            <p align=\"left\">                \n" +
             "                Pay As You Drive por ning&uacute;n motivo solicitar&aacute; a nuestros clientes aquellos datos personales que afecten a su\n" +
             "                esfera m&aacute;s &iacute;ntima o cuya utilizaci&oacute;n indebida pueda dar origen a discriminaci&oacute;n o conlleve un riesgo grave para\n" +
             "                &eacute;ste, como son aquellos que puedan revelar aspectos como origen racial o &eacute;tnico, estado de salud presente y\n" +
@@ -150,7 +150,7 @@ class PrivacidadViewController: UIViewController {
             "            </p>\n" +
             "            \n" +
             "            <h4>7. Revelaci&oacute;n de datos personales a terceras personas</h4>\n" +
-            "            <p align=\"justify\">                \n" +
+            "            <p align=\"left\">                \n" +
             "                Pay as You Drive podr&aacute; solicitar el consentimiento expreso a sus clientes para compartir o transferir sus datos\n" +
             "                personales &uacute;nica y exclusivamente a sus compa&ntilde;&iacute;as afiliadas nacionales o extranjeras, en el entendido de que el\n" +
             "                tratamiento de dichos datos personales se har&aacute; conforme a lo convenido en el presente Aviso de Privacidad y\n" +
@@ -171,7 +171,7 @@ class PrivacidadViewController: UIViewController {
             "            </p>\n" +
             "\n" +
             "            <h4>8. Derechos de acceso, rectificaci&oacute;n, cancelaci&oacute;n y oposici&oacute;n</h4>\n" +
-            "            <p align=\"justify\">                \n" +
+            "            <p align=\"left\">                \n" +
             "                Todos los clientes de Pay As You Drive pueden conocer la informaci&oacute;n que les pertenece y que obra en nuestra\n" +
             "                base de datos as&iacute; como el uso que se le da y a su solicitud podr&aacute;n acceder a la misma para conocerla (acceso);\n" +
             "                tendr&aacute;n el derecho de solicitar su correcci&oacute;n y actualizaci&oacute;n (rectificaci&oacute;n); la eliminaci&oacute;n tanto de sus datos\n" +
@@ -209,7 +209,7 @@ class PrivacidadViewController: UIViewController {
             "            </p>\n" +
             "            \n" +
             "            <h4>9. Seguridad de sus datos personales</h4>\n" +
-            "            <p align=\"justify\">                \n" +
+            "            <p align=\"left\">                \n" +
             "            Pay As You Drive, ha adoptado y mantiene las medidas de seguridad, administrativas, tecnol&oacute;gicas y f&iacute;sicas,\n" +
             "            necesarias y a su alcance para proteger los datos personales contra da&ntilde;o, perdida, alteraci&oacute;n, destrucci&oacute;n o el\n" +
             "            uso, acceso o tratamiento no autorizado. Si en cualquier caso llegase a existir alguna vulneraci&oacute;n a nuestra\n" +
@@ -218,7 +218,7 @@ class PrivacidadViewController: UIViewController {
             "            </p>\n" +
             "\n" +
             "            <h4>10. Uso de cookies, web beacons o cualquier otra tecnolog&iacute;a similar o an&aacute;loga.</h4>\n" +
-            "            <p align=\"justify\">                \n" +
+            "            <p align=\"left\">                \n" +
             "            Pay As You Drive le informa que en su sitio online se utilizan cookies, web beacons y u otras tecnolog&iacute;as para\n" +
             "            monitorear su comportamiento como usuario de Internet, con la finalidad de brindarle un mejor servicio y\n" +
             "            experiencia de usuario al navegar en nuestro sitio, as&iacute; como ofrecerle nuevos productos basados en su\n" +

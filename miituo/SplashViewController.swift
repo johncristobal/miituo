@@ -10,9 +10,10 @@ import UIKit
 import SwiftGifOrigin
 import MediaPlayer
 import CoreData
+import FirebaseInstanceID
 
 var saltartoken = ""
-var alertaloadingSplash:UIAlertController? = nil
+var alertaloading:UIAlertController? = nil
 
 class SplashViewController: UIViewController {
     
@@ -44,13 +45,19 @@ class SplashViewController: UIViewController {
         print("Ancho: \(screenWidth)")
         print("Alto: \(screenHeight)")
         
+        //Mas a la derecha y un poco mas abajo
+        
+        if screenHeight > 560 {
+            topconst.constant = 50
+            leftconst.constant = 10
+        }
         if screenHeight > 660 {
-            topconst.constant = 40
-            leftconst.constant = 35
+            topconst.constant = 85
+            leftconst.constant = 40
         }
         if screenHeight > 730 {
-            topconst.constant = 50
-            leftconst.constant = 40
+            topconst.constant = 100
+            leftconst.constant = 50
         }
         
         player = AVPlayer(url: videoURL as URL)
@@ -76,27 +83,26 @@ class SplashViewController: UIViewController {
     }
     
     func launchlerta(cel: String){
-        alertaloadingSplash = UIAlertController(title: "Información", message: "Actualizando datos...", preferredStyle: .alert)
+        alertaloading = UIAlertController(title: "Información", message: "Actualizando datos...", preferredStyle: .alert)
         
-        alertaloadingSplash?.view.tintColor = UIColor.black
+        alertaloading?.view.tintColor = UIColor.black
         //CGRect(x: 1, y: 5, width: self.view.frame.size.width - 20, height: 120))
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:10, y:5, width:50, height:50)) as UIActivityIndicatorView
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         loadingIndicator.startAnimating();
         
-        alertaloadingSplash?.view.addSubview(loadingIndicator)
-        present(alertaloadingSplash!, animated: true, completion: nil)
+        alertaloading?.view.addSubview(loadingIndicator)
+        present(alertaloading!, animated: true, completion: nil)
         
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).sync {
         //update token
         self.sendToken(telefono: cel as! String)
         //get data from WS
-        getJson(telefon: cel as! String, vistafrom: self);
+        getJson(telefon: cel as! String, vistafrom: self,dedonde:"splash")
         //get data from WS
         //self.getSms(telefon: cel as! String);
         
-        DispatchQueue.main.async {
         //self.imageView.image = image
         //launch second view with data - show table and polizas
         //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
@@ -124,7 +130,7 @@ class SplashViewController: UIViewController {
          self.launchtoken()
          }*/
         //})
-            }
+            //}
         }
     }
 
@@ -142,7 +148,28 @@ class SplashViewController: UIViewController {
                     switch status {
                     case .unknown, .offline:
                         print("Not connected")
-                        self.launchpolizas()
+                        if let token = UserDefaults.standard.value(forKey: "sesion") {
+                            
+                            //DispatchQueue.main.async {
+                                //close loading view
+                                //alertaloading?.dismiss(animated: true, completion: {
+                                    self.launchpolizas()
+                                //})
+                            //}
+                        }
+                        else
+                        {
+                            //get data from WS
+                            //getSms(telefon: cel as! String);
+                            
+                            //DispatchQueue.main.async {
+                                //close loading view
+                                //alertaloading?.dismiss(animated: true, completion: {
+                                    //self.launchtoken()
+                                //})
+                            //}
+                        }
+
                     case .online(.wwan):
                         self.launchlerta(cel: cel as! String)
                     case .online(.wiFi):
@@ -248,13 +275,19 @@ class SplashViewController: UIViewController {
 /*********************** launch token***************************************************/
     func launchtoken(){
         //launch second view with data - show table and polizas
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "smsview") as! TokenSmsViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "smsview") as! TokenSmsViewController
         self.present(vc, animated: true, completion: nil)
         
     }
 //***************************Function to send token to ws*********************************************
     func sendToken(telefono: String){
         let todosEndpoint: String = "\(ip)ClientUser/"
+        
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            token = refreshedToken
+        }
         
         guard let todosURL = URL(string: todosEndpoint) else {
             print("Error: cannot create URL")
@@ -266,7 +299,7 @@ class SplashViewController: UIViewController {
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        //let newTodo: [String: Any] = ["Celphone":"5534959778","Id":"0","Token":"aaaaaaaaaaa"]
+        //let newTodo: [String: Any] = ["Celphone": "5532241245", "Token": token, "Id":"0"]
         let newTodo: [String: Any] = ["Celphone": telefono, "Token": token, "Id":"0"]
         
         let jsonTodo: Data
@@ -274,18 +307,17 @@ class SplashViewController: UIViewController {
             jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
             let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
             todosUrlRequest.httpBody = jsonTodo
-            
             print("Token: \(jsonString)")
         } catch {
             print("Error: cannot create JSON from todo")
             return
         }
         
+        //Start thread to send data
         let session = URLSession.shared
-        
         let task = session.dataTask(with: todosUrlRequest) {
-            (data, response, error) in
-            guard error == nil else {
+            (responseData, response, error) in
+            /*guard error == nil else {
                 print("error calling POST on /todos/1")
                 print(error)
                 return
@@ -293,23 +325,38 @@ class SplashViewController: UIViewController {
             guard let responseData = data else {
                 print("Error: did not receive data")
                 return
-            }
+            }*/
             if let httpResponse = response as? HTTPURLResponse {
                 print("error \(httpResponse.statusCode)")
                 print("error \(httpResponse.description)")
                 //print("error \(httpResponse.)")
                 if httpResponse.statusCode == 200{
-                    if let str = String(data: responseData, encoding: String.Encoding.utf8) {
+                    if let str = String(data: responseData!, encoding: String.Encoding.utf8) {
                         print("Valor de retorno: \(str)")
                         valordevuelto = str
                     } else {
                         print("not a valid UTF-8 sequence")
                     }
+                }else{
+                    //catch error to log
+                    // parse the result as JSON, since that's what the API provides
+                    do {
+                        guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,
+                                                                                  options: []) as? [String: Any] else {
+                        print("Could not get JSON from responseData as dictionary")
+                        return
+                     }
+                     print("The todo is: " + receivedTodo.description)
+                     
+                     } catch  {
+                        print("error parsing response from POST on /todos")
+                        return
+                     }
                 }
             }
             
             // parse the result as JSON, since that's what the API provides
-            do {
+            /*do {
                 guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,
                                                                           options: []) as? [String: Any] else {
                                                                             print("Could not get JSON from responseData as dictionary")
@@ -325,7 +372,7 @@ class SplashViewController: UIViewController {
             } catch  {
                 print("error parsing response from POST on /todos")
                 return
-            }
+            }*/
         }
         task.resume()
     }    

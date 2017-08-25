@@ -12,11 +12,13 @@ import Photos
 import SystemConfiguration
 import UserNotifications
 
-var alertaloading:UIAlertController? = nil
+//var alertaloading:UIAlertController? = nil
 var polizaparasms:String? = ""
 var tokentemp:String? = ""
 
 var tienepolizas = ""
+
+var conexion = ""
 
 class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -50,30 +52,12 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         }
         
         application.registerForRemoteNotifications()
-        /*let largeNumber = 31908551587
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        let finalnumber = numberFormatter.string(from: NSNumber(value: largeNumber))
-        telefono.text = finalnumber*/
         
-        /*let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        fototemp.isUserInteractionEnabled = true
-        fototemp.addGestureRecognizer(tapGestureRecognizer)
-
-        let fileManager = FileManager.default
-        let filename = getDocumentsDirectory().appendingPathComponent("fotoA.png")
-        if fileManager.fileExists(atPath: filename.path){
-            let image = UIImage(contentsOfFile: filename.path)
-            fototemp.layer.cornerRadius = 20.0
-            fototemp.transform = fototemp.transform.rotated(by: CGFloat(Double.pi/2))
-            fototemp.layer.masksToBounds = true
-            fototemp.image = image
-        }else{
-            print("No existe foto")
-        }*/
-        
+        //application.unregisterForRemoteNotifications()
+        //Valido conexion a internet
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
         Reach().monitorReachabilityChanges()
+        
     }
 
     func networkStatusChanged(_ notification: Notification) {
@@ -164,7 +148,8 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
          */
 
         // Move to a background thread to do some long running work
-        
+        let application: UIApplication = UIApplication.shared
+
         if let cel = UserDefaults.standard.value(forKey: "celular") {
             print(cel)
             
@@ -186,12 +171,32 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
             switch status {
             case .unknown, .offline:
                 print("Not connected")
-                self.launchpolizas()
+                conexion = "0"
+                //self.launchpolizas()
             case .online(.wwan):
                 print("Connected via WiFi")
             case .online(.wiFi):
                 print("Connected via WiFi")
             }
+        }
+        
+        //Lanzo push cstom alert just once
+        if (UserDefaults.standard.value(forKey: "pushalert") != nil) {
+            let push = UserDefaults.standard.value(forKey: "pushalert")
+            
+        } else {
+            let refreshAlert = UIAlertController(title: "Atención usuario", message: "Le recordamos que es importante activar las notificaciones para saber cuando reportar.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Si, dejar notificaciones activas", style: .default, handler: { (action: UIAlertAction!) in
+                UserDefaults.standard.set("si", forKey: "pushalert")
+                
+            }))
+            refreshAlert.addAction(UIAlertAction(title: "No, desactivar notificaciones", style: .default, handler: { (action: UIAlertAction!) in
+                UserDefaults.standard.set("no", forKey: "pushalert")
+                application.unregisterForRemoteNotifications()
+            }))
+            
+            self.present(refreshAlert, animated: true)
         }
     }
     
@@ -208,12 +213,26 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         alertaloading?.view.addSubview(loadingIndicator)
         present(alertaloading!, animated: true, completion: nil)
         
+        let status = Reach().connectionStatus()
+        switch status {
+        case .unknown, .offline:
+            print("Not connected")
+            conexion = "0"
+        //self.launchpolizas()
+        case .online(.wwan):
+            print("Connected via WiFi")
+            conexion = "1"
+        case .online(.wiFi):
+            print("Connected via WiFi")
+            conexion = "1"
+        }
+        
         DispatchQueue.global(qos: .userInitiated).async {
         //update token
         self.sendToken(telefono: cel as! String)
         //get data from WS
         //self.getJson(telefon: cel as! String);
-        getJson(telefon: cel as! String, vistafrom: self);
+        getJson(telefon: cel as! String, vistafrom: self, dedonde: "sync");
 
         //get data from WS
         //self.getSms(telefon: cel as! String);
@@ -248,7 +267,6 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         //})
         }
         }
-        
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -264,7 +282,6 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         let tel = telefono.text! as String
         
         if tel != "" {
-
             alertaloading = UIAlertController(title: nil, message: "Sincronizando...", preferredStyle: .alert)
             
              alertaloading?.view.tintColor = UIColor.black
@@ -285,39 +302,21 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
             
             //Save data to UserDefautls
             UserDefaults.standard.setValue("1", forKey: "tutoya")
-            UserDefaults.standard.setValue(tel, forKey: "celular")
+
             //update token
             self.sendToken(telefono: tel)
             //get data from WS
             //self.getJson(telefon: tel);
-            getJson(telefon: tel as! String, vistafrom: self);
+            getJson(telefon: tel , vistafrom: self,dedonde:"sync");
 
-            //get data from WS
-            self.getSms(telefon: tel);
-
-            DispatchQueue.main.async {
-                //close loading view
-                //alertaloading?.dismiss(animated: false, completion: nil)
-                alertaloading?.dismiss(animated: true, completion: {
-                    
-                    self.launchtoken()
-                    /*if tienepolizas != ""{
-                        self.launchtoken()
-                    }else{
-                        print("No hay polzias")
-                        showmessage(message: "No hay polizas vinculadas. Intente con otro número")
-                    }*/
-                })
-            }
+            //I dont have json here...just call WS into thread
+            //if conexion != "0" {
+            //}
         }
         }else{
-            
             showmessage(message: "Introduzca número celular");
         }
-
-        //call class to get json
-        //let task = Task()
-    }    
+    }
 
 /*********************** launch polizas***************************************************/
     func launchpolizas(){
@@ -334,14 +333,22 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         //launch second view with data - show table and polizas
         //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
         self.present(myAlert, animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+
     }
 
 /*********************** launch token***************************************************/
     func launchtoken(){
         //launch second view with data - show table and polizas
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "smsview") as! TokenSmsViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let vc = storyboard.instantiateViewController(withIdentifier: "smsview") as! TokenSmsViewController
+        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+
         self.present(vc, animated: true, completion: nil)
-        
+
+        //self.dismiss(animated: true, completion: nil)
     }
 
     //Get out of the textfield*********************************************
@@ -359,7 +366,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
     }
 
 //***************************Function to send token to ws*********************************************
-    func sendToken(telefono: String){
+    func sendToken(telefono: String) {
         let todosEndpoint: String = "\(ip)ClientUser/"
         
         guard let todosURL = URL(string: todosEndpoint) else {
@@ -643,47 +650,4 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         
         loadTask.resume()
     }*/
-    
-//*******************Function to get data with the celphone*********************************************
-    func getSms(telefon:String){
-        
-        let flag = true
-        while flag{
-            if polizaparasms != ""{
-                break;
-            }
-        }
-        
-        let url = URL(string: "\(ip)TemporalToken/GetTemporalTokenPhone/"+telefon+"/"+polizaparasms!+"/AppToken")!
-        let session = URLSession.shared;
-        let loadTask = session.dataTask(with: url){(data,response,error) in
-            if error != nil{
-                showmessage(message: "Error de conexiòn \(error)")
-            } else {
-                if let urlContent = data{
-                    
-                    do{
-                        let json = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        
-                        print("iMPRIMIENDO")
-                        let dato = json as! NSArray
-                        tokentemp = dato[0] as! String
-                        print("Valor de vuelto de sms: \(tokentemp)")
-                        //get data from client....
-                        //let cliente = json.value(forKey: "Client") as! NSArray
-                        //print(cliente)
-                        
-                    } catch{
-                        showmessage(message: "Error en JSON token.")
-                    }
-                    
-                    //launch second view with data - show table and polizas
-                    //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
-                    //self.present(vc, animated: true, completion: nil)
-                }
-            }
-        }
-        loadTask.resume()
-    }
 }
-

@@ -17,7 +17,7 @@ class DetalleViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        fecha.text = "Tu siguiente reporte será: \(arregloPolizas[Int(valueToPass)!]["limitefecha"]! as String)"
+        fecha.text = "Tu siguiente reporte será el: \(arregloPolizas[Int(valueToPass)!]["limitefecha"]! as String)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +26,9 @@ class DetalleViewController: UIViewController {
     }
     
 
+    @IBAction func closeW(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

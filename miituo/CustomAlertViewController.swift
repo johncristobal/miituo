@@ -13,6 +13,9 @@ class CustomAlertViewController: UIViewController {
     
     var rowsel = 0;
     
+    @IBOutlet var toplinea: NSLayoutConstraint!
+    @IBOutlet var derecholinea: NSLayoutConstraint!
+    
     @IBOutlet var odometrohoy: UILabel!
    // @IBOutlet var odometroanterior: NSLayoutConstraint!
     
@@ -31,6 +34,11 @@ class CustomAlertViewController: UIViewController {
     @IBOutlet var primashow: UILabel!
         
     @IBOutlet var tafifakms: UILabel!
+    
+    @IBOutlet var startderecho: UILabel!
+    
+    @IBOutlet var labeldos: UILabel!
+    @IBOutlet var startdos: UILabel!
     
     let alertaloading = UIAlertController(title: "Reportando", message: "Subiendo información...", preferredStyle: .alert)
     
@@ -81,12 +89,13 @@ class CustomAlertViewController: UIViewController {
             kilometrosrecorridos.text = numberFormatter.string(from: NSNumber(value: Int(kilometrosrecorridoslast)!))
             
             //let otrostring = Float(tarifaporkmlast)
-            let otrokmlast = numberFormatter.string(from: NSNumber(value: Double(tarifaporkmlast)!))
-            tarifaporkm.text = "$ \((otrokmlast!))"
+            //let otrokmlast = numberFormatter.string(from: NSNumber(value: Double(tarifaporkmlast)!))
+            tarifaporkm.text = "$ \((tarifaporkmlast))"
             
             //basemes.text = "$ \(basemeslast)"
             let value: Float = Float(basemeslast)!
-            basemes.text = "$ \(String.localizedStringWithFormat("%.2f", round(value)))"
+            //basemes.text = "$ \(String.localizedStringWithFormat("%.2f", round(value)))"
+            basemes.text = "$ \(String.localizedStringWithFormat("%.2f", (value)))"
             
             //let otrototal = numberFormatter.string(from: NSNumber(value: Double(totalapagarlast)!))
             let valuetotal: Float = Float(totalapagarlast)!
@@ -99,16 +108,30 @@ class CustomAlertViewController: UIViewController {
             if promolast == "0.0" {
                 promo.isHidden = true
                 promoshow.isHidden = true
+                if derechopolizad == ""{
+                    toplinea.constant = 55
+                }
+                else{
+                    derecholinea.constant = 10
+                    toplinea.constant = 80
+                }
             }else {
                 promo.isHidden = false
                 promoshow.isHidden = false
                 let valuepromo: Float = Float(promolast)!
                 promo.text = "$ \(String.localizedStringWithFormat("%.2f", valuepromo))"
+
+                if derechopolizad == ""{
+                    toplinea.constant = 80
+                }
             }
             
             if derechopolizad == "" {
                 primashow.isHidden = true
                 prima.isHidden = true
+                startderecho.isHidden = true
+                startdos.isHidden = true
+                labeldos.isHidden = true
             }else{
                 //let otroprima = numberFormatter.string(from: NSNumber(value: Double(derechopolizad)!))
                 let valueprima: Float = Float(derechopolizad)!
@@ -206,8 +229,8 @@ class CustomAlertViewController: UIViewController {
         let session = URLSession.shared
         
         let task = session.dataTask(with: todosUrlRequest) {
-            (data, response, error) in
-            guard error == nil else {
+            (responseData, response, error) in
+            /*guard error == nil else {
                 print("error calling POST on /todos/1")
                 print(error)
                 return
@@ -215,16 +238,17 @@ class CustomAlertViewController: UIViewController {
             guard let responseData = data else {
                 print("Error: did not receive data")
                 return
-            }
+            }*/
             if let httpResponse = response as? HTTPURLResponse {
                 print("error \(httpResponse.statusCode)")
                 print("error \(httpResponse.description)")
                 //print("error \(httpResponse.)")
                 if httpResponse.statusCode == 200{
-                    if let str = String(data: responseData, encoding: String.Encoding.utf8) {
+                    if let str = String(data: responseData!, encoding: String.Encoding.utf8) {
                         print("Valor de retorno: \(str)")
                         valordevuelto = str
-                        
+
+                        DispatchQueue.main.async {
                         //cerrando dialog...
                         self.alertaloading.dismiss(animated: true, completion: {
                             
@@ -268,92 +292,120 @@ class CustomAlertViewController: UIViewController {
                                     }
                                     
                                     print("SALIDN3O....3")
-                                    //refreshAlert.dismiss(animated: true, completion: {
-                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                    let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
-                                    myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                                    myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                                    
-                                    self.present(myAlert, animated: true, completion: nil)
-                                    //})
-                                    //launch second view with data - show table and polizas
-                                    //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
-                                    //self.present(vc, animated: true, completion: nil)
+                                    self.launchPolizas()
+
                                 }))
                                 
                                 self.present(refreshAlert, animated: true, completion: nil)
                             } else {
-                                
+                                // parse the result as JSON, since that's what the API provides
+                                do {
+                                    guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,
+                                                                                              options: []) as? [String: Any] else {
+                                                                                                print("Could not get JSON from responseData as dictionary")
+                                                                                                return
+                                    }
+                                    print("The todo is: " + receivedTodo.description)
+                                    
+                                    self.alertaloading.dismiss(animated: true, completion: {
+                                        
+                                        print("Valoe ------------ devuelto ----------")
+                                        print(valordevuelto)
+                                        
+                                        let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
+                                        
+                                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                            
+                                            self.launchPolizas()
+                                            
+                                        }))
+                                        
+                                        self.present(refreshAlert, animated: true, completion: nil)
+                                    })
+                                } catch  {
+                                    print("error parsing response from POST on /todos")
+                                    //return 125445
+                                }
                             }
                         })
+                        }
                         
                     } else {
                         print("not a valid UTF-8 sequence")
                     }
+                } else {
+                    // parse the result as JSON, since that's what the API provides
+                    do {
+                        guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,
+                                                                                  options: []) as? [String: Any] else {
+                                                                                    print("Could not get JSON from responseData as dictionary")
+                                                                                    return
+                        }
+                        print("The todo is: " + receivedTodo.description)
+                        if receivedTodo.description.contains("Por el momento tu pago no se"){
+                            if let meessage = receivedTodo["Message"] {
+                                self.alertaloading.dismiss(animated: true, completion: {
+                                    
+                                    print("Valoe ------------ devuelto ----------")
+                                    print(valordevuelto)
+                                    
+                                    let refreshAlert = UIAlertController(title: "Odómetro", message: meessage as! String, preferredStyle: UIAlertControllerStyle.alert)
+                                    
+                                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                        
+                                        self.launchPolizas()
+                                        
+                                    }))
+                                    
+                                    self.present(refreshAlert, animated: true, completion: nil)
+                                })
+                            }
+                        }
+                        else{
+                        self.alertaloading.dismiss(animated: true, completion: {
+                            
+                            print("Valoe ------------ devuelto ----------")
+                            print(valordevuelto)
+                            
+                            let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                
+                                self.launchPolizas()
+                                
+                            }))
+                            
+                            
+                            self.present(refreshAlert, animated: true, completion: nil)
+                        })
+                        }
+                    } catch  {
+                        print("error parsing response from POST on /todos")
+                    }
                 }
             }
             
-            // parse the result as JSON, since that's what the API provides
-            do {
-                guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,
-                                                                          options: []) as? [String: Any] else {
-                                                                            print("Could not get JSON from responseData as dictionary")
-                                                                            return
-                }
-                print("The todo is: " + receivedTodo.description)
-
-                self.alertaloading.dismiss(animated: true, completion: { 
-                    
-                    print("Valoe ------------ devuelto ----------")
-                    print(valordevuelto)
-                    
-                        let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
-                        
-                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                            
-                            //refreshAlert.dismiss(animated: true, completion: {
-                                //launch second view with data - show table and polizas
-                                //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
-                                //self.present(vc, animated: true, completion: nil)
-                                
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
-                                
-                                myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                                myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                                
-                                //launch second view with data - show table and polizas
-                                //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
-                                self.present(myAlert, animated: true, completion: nil)
-
-
-                            //})
-                        }))
-                        
-                        /*refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
-                         
-                         //launch second view with data - show table and polizas
-                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
-                         self.present(vc, animated: true, completion: nil)
-                         }))*/
-                        
-                        self.present(refreshAlert, animated: true, completion: nil)
-                })
-            } catch  {
-                print("error parsing response from POST on /todos")
-                //return 125445
-            }
+            
         }
         task.resume()
         
-        //DispatchQueue.main.async {
-        /*while true {
-            if valordevuelto != ""{
-                break;
-            }
-        }*/
     }
+    
+    func launchPolizas(){
         
+        actualizar = "1"
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let myAlert = storyboard.instantiateViewController(withIdentifier: "reveal") as! SWRevealViewController
+        
+        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        
+        //launch second view with data - show table and polizas
+        //let vc = self.storyboard?.instantiateViewController(withIdentifier: "polizas") as! PolizasViewController
+        self.present(myAlert, animated: true, completion: nil)
+    }
+    
     //------------------------loading page------------------------------------
     func openloading(mensaje: String){
         
@@ -387,5 +439,4 @@ class CustomAlertViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
 }

@@ -21,10 +21,14 @@ class SiniestroViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func closeW(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     @IBAction func makeCall(_ sender: Any) {
         
-        guard let url = URL(string: "telprompt://5576112777") else { return }
+        guard let url = URL(string: "telprompt://11025280") else { return }
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {

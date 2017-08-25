@@ -46,7 +46,7 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if fileManager.fileExists(atPath: filename.path){
             let image = UIImage(contentsOfFile: filename.path)
             imagencarro.layer.cornerRadius = 20.0
-            //cell.imagecar.transform = cell.imagecar.transform.rotated(by: CGFloat(Double.pi/2))
+            imagencarro.transform = imagencarro.transform.rotated(by: CGFloat(Double.pi/2))
             imagencarro.layer.masksToBounds = true
             imagencarro.image = image
         }else{
@@ -60,6 +60,11 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
+    }
+    
+    
+    @IBAction func closeW(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,7 +105,25 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 6"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 7"))*/
         self.cells.append(SwiftyAccordionCells.HeaderItem(value: "Tu odómetro"))
-        self.cells.append(SwiftyAccordionCells.Item(value: "Último odómetro: \(arregloPolizas[Int(valueToPass)!]["lastodometer"]!)"))
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        
+        let odomtemp = arregloPolizas[Int(valueToPass)!]["lastodometer"]
+        //let decim = Double(odomtemp!)
+        //let suma = Int((odomtemp?.description)!)! + 0
+        let lastodo = numberFormatter.string(from: NSNumber(value: Int(odomtemp!)!))
+        //let int = Int((lastodo?.description)!)
+        
+        if let unwrappedAge = lastodo {
+            
+            // continue in here
+            self.cells.append(SwiftyAccordionCells.Item(value: "Último odómetro: \(unwrappedAge)"))
+            
+        }else{
+            self.cells.append(SwiftyAccordionCells.Item(value: "Último odómetro: \(lastodo)"))
+        }
+        //self.cells.append(SwiftyAccordionCells.Item(value: "Último odómetro: \(arregloPolizas[Int(valueToPass)!]["lastodometer"]!)"))
         /*self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 1"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 2"))
         self.cells.append(SwiftyAccordionCells.Item(value: "Sub Item 3"))*/

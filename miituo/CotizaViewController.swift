@@ -18,7 +18,7 @@ class CotizaViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        coti.loadRequest(URLRequest(url: URL(string: "http://miituodev.sytes.net:82")!))
+        coti.loadRequest(URLRequest(url: URL(string: "https://miituo.com")!))
     }
 
     override func didReceiveMemoryWarning() {

@@ -51,6 +51,8 @@ class ConfirmOdometerViewController: UIViewController {
             //textoantes.isHidden = true
             //upconstraint.constant = -25
         }
+        
+        //textres.isFocused = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,6 +60,10 @@ class ConfirmOdometerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    @IBAction func closeW(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func backToPolizas(_ sender: Any) {
         
@@ -67,7 +73,7 @@ class ConfirmOdometerViewController: UIViewController {
         let cadena = textres.text
         
         if cadena == "" {
-            showmessage(message: "Favor de colocar odómetro")
+            showmessage(message: "Es necesario capturar los kms. que marca el odómetro.")
         }else{
             
             odometrouno = cadena!

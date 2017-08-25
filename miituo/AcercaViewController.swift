@@ -10,7 +10,7 @@ import UIKit
 
 class AcercaViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let cadenashere = ["Ver aviso de privacidad"]
+    let cadenashere = ["Aviso de privacidad"]
     
     @IBOutlet var webvista: UIWebView!
     @IBOutlet var menuButton: UIBarButtonItem!
@@ -49,7 +49,7 @@ class AcercaViewController: UIViewController, UITableViewDelegate, UITableViewDa
             "    <body>\n" +
             "        <div>\n" +
             "            <h4>Si manejas poco, pagas poco.</h4>\n" +
-            "            <p align=\"justify\">\n" +
+            "            <p align=\"left\">\n" +
             "            El único seguro de autos que te ofrece pago por kilómetro.\n" +
             "            <br><br>\n" +
             "            En <b>miituo</b> hemos creado un seguro de auto donde solamente pagas por kilómetro recorrido.  \n" +
@@ -61,7 +61,7 @@ class AcercaViewController: UIViewController, UITableViewDelegate, UITableViewDa
             "            <br><br>\n" +
             "            Con base en la información que nos proporciones, nuestros algoritmos calcularán una prima por kilómetro. \n" +
             "            Esta será fija durante los doce meses de vigencia de la póliza y se multiplicará por los kilómetros que \n" +
-            "            recorriste durante el mes, más una base de $80 mensuales. \n" +
+            "            recorriste durante el mes. \n" +
             "\n" +
             "            <br><br>\n" +
             "            Independientemente de los kilómetros que recorriste, siempre estarás cubierto con tu seguro de auto <b>miituo</b>.\n" +
@@ -75,7 +75,6 @@ class AcercaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         "</html>\n";
         
         webvista.loadHTMLString(data, baseURL: nil)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,7 +82,6 @@ class AcercaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -109,10 +107,10 @@ class AcercaViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none;
 
-        cell.textLabel?.textColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
-        cell.backgroundColor = UIColor.white
+        cell.textLabel?.textColor = UIColor.white
+        cell.backgroundColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
         cell.textLabel?.textAlignment = .center
-        cell.textLabel?.text = cadenashere[indexPath.row]//"Aviso de privacidad"
+        cell.textLabel?.text = cadenashere[indexPath.row]   //"Aviso de privacidad"
         
         print("Valor fila: \(indexPath.row)")
         
@@ -122,7 +120,10 @@ class AcercaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("Here: \(indexPath.row)")
-        
+        let currentCell = tableView.cellForRow(at: indexPath)! //as! PolizasTableViewCell
+        currentCell.contentView.backgroundColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
+        currentCell.backgroundColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
+
         if indexPath.row == 0 {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "privacidad") as! PrivacidadViewController
             //vc.cadenas = valueToPass

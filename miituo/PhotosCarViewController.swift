@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import CoreData
 
 var picker = UIImagePickerController()
 
@@ -55,7 +56,23 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         backpic.addGestureRecognizer(tapGestureRecognizerback)
         
         rowsel = Int(valueToPass)!
+        
     }
+
+    //Lanzamos mensaje de alerta para fotos....
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if message == 0 {
+            message = 1
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let myAlert = storyboard.instantiateViewController(withIdentifier: "before_fotos") as! MensajeFotosViewController
+            myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            
+            self.present(myAlert, animated: true, completion: nil)
+        }
+    }
+
 
     func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
@@ -86,6 +103,21 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
             frontflag = 1
             //just here save the picture...to show in App
             //savePicture()
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAsset(from: self.frontpic.image!)
+            }, completionHandler: { success, error in
+                if success {
+                    
+                }
+                else if let error = error {
+                    // Save photo failed with error
+                    print("Error guardando imagen -- 1 \(error)")
+                }
+                else {
+                    // Save photo failed with no error
+                    print("Error guardando imagen -- 2")
+                }
+            })
             //let imagennn = info[UIImagePickerControllerOriginalImage] as? UIImage
         } else if imagenselected == 3 {
             izquierdopic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -98,30 +130,77 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         }
     }
     
-    func savePicture(){
-        PHPhotoLibrary.shared().performChanges({
-        PHAssetChangeRequest.creationRequestForAsset(from: self.frontpic.image!)
-        }, completionHandler: { success, error in
-        if success {
-            // Saved successfully!
-            if let data = UIImagePNGRepresentation(self.frontpic.image!) {
+    
+    @IBAction func closeW(_ sender: Any) {
 
-                let polizatemp = arregloPolizas[self.rowsel]["nopoliza"]!
-                let filename = self.getDocumentsDirectory().appendingPathComponent("frontal_\(polizatemp).png")
-                try? data.write(to: filename)
+        /*dismiss(animated: true, completion: {
+            let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
+            
+            odometerview.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+            
+            //openview
+            self.present(odometerview, animated: true, completion: nil)
+        })*/
+        
+        //launch pop photos...
+        message = 0
+
+        dismiss(animated: true, completion: {})
+    }
+    
+    func savePicture(){
+        //PHPhotoLibrary.shared().performChanges({
+        //    PHAssetChangeRequest.creationRequestForAsset(from: self.frontpic.image!)
+        //}, completionHandler: { success, error in
+        //if success {
+            
+        self.openloading(mensaje: "Subiendo fotos...")
+
+            // Saved successfully!
+        if let data = UIImagePNGRepresentation(self.frontpic.image!) {
+
+            let polizatemp = arregloPolizas[self.rowsel]["nopoliza"]!
+            let filename = self.getDocumentsDirectory().appendingPathComponent("frontal_\(polizatemp).png")
+            try? data.write(to: filename)
+            
+            print("imagen guardada")
+            //At last...open the new viewcontrooler
+            //Open view odometer to get picture of odometer
+            for index in 0...3 {
                 
-                print("imagen guardada")
+                if index == 0{
+                    let imagennn = self.derechopic.image
+                    let idpic = "2"
+                    self.sendimagenes(imagenn: imagennn!,idpic: idpic)
+                }
+                if index == 1{
+                    let imagennn = self.frontpic.image
+                    let idpic = "1"
+                    //saveimage(imagenn: imagennn!)
+                    self.sendimagenes(imagenn: imagennn!,idpic: idpic)
+                }
+                if index == 2{
+                    let imagennn = self.izquierdopic.image
+                    let idpic = "4"
+                    self.sendimagenes(imagenn: imagennn!,idpic: idpic)
+                }
+                if index == 3{
+                    let imagennn = self.backpic.image
+                    let idpic = "3"
+                    self.sendimagenes(imagenn: imagennn!,idpic: idpic)
+                }
             }
         }
-        else if let error = error {
+        //}
+        //else if let error = error {
         // Save photo failed with error
-            print("Error guardando imagen -- 1")
-        }
-        else {
+        //    print("Error guardando imagen -- 1 \(error)")
+        //}
+        //else {
         // Save photo failed with no error
-            print("Error guardando imagen -- 2")
-        }
-        })
+        //    print("Error guardando imagen -- 2")
+        //}
+        //})
     }
     
     func getDocumentsDirectory() -> URL {
@@ -147,7 +226,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         var maxWidth : CGFloat = image.size.width/4//400.0
         var imgRatio : CGFloat = actualWidth/actualHeight
         var maxRatio : CGFloat = maxWidth/maxHeight
-        var compressionQuality : CGFloat = 0.9
+        var compressionQuality : CGFloat = 0.8
         
         if (actualHeight > maxHeight || actualWidth > maxWidth){
             if(imgRatio < maxRatio){
@@ -184,9 +263,9 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         //showmessage(message: "Enviando información")
         if rigthflag == 1 && leftflag == 1 && frontflag == 1 && backflag == 1{
             //send all picturec...loop to get all the iamges and send them
-            openloading(mensaje: "Subiendo fotos...")
+            savePicture()
 
-            for index in 0...3 {
+            /*for index in 0...3 {
                 
                 if index == 0{
                     let imagennn = derechopic.image
@@ -209,20 +288,10 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
                     let idpic = "3"
                     sendimagenes(imagenn: imagennn!,idpic: idpic)
                 }
-            }
+            }*/
             
-            //Gurdamos fotgrafia
-            savePicture()
-            
-            //At last...open the new viewcontrooler
-            //Open view odometer to get picture of odometer
-            alertaloading.dismiss(animated: true, completion: {
+//            savePicture()
 
-                let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
-                //openview
-                self.present(odometerview, animated: true, completion: nil)
-            })
-            
         }else{
             showmessage(message: "Capturar todas las fotografìas solicitadas")
         }
@@ -276,12 +345,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         let comrimidad = compressImage(image: imagenn)
         
         // to base64 => yhis is going to be in the thread to send photos
-        //let imageData:NSData = UIImagePNGRepresentation(comrimidad)! as NSData
-        
         let strBase64 = comrimidad.base64EncodedString(options: Data.Base64EncodingOptions.endLineWithLineFeed)
-        //let strBase64 = comrimidad.base64EncodedString(options: [.])
-        
-        //print(strBase64)
         
         /// ----------- send image ------------ ///
         let todosEndpoint: String = "\(ip)ImageProcessing/"
@@ -297,10 +361,7 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        //let newTodo: [String: Any] = ["Id": "70", "Name": "Edrei", "LastName":"bastar" ,"MotherName":"bastar","Celphone":"5534959778","Token":"aaaaaaaaaaa"]
-        //let newTodo: [String: Any] = ["Celphone":"5534959778","Id":"0","Token":"aaaaaaaaaaa"]
         let newTodo: [String: Any] = ["Type": idpic, "Data": strBase64, "PolicyId":arregloPolizas[rowsel]["idpoliza"] ,"PolicyFolio":arregloPolizas[rowsel]["nopoliza"]]
-        //let newTodo: [String: Any] = ["Type": "1", "PolicyId":"59" ,"PolicyFolio":"884489275","Odometer":"1233333"]
         
         let jsonTodo: Data
         do {
@@ -317,8 +378,8 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
         let session = URLSession.shared
         
         let task = session.dataTask(with: todosUrlRequest) {
-            (data, response, error) in
-            guard error == nil else {
+            (responseData, response, error) in
+            /*guard error == nil else {
                 print("error calling POST on /todos/1")
                 print(error)
                 return
@@ -326,25 +387,102 @@ class PhotosCarViewController: UIViewController,UINavigationControllerDelegate, 
             guard let responseData = data else {
                 print("Error: did not receive data")
                 return
-            }
+            }*/
             
-            // parse the result as JSON, since that's what the API provides
-            do {
-                guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,
-                                                                          options: []) as? [String: Any] else {
-                                                                            print("Could not get JSON from responseData as dictionary")
-                                                                            return
-                }
-                print("The todo is: " + receivedTodo.description)
-                
-                guard let todoID = receivedTodo["id"] as? Int else {
-                    print("Could not get todoID as int from JSON")
-                    return
-                }
-                print("The ID is: \(todoID)")
-            } catch  {
-                print("error parsing response from POST on /todos")
-                return
+            if let httpResponse = response as? HTTPURLResponse {
+                print("error \(httpResponse.statusCode)")
+                print("error \(httpResponse.description)")
+                //print("error \(httpResponse.)")
+                if httpResponse.statusCode == 200 {
+                    if let str = String(data: responseData!, encoding: String.Encoding.utf8) {
+                        print("Valor de retorno: \(str)")
+                        valordevuelto = str
+                        if idpic == "3" {
+                            
+                            //Lanzamos siguiente odometro
+                            DispatchQueue.main.async {
+                                
+                                do{
+                                    //UpdatereportStet from CoreData
+                                    //store do core data
+                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                    let context = appDelegate.persistentContainer.viewContext
+                                    let requestpolizas = NSFetchRequest<NSFetchRequestResult>(entityName: "Polizas")
+                                    
+                                    //var fetchRequest = NSFetchRequest(entityName: "LoginData")
+                                    requestpolizas.predicate = NSPredicate(format: "nopoliza = %@", arregloPolizas[self.rowsel]["nopoliza"] as! String)
+                                    
+                                    let test = try context.fetch(requestpolizas)
+                                    if test.count == 1
+                                    {
+                                        let objectUpdate = test[0] as! NSManagedObject
+                                        
+                                        objectUpdate.setValue("true", forKey: "odometerpie")
+                                        
+                                        do{
+                                            try context.save()
+                                        }
+                                        catch
+                                        {
+                                            print(error)
+                                        }
+                                    }
+                                }catch {
+                                    showmessage(message: "Error al actualizar estatus")
+                                }
+                                
+                                self.alertaloading.dismiss(animated: true, completion: {
+                                    
+                                    var refreshAlert = UIAlertController(title: "Fotos de Vehículo", message: "Las fotos se han subido correctamente !Gracias!", preferredStyle: UIAlertControllerStyle.alert)
+                                    
+                                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                        
+                                        let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
+                                        //openview
+                                        self.present(odometerview, animated: true, completion: nil)
+                                        //self.dismiss(animated: true, completion: nil)
+                                    }))
+                                    
+                                    self.present(refreshAlert, animated: true)
+                                })
+                            }
+                        }
+                    } else {
+                        print("not a valid UTF-8 sequence")
+                    }
+                }else{
+                    //catch error to log
+                    // parse the result as JSON, since that's what the API provides
+                    do {
+                         guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,
+                         options: []) as? [String: Any] else {
+                            print("Could not get JSON from responseData as dictionary")
+                            return
+                         }
+                         print("The todo is: " + receivedTodo.description)
+
+                         //Disparamos error y regresamos a polzias
+                         DispatchQueue.main.async {
+                            showmessage(message: "Error de conexión al subir imágenes. Intente más tarde.")
+                            self.alertaloading.dismiss(animated: true, completion: {
+                                
+                                let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "Odometer") as! OdometerViewController
+                                self.present(odometerview, animated: true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
+
+                            })
+
+                        }
+                         /*guard let todoID = receivedTodo["id"] as? Int else {
+                            print("Could not get todoID as int from JSON")
+                            return
+                         }
+                         print("The ID is: \(todoID)")*/
+                     } catch  {
+                        print("error parsing response from POST on /todos")
+                        return
+                     }
+                 }
             }
         }
         task.resume()

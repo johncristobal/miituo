@@ -59,25 +59,10 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         //alertaloading.setValue(image, forKey: "image")
     }
 
-    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        
-        //speed = String(location.speed)
-        //print(speed)
-        
-        let valornum:Double = Double(location.speed)
-        
-        if valornum >= 5.0 {
-            //print("lanzamos alerta")
-            let refreshAlert = UIAlertController(title: "¡Vas Manejando!", message: "Tranquilo, no pasa nada si reportas cuando llegues a tu destino.  Sigue disfrutando del camino…", preferredStyle: UIAlertControllerStyle.alert)
-            
-            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                
-                self.launcpolizas()                
-            }))
-            present(refreshAlert, animated: true, completion: nil)
-        }
-    }*/
+    
+    @IBAction func closeW(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -141,11 +126,14 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         
         var actualHeight : CGFloat = image.size.height
         var actualWidth : CGFloat = image.size.width
-        var maxHeight : CGFloat = 300
-        var maxWidth : CGFloat = 400.0
+        //var maxHeight : CGFloat = 450.0
+        //var maxWidth : CGFloat = 600.0
+        var maxHeight : CGFloat = image.size.height/4//300
+        var maxWidth : CGFloat = image.size.width/4//400.0
+
         var imgRatio : CGFloat = actualWidth/actualHeight
         var maxRatio : CGFloat = maxWidth/maxHeight
-        var compressionQuality : CGFloat = 0.5
+        var compressionQuality : CGFloat = 0.8
         
         if (actualHeight > maxHeight || actualWidth > maxWidth){
             if(imgRatio < maxRatio){
@@ -200,15 +188,13 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         
         let newTodo: [String: Any] = ["Type": idpic, "Data": strBase64, "PolicyId":arregloPolizas[rowsel]["idpoliza"]! as String ,"PolicyFolio":arregloPolizas[rowsel]["nopoliza"]! as String]
-        //let newTodo: [String: Any] = ["Type": "1", "PolicyId":"59" ,"PolicyFolio":"884489275","Odometer":"1233333"]
+
         let jsonTodo: Data
         do {
             jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
             todosUrlRequest.httpBody = jsonTodo
-            
             let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
             print(jsonString)
-            
         } catch {
             print("Error: cannot create JSON from todo")
             return
@@ -217,8 +203,8 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
         let session = URLSession.shared
         
         let task = session.dataTask(with: todosUrlRequest) {
-            (data, response, error) in
-            guard error == nil else {
+            (responseData, response, error) in
+            /*guard error == nil else {
                 print("error calling POST on /todos/1")
                 print(error)
                 return
@@ -226,73 +212,86 @@ class OdometerViewController: UIViewController,UINavigationControllerDelegate, U
             guard let responseData = data else {
                 print("Error: did not receive data")
                 return
-            }
+            }*/
+            
             if let httpResponse = response as? HTTPURLResponse {
                 print("error \(httpResponse.statusCode)")
                 print("error \(httpResponse.description)")
                 //print("error \(httpResponse.)")
                 if httpResponse.statusCode == 200{
-                    if let str = String(data: responseData, encoding: String.Encoding.utf8) {
+                    if let str = String(data: responseData!, encoding: String.Encoding.utf8) {
                         print("Valor de retorno: \(str)")
                         valordevuelto = str
-                        self.alertaloading.dismiss(animated: true, completion: {
-                            let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
-                            
-                            odometerview.modalPresentationStyle = UIModalPresentationStyle.pageSheet
-                            
-                            //openview
-                            self.present(odometerview, animated: true, completion: nil)
-                        })
+                        
+                        DispatchQueue.main.async {                         
+                             self.alertaloading.dismiss(animated: true, completion: {
+                             let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
+                             
+                             odometerview.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+                             
+                             //openview
+                             self.present(odometerview, animated: true, completion: nil)
+                             })
+                         }
+
                     } else {
                         print("not a valid UTF-8 sequence")
                     }
+                } else {
+                    //catch error...
+                    // parse the result as JSON, since that's what the API provides
+                    do {
+                        guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,
+                                                                                  options: []) as? [String: Any] else {
+                                                                                    print("Could not get JSON from responseData as dictionary")
+                                                                                    return
+                        }
+                        print("The todo is: " + receivedTodo.description)
+                        print("The todo is message:  \(receivedTodo["Message"] as! String)")
+                        valordevuelto = receivedTodo["Message"] as! String
+                        /*guard let todoID = receivedTodo["id"] as? Int else {
+                         print("Could not get todoID as int from JSON")
+                         return
+                         }
+                         print("The ID is: \(todoID)")*/
+                        if valordevuelto != "1000" {
+                            DispatchQueue.main.async {
+
+                            self.alertaloading.dismiss(animated: true, completion: {
+                                
+                                print("Valoe ------------ devuelto ----------")
+                                print(valordevuelto)
+                                
+                                let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
+                                
+                                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                    
+                                    self.launcpolizas()
+                                }))
+                                
+                                self.present(refreshAlert, animated: true, completion: nil)
+                            })
+                            }
+                        }else{
+                            /*DispatchQueue.main.async {
+
+                            self.alertaloading.dismiss(animated: true, completion: {
+                                let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
+                                
+                                odometerview.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+                                
+                                //openview
+                                self.present(odometerview, animated: true, completion: nil)
+                            })
+                            }*/
+                        }
+                        
+                    } catch {
+                        print("error parsing response from POST on /todos")
+                        //return
+                    }
+
                 }
-            }
-            
-            // parse the result as JSON, since that's what the API provides
-            do {
-                guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,
-                                                                          options: []) as? [String: Any] else {
-                                                                            print("Could not get JSON from responseData as dictionary")
-                                                                            return
-                }
-                print("The todo is: " + receivedTodo.description)
-                print("The todo is message:  \(receivedTodo["Message"] as! String)")
-                valordevuelto = receivedTodo["Message"] as! String
-                /*guard let todoID = receivedTodo["id"] as? Int else {
-                    print("Could not get todoID as int from JSON")
-                    return
-                }
-                print("The ID is: \(todoID)")*/
-                if valordevuelto != "1000" {
-                    self.alertaloading.dismiss(animated: true, completion: {
-                        
-                        print("Valoe ------------ devuelto ----------")
-                        print(valordevuelto)
-                        
-                        let refreshAlert = UIAlertController(title: "Odómetro", message: "Error al enviar odómetro. Intente más tarde.", preferredStyle: UIAlertControllerStyle.alert)
-                        
-                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                            
-                            self.launcpolizas()
-                        }))
-                        
-                        self.present(refreshAlert, animated: true, completion: nil)
-                    })
-                }else{
-                    self.alertaloading.dismiss(animated: true, completion: {
-                        let odometerview = self.storyboard?.instantiateViewController(withIdentifier: "confirmOdo") as! ConfirmOdometerViewController
-                        
-                        odometerview.modalPresentationStyle = UIModalPresentationStyle.pageSheet
-                        
-                        //openview
-                        self.present(odometerview, animated: true, completion: nil)
-                    })
-                }
-                
-            } catch {
-                print("error parsing response from POST on /todos")
-                //return
             }
         }
         task.resume()

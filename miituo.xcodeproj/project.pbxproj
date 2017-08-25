@@ -20,14 +20,21 @@
 		7D0EB7B21ECA47A70057D68A /* Camera_100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D0EB7B11ECA47A70057D68A /* Camera_100.png */; };
 		7D0EB7DC1ECB8E120057D68A /* herne.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D0EB7DA1ECB8E120057D68A /* herne.ttf */; };
 		7D0EB7DD1ECB8E120057D68A /* herne1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D0EB7DB1ECB8E120057D68A /* herne1.ttf */; };
+		7D1067EE1F046095004D66D1 /* lastatlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1067ED1F046095004D66D1 /* lastatlas.png */; };
+		7D1067F01F046A7B004D66D1 /* logoatlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1067EF1F046A7B004D66D1 /* logoatlas.png */; };
+		7D1067F21F058E80004D66D1 /* MenuNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1067F11F058E80004D66D1 /* MenuNewViewController.swift */; };
+		7D1067F41F059F9D004D66D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D1067F31F059F9D004D66D1 /* Assets.xcassets */; };
+		7D1067F61F05A415004D66D1 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1067F51F05A415004D66D1 /* MenuTableViewCell.swift */; };
+		7D1067F81F05A636004D66D1 /* icon_cotiza.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1067F71F05A636004D66D1 /* icon_cotiza.png */; };
+		7D1067FA1F06C624004D66D1 /* segurosatlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1067F91F06C624004D66D1 /* segurosatlas.png */; };
 		7D13F5661E9FE2F0001356D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */; };
 		7D13F5681E9FE2F0001356D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5671E9FE2F0001356D2 /* ViewController.swift */; };
 		7D13F56B1E9FE2F0001356D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D13F5691E9FE2F0001356D2 /* Main.storyboard */; };
 		7D13F56E1E9FE2F0001356D2 /* miituo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F56C1E9FE2F0001356D2 /* miituo.xcdatamodeld */; };
-		7D13F5701E9FE2F1001356D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D13F56F1E9FE2F1001356D2 /* Assets.xcassets */; };
 		7D13F5731E9FE2F1001356D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D13F5711E9FE2F1001356D2 /* LaunchScreen.storyboard */; };
 		7D13F57E1E9FE2F1001356D2 /* miituoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F57D1E9FE2F1001356D2 /* miituoTests.swift */; };
 		7D13F5891E9FE2F1001356D2 /* miituoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5881E9FE2F1001356D2 /* miituoUITests.swift */; };
+		7D1493481F4CA62E00B902CC /* MensajeFotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1493471F4CA62E00B902CC /* MensajeFotosViewController.swift */; };
 		7D19A1A31EAE83B500030A53 /* SwiftyAccordionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */; };
 		7D19A1A51EAE84F800030A53 /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */; };
 		7D19A1D81EAFDBC200030A53 /* TokenSmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */; };
@@ -36,10 +43,14 @@
 		7D19A1E01EB0009000030A53 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D19A1DF1EB0009000030A53 /* MediaPlayer.framework */; };
 		7D19A1E21EB0056B00030A53 /* TutoOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1E11EB0056B00030A53 /* TutoOneViewController.swift */; };
 		7D19A1E51EB0069D00030A53 /* TutoTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1E41EB0069D00030A53 /* TutoTwoViewController.swift */; };
+		7D601E6F1F03129600EE87AB /* logo_hz.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D601E6E1F03129600EE87AB /* logo_hz.png */; };
 		7D66777D1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7D66777C1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf */; };
 		7D66777F1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7D66777E1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf */; };
 		7D70138C1ED6291A00F04BC5 /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70138B1ED6291A00F04BC5 /* Reach.swift */; };
 		7D70138E1ED7412800F04BC5 /* comp31.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7D70138D1ED7412800F04BC5 /* comp31.mp4 */; };
+		7D8A20911F28E5340090DB95 /* ico_ayuda.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D8A208F1F28E5340090DB95 /* ico_ayuda.png */; };
+		7D8A20921F28E5340090DB95 /* ico_poliza.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D8A20901F28E5340090DB95 /* ico_poliza.png */; };
+		7DB461161EFABF890022B082 /* logo_miituo_app.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DB461151EFABF890022B082 /* logo_miituo_app.png */; };
 		7DC1AADA1EB29A21005F067F /* onb3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DC1AAD91EB29A21005F067F /* onb3.mp4 */; };
 		7DDB23C41ED3939600D0D075 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */; };
 		7DEA3FAB1EEF0B42009D3E98 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DEA3FAA1EEF0B42009D3E98 /* CoreLocation.framework */; };
@@ -131,12 +142,18 @@
 		7D0EB7B11ECA47A70057D68A /* Camera_100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Camera_100.png; path = images/Camera_100.png; sourceTree = "<group>"; };
 		7D0EB7DA1ECB8E120057D68A /* herne.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = herne.ttf; path = font/herne.ttf; sourceTree = "<group>"; };
 		7D0EB7DB1ECB8E120057D68A /* herne1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = herne1.ttf; path = font/herne1.ttf; sourceTree = "<group>"; };
+		7D1067ED1F046095004D66D1 /* lastatlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lastatlas.png; sourceTree = "<group>"; };
+		7D1067EF1F046A7B004D66D1 /* logoatlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoatlas.png; sourceTree = "<group>"; };
+		7D1067F11F058E80004D66D1 /* MenuNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuNewViewController.swift; sourceTree = "<group>"; };
+		7D1067F31F059F9D004D66D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7D1067F51F05A415004D66D1 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		7D1067F71F05A636004D66D1 /* icon_cotiza.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cotiza.png; sourceTree = "<group>"; };
+		7D1067F91F06C624004D66D1 /* segurosatlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segurosatlas.png; sourceTree = "<group>"; };
 		7D13F5621E9FE2F0001356D2 /* miituo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = miituo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D13F5671E9FE2F0001356D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7D13F56A1E9FE2F0001356D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D13F56D1E9FE2F0001356D2 /* miituo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = miituo.xcdatamodel; sourceTree = "<group>"; };
-		7D13F56F1E9FE2F1001356D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D13F5721E9FE2F1001356D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D13F5741E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D13F5791E9FE2F1001356D2 /* miituoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = miituoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +162,7 @@
 		7D13F5841E9FE2F1001356D2 /* miituoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = miituoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D13F5881E9FE2F1001356D2 /* miituoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miituoUITests.swift; sourceTree = "<group>"; };
 		7D13F58A1E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D1493471F4CA62E00B902CC /* MensajeFotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensajeFotosViewController.swift; sourceTree = "<group>"; };
 		7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyAccordionCells.swift; sourceTree = "<group>"; };
 		7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
 		7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenSmsViewController.swift; sourceTree = "<group>"; };
@@ -153,10 +171,14 @@
 		7D19A1DF1EB0009000030A53 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7D19A1E11EB0056B00030A53 /* TutoOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoOneViewController.swift; sourceTree = "<group>"; };
 		7D19A1E41EB0069D00030A53 /* TutoTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutoTwoViewController.swift; sourceTree = "<group>"; };
+		7D601E6E1F03129600EE87AB /* logo_hz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_hz.png; sourceTree = "<group>"; };
 		7D66777C1ECE15D90047EF0E /* din-next-rounded-lt-pro-regular-591ddce3ae197.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-rounded-lt-pro-regular-591ddce3ae197.otf"; sourceTree = "<group>"; };
 		7D66777E1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-rounded-lt-pro-bold-591dedad134cf.otf"; sourceTree = "<group>"; };
 		7D70138B1ED6291A00F04BC5 /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		7D70138D1ED7412800F04BC5 /* comp31.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = comp31.mp4; sourceTree = "<group>"; };
+		7D8A208F1F28E5340090DB95 /* ico_ayuda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico_ayuda.png; path = images/ico_ayuda.png; sourceTree = "<group>"; };
+		7D8A20901F28E5340090DB95 /* ico_poliza.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico_poliza.png; path = images/ico_poliza.png; sourceTree = "<group>"; };
+		7DB461151EFABF890022B082 /* logo_miituo_app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_miituo_app.png; sourceTree = "<group>"; };
 		7DC1AAD91EB29A21005F067F /* onb3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onb3.mp4; sourceTree = "<group>"; };
 		7DDB23BE1ED36E9F00D0D075 /* miituo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = miituo.entitlements; sourceTree = "<group>"; };
 		7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -303,6 +325,7 @@
 		7D13F5641E9FE2F0001356D2 /* miituo */ = {
 			isa = PBXGroup;
 			children = (
+				7D1067F31F059F9D004D66D1 /* Assets.xcassets */,
 				7DF3565E1EE6DCCA0047C3B0 /* MenuSlide */,
 				7DFCD0241EDDBDC200E53193 /* SWRevealViewController */,
 				7D70138D1ED7412800F04BC5 /* comp31.mp4 */,
@@ -323,22 +346,23 @@
 				7D19A1A11EAE835300030A53 /* collapsecell */,
 				7D13F5651E9FE2F0001356D2 /* AppDelegate.swift */,
 				7D13F5671E9FE2F0001356D2 /* ViewController.swift */,
+				7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */,
 				7DFCD0291EDF04E800E53193 /* MenuController.swift */,
+				7D1067F11F058E80004D66D1 /* MenuNewViewController.swift */,
 				7D09112C1EBA30A900444F2F /* MenuTableViewController.swift */,
+				7D1067F51F05A415004D66D1 /* MenuTableViewCell.swift */,
 				7D13F5691E9FE2F0001356D2 /* Main.storyboard */,
 				7DF70C461E9FEBF200F4AAA7 /* Utilsmiituo.swift */,
-				7D09112A1EBA0F6A00444F2F /* SiniestroViewController.swift */,
 				7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */,
-				7DF70C371E9FEBF200F4AAA7 /* ApiClient.swift */,
 				7DF70C421E9FEBF200F4AAA7 /* PolizasTableViewCell.swift */,
 				7DF70C431E9FEBF200F4AAA7 /* PolizasViewController.swift */,
+				7D1493471F4CA62E00B902CC /* MensajeFotosViewController.swift */,
 				7DF70C411E9FEBF200F4AAA7 /* PhotosCarViewController.swift */,
 				7DF70C401E9FEBF200F4AAA7 /* OdometerViewController.swift */,
 				7DF70C381E9FEBF200F4AAA7 /* ConfirmOdometerViewController.swift */,
 				7DF70C441E9FEBF200F4AAA7 /* ReportConfirmViewController.swift */,
 				7DF282EE1EB232D6001A24C4 /* ConfirmOdoPopViewController.swift */,
 				7D0C391C1EB3D883000F4241 /* CustomAlertViewController.swift */,
-				7D13F56F1E9FE2F1001356D2 /* Assets.xcassets */,
 				7D13F5711E9FE2F1001356D2 /* LaunchScreen.storyboard */,
 				7D13F5741E9FE2F1001356D2 /* Info.plist */,
 				7D13F56C1E9FE2F0001356D2 /* miituo.xcdatamodeld */,
@@ -370,6 +394,7 @@
 		7D19A1A11EAE835300030A53 /* collapsecell */ = {
 			isa = PBXGroup;
 			children = (
+				7D09112A1EBA0F6A00444F2F /* SiniestroViewController.swift */,
 				7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */,
 				7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */,
 				7DFCD0221EDCA8D600E53193 /* DetalleViewController.swift */,
@@ -380,6 +405,14 @@
 		7D19A1A61EAFBAF600030A53 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7D8A208F1F28E5340090DB95 /* ico_ayuda.png */,
+				7D8A20901F28E5340090DB95 /* ico_poliza.png */,
+				7D1067F91F06C624004D66D1 /* segurosatlas.png */,
+				7D1067F71F05A636004D66D1 /* icon_cotiza.png */,
+				7D1067EF1F046A7B004D66D1 /* logoatlas.png */,
+				7D1067ED1F046095004D66D1 /* lastatlas.png */,
+				7D601E6E1F03129600EE87AB /* logo_hz.png */,
+				7DB461151EFABF890022B082 /* logo_miituo_app.png */,
 				7DF356B61EE86BC10047C3B0 /* seguroatlas.png */,
 				7DFCD03C1EE1BD9A00E53193 /* Flecha ampliar-15.png */,
 				7DFCD0381EE0878D00E53193 /* cerrar.png */,
@@ -592,12 +625,15 @@
 				7DF282E21EB0D7D1001A24C4 /* historial-a.png in Resources */,
 				7DFCD0391EE0878D00E53193 /* cerrar.png in Resources */,
 				7D0911251EB9283500444F2F /* splash.mov in Resources */,
+				7D1067EE1F046095004D66D1 /* lastatlas.png in Resources */,
 				7DF282EA1EB21F82001A24C4 /* onboarding3.mp4 in Resources */,
 				7DF282D41EB0D7D1001A24C4 /* sini.png in Resources */,
 				7DF282E01EB0D7D1001A24C4 /* miituo.png in Resources */,
 				7DF282D21EB0D7D1001A24C4 /* partetrasera.png in Resources */,
+				7D8A20911F28E5340090DB95 /* ico_ayuda.png in Resources */,
 				7DDB23C41ED3939600D0D075 /* GoogleService-Info.plist in Resources */,
 				7D085BE11EC4F0E000AD7890 /* cameraRect.png in Resources */,
+				7D8A20921F28E5340090DB95 /* ico_poliza.png in Resources */,
 				7D0911271EB934A000444F2F /* launch.mp4 in Resources */,
 				7DF282DE1EB0D7D1001A24C4 /* pago.a.png in Resources */,
 				7DF282E61EB0D7D1001A24C4 /* Adelante-50.png in Resources */,
@@ -606,11 +642,15 @@
 				7DF282CF1EB0D7D1001A24C4 /* frontal.png in Resources */,
 				7DC1AADA1EB29A21005F067F /* onb3.mp4 in Resources */,
 				7D13F5731E9FE2F1001356D2 /* LaunchScreen.storyboard in Resources */,
+				7D1067FA1F06C624004D66D1 /* segurosatlas.png in Resources */,
+				7D1067F81F05A636004D66D1 /* icon_cotiza.png in Resources */,
 				7D0EB7B21ECA47A70057D68A /* Camera_100.png in Resources */,
 				7D66777F1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf in Resources */,
 				7DF282E11EB0D7D1001A24C4 /* general.g.png in Resources */,
+				7DB461161EFABF890022B082 /* logo_miituo_app.png in Resources */,
 				7DF282E51EB0D7D1001A24C4 /* Ajustes-50.png in Resources */,
 				7DF282DD1EB0D7D1001A24C4 /* odo-az.png in Resources */,
+				7D1067F01F046A7B004D66D1 /* logoatlas.png in Resources */,
 				7D0EB7DC1ECB8E120057D68A /* herne.ttf in Resources */,
 				7DF356B71EE86BC10047C3B0 /* seguroatlas.png in Resources */,
 				7DF282D51EB0D7D1001A24C4 /* historial.png in Resources */,
@@ -618,13 +658,14 @@
 				7DF282E41EB0D7D1001A24C4 /* cerrars.png in Resources */,
 				7DF282DA1EB0D7D1001A24C4 /* mp.png in Resources */,
 				7DF282DC1EB0D7D1001A24C4 /* foto.png in Resources */,
-				7D13F5701E9FE2F1001356D2 /* Assets.xcassets in Resources */,
+				7D601E6F1F03129600EE87AB /* logo_hz.png in Resources */,
 				7D09111D1EB90D8200444F2F /* miituosplash.gif in Resources */,
 				7D70138E1ED7412800F04BC5 /* comp31.mp4 in Resources */,
 				7DF282DB1EB0D7D1001A24C4 /* user.png in Resources */,
 				7DFCD0351EE07A6800E53193 /* blackflecha.png in Resources */,
 				7DFCD03D1EE1BD9A00E53193 /* Flecha ampliar-15.png in Resources */,
 				7D13F56B1E9FE2F0001356D2 /* Main.storyboard in Resources */,
+				7D1067F41F059F9D004D66D1 /* Assets.xcassets in Resources */,
 				7DF282E81EB122E6001A24C4 /* SLR Camera Filled-50.png in Resources */,
 				7DF282D61EB0D7D1001A24C4 /* odo.png in Resources */,
 				7DF282E31EB0D7D1001A24C4 /* ayuda.png in Resources */,
@@ -796,6 +837,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1493481F4CA62E00B902CC /* MensajeFotosViewController.swift in Sources */,
 				7D19A1A31EAE83B500030A53 /* SwiftyAccordionCells.swift in Sources */,
 				7DFCD0371EE0840F00E53193 /* AcercaViewController.swift in Sources */,
 				7DF70C521E9FEBF200F4AAA7 /* PolizasTableViewCell.swift in Sources */,
@@ -805,7 +847,9 @@
 				7DFCD0231EDCA8D600E53193 /* DetalleViewController.swift in Sources */,
 				7DFCD0281EDDBDF100E53193 /* SWRevealViewController.m in Sources */,
 				7D0911231EB915F000444F2F /* SplashViewController.swift in Sources */,
+				7D1067F61F05A415004D66D1 /* MenuTableViewCell.swift in Sources */,
 				7D13F56E1E9FE2F0001356D2 /* miituo.xcdatamodeld in Sources */,
+				7D1067F21F058E80004D66D1 /* MenuNewViewController.swift in Sources */,
 				7DFCD02A1EDF04E800E53193 /* MenuController.swift in Sources */,
 				7DF356601EE8570C0047C3B0 /* AppUtiliti.swift in Sources */,
 				7DF70C561E9FEBF200F4AAA7 /* Utilsmiituo.swift in Sources */,

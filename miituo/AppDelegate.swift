@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //print("Registration succeeded! Token: ", token)
         
         if let refreshedToken = FIRInstanceID.instanceID().token() {
-            //print("InstanceID token: \(refreshedToken)")
+            print("InstanceID token: \(refreshedToken)")
             token = refreshedToken
         }
     }

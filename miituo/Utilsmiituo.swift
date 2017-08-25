@@ -13,7 +13,9 @@ import Toaster
 //function to show toast
 func showmessage(message: String){
     
-    ToastView.appearance().bottomOffsetPortrait = 90.0
+    ToastView.appearance().bottomOffsetPortrait = 220.0
+    ToastView.appearance().font = UIFont(name: "DIN Next Rounded LT Pro", size: 18.0)
+
     //ToastView.appearance().backgroundColor = UIColor.blue
     let to = Toast(text: message)
     to.show()

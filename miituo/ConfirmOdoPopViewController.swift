@@ -96,13 +96,14 @@ class ConfirmOdoPopViewController: UIViewController {
         }
     }
 
-//***************************Function updatetcasification*********************************************
+//******************Functionupdatetcasification********************************poolcontroller
     func upstatecasification()
     {
         /// ----------- send confirmreport ------------ ///
         //Para actualizar el campo de Id_Estatus de la tabla de Clientes_Ticket
         let todosEndpoint: String = "\(ip)UpStateCasification"
-        
+        let tok = arreglo[self.rowsel]["token"]!
+
         guard let todosURL = URL(string: todosEndpoint) else {
             print("Error: cannot create URL")
             return
@@ -112,7 +113,8 @@ class ConfirmOdoPopViewController: UIViewController {
         todosUrlRequest.httpMethod = "PUT"
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        
+        todosUrlRequest.addValue(tok, forHTTPHeaderField: "Authorization")
+
         let newTodo: [String: Any] = ["Id":idticket,"sTiket":7,"GodinName":"App","GodynSolution":""]
         
         let jsonTodo: Data
@@ -189,7 +191,8 @@ class ConfirmOdoPopViewController: UIViewController {
 
         //Se actualiza el  odometro en la tabla de Clientes ticket en el campo
         let todosEndpoint: String = "\(ip)Ticket/"
-        
+        let tok = arreglo[self.rowsel]["token"]!
+
         guard let todosURL = URL(string: todosEndpoint) else {
             print("Error: cannot create URL")
             return
@@ -199,8 +202,8 @@ class ConfirmOdoPopViewController: UIViewController {
         todosUrlRequest.httpMethod = "PUT"
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        //let newTodo: [String: Any] = ["Celphone":"5534959778","Id":"0","Token":"aaaaaaaaaaa"]
+        todosUrlRequest.addValue(tok, forHTTPHeaderField: "Authorization")
+
         let newTodo: [String: Any] = ["OdomCorrect": 0, "OdomMoment": odometro, "idTicket":idticket, "idPolicy":arregloPolizas[self.rowsel]["nopoliza"]]
         
         let jsonTodo: Data
@@ -274,6 +277,7 @@ class ConfirmOdoPopViewController: UIViewController {
     func updatestatus(){
         
         let todosEndpoint: String = "\(ip)Policy/UpdatePolicyStatusReport/\(arregloPolizas[rowsel]["idpoliza"] as! String)/12"
+        let tok = arreglo[self.rowsel]["token"]!
 
         guard let todosURL = URL(string: todosEndpoint) else {
             print("Error: cannot create URL")
@@ -284,6 +288,7 @@ class ConfirmOdoPopViewController: UIViewController {
         todosUrlRequest.httpMethod = "PUT"
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        todosUrlRequest.addValue(tok, forHTTPHeaderField: "Authorization")
 
         /*let jsonTodo: Data
         do {
@@ -331,7 +336,9 @@ class ConfirmOdoPopViewController: UIViewController {
                                     //UpdatereportStet from CoreData
                                     //store do core data
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                                    let context = appDelegate.persistentContainer.viewContext
+                                    if #available(iOS 10.0, *) {
+                                        let context = appDelegate.persistentContainer.viewContext
+                                    
                                     let requestpolizas = NSFetchRequest<NSFetchRequestResult>(entityName: "Polizas")
                                     
                                     //var fetchRequest = NSFetchRequest(entityName: "LoginData")
@@ -352,6 +359,10 @@ class ConfirmOdoPopViewController: UIViewController {
                                         {
                                             print(error)
                                         }
+                                    }
+                                    } else {
+                                        showmessage(message: "Actualiza iOS para ver las mejoras del sistema.")
+                                        // Fallback on earlier versions
                                     }
                                 }catch {
                                     showmessage(message: "Error al actualizar estatus")
@@ -444,7 +455,8 @@ class ConfirmOdoPopViewController: UIViewController {
         //DispatchQueue.global(qos: .userInitiated).async {
         
          let todosEndpoint: String = "\(ip)ImageProcessing/ConfirmOdometer"
-        
+         let tok = arreglo[self.rowsel]["token"]!
+
          guard let todosURL = URL(string: todosEndpoint) else {
              print("Error: cannot create URL")
              return
@@ -454,6 +466,7 @@ class ConfirmOdoPopViewController: UIViewController {
          todosUrlRequest.httpMethod = "POST"
          todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
          todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+         todosUrlRequest.addValue(tok, forHTTPHeaderField: "Authorization")
                 
          let newTodo: [String: Any] = ["Type": "5", "Odometer": odometro, "PolicyId":arregloPolizas[self.rowsel]["idpoliza"],"PolicyFolio":arregloPolizas[self.rowsel]["nopoliza"]]
 
@@ -510,7 +523,9 @@ class ConfirmOdoPopViewController: UIViewController {
                                     //UpdatereportStet from CoreData
                                     //store do core data
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                                    let context = appDelegate.persistentContainer.viewContext
+                                    if #available(iOS 10.0, *) {
+                                        let context = appDelegate.persistentContainer.viewContext
+                                    
                                     let requestpolizas = NSFetchRequest<NSFetchRequestResult>(entityName: "Polizas")
                                     
                                     //var fetchRequest = NSFetchRequest(entityName: "LoginData")
@@ -532,7 +547,10 @@ class ConfirmOdoPopViewController: UIViewController {
                                             print(error)
                                         }
                                     }
-                                    
+                                    } else {
+                                        showmessage(message: "Actualiza iOS para ver las mejoras del sistema.")
+                                        // Fallback on earlier versions
+                                    }
                                 }catch {
                                     showmessage(message: "Error al actualizar estatus")
                                 }
@@ -619,7 +637,8 @@ class ConfirmOdoPopViewController: UIViewController {
         openloading(mensaje: "Subiendo información...")
         
         let todosEndpoint: String = "\(ip)ReportOdometer/"
-        
+        let tok = arreglo[self.rowsel]["token"]!
+
         guard let todosURL = URL(string: todosEndpoint) else {
             print("Error: cannot create URL")
             return
@@ -629,7 +648,8 @@ class ConfirmOdoPopViewController: UIViewController {
         todosUrlRequest.httpMethod = "POST"
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        
+        todosUrlRequest.addValue(tok, forHTTPHeaderField: "Authorization")
+
         //let datainter: [String: Any] = ["PolicyId":"59","PolicyFolio":"884489275","Odometer":cadena,"ClientId":"70"]
         let datainter: [String: Any] = ["PolicyId":arregloPolizas[self.rowsel]["idpoliza"],"PolicyFolio":arregloPolizas[self.rowsel]["nopoliza"],"Odometer":cadena,"ClientId":arregloPolizas[self.rowsel]["idcliente"]]
         let newTodo: [String: Any] = ["Type": "1","ImageItem":datainter]

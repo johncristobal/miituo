@@ -23,6 +23,7 @@ var conexion = ""
 class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     //let priority = DispatchQueue.GlobalQueuePriority.default
+    @IBOutlet var toggleTemp: UISwitch!
     
     @IBOutlet var label: UILabel!
     @IBOutlet var telefono: UITextField!
@@ -31,6 +32,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         let application: UIApplication = UIApplication.shared
         if #available(iOS 10.0, *) {
@@ -58,16 +60,29 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
         Reach().monitorReachabilityChanges()
         
+        //delete this code when prod -- 1
+        //ip = "http://miituodev.sytes.net:1003/api/" //QAS
+        //UserDefaults.standard.set("http://miituodev.sytes.net:1003/api/", forKey: "api")
     }
-
+    
+    //delete this code when prod -- 1
+    @IBAction func changeapi(_ sender: Any) {
+        /*if !toggleTemp.isOn {
+            ip = "http://miituodev.sytes.net:1001/api/" //DEV
+            UserDefaults.standard.set("http://miituodev.sytes.net:1001/api/", forKey: "api")
+        } else {
+            ip = "http://miituodev.sytes.net:1003/api/" //QAS
+            UserDefaults.standard.set("http://miituodev.sytes.net:1003/api/", forKey: "api")
+        }*/
+    }
+    
     func networkStatusChanged(_ notification: Notification) {
         let userInfo = (notification as NSNotification).userInfo
         print(userInfo)
     }
-    
+
     func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-
         //Code to launch camera and take picture
         /*if UIImagePickerController.isSourceTypeAvailable(.camera) {
             //let picker = UIImagePickerController()
@@ -159,6 +174,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
             switch status {
             case .unknown, .offline:
                 print("Not connected")
+                conexion = "0"
                 self.launchpolizas()
             case .online(.wwan):
                 launchlerta(cel: cel as! String)
@@ -229,7 +245,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         
         DispatchQueue.global(qos: .userInitiated).async {
         //update token
-        self.sendToken(telefono: cel as! String)
+        //self.sendToken(telefono: cel as! String)
         //get data from WS
         //self.getJson(telefon: cel as! String);
         getJson(telefon: cel as! String, vistafrom: self, dedonde: "sync");
@@ -304,7 +320,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
             UserDefaults.standard.setValue("1", forKey: "tutoya")
 
             //update token
-            self.sendToken(telefono: tel)
+            //self.sendToken(telefono: tel)
             //get data from WS
             //self.getJson(telefon: tel);
             getJson(telefon: tel , vistafrom: self,dedonde:"sync");
@@ -363,84 +379,6 @@ class ViewController: UIViewController,UINavigationControllerDelegate, UIImagePi
         
         textField.resignFirstResponder()
         return true
-    }
-
-//***************************Function to send token to ws*********************************************
-    func sendToken(telefono: String) {
-        let todosEndpoint: String = "\(ip)ClientUser/"
-        
-        guard let todosURL = URL(string: todosEndpoint) else {
-            print("Error: cannot create URL")
-            return
-        }
-        
-        var todosUrlRequest = URLRequest(url: todosURL)
-        todosUrlRequest.httpMethod = "PUT"
-        todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        //let newTodo: [String: Any] = ["Celphone":"5534959778","Id":"0","Token":"aaaaaaaaaaa"]
-        let newTodo: [String: Any] = ["Celphone": telefono, "Token": token, "Id":"0"]
-        
-        let jsonTodo: Data
-        do {
-            jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
-            let jsonString = NSString(data: jsonTodo, encoding: String.Encoding.utf8.rawValue)
-            todosUrlRequest.httpBody = jsonTodo
-            
-            print("Token: \(jsonString)")
-        } catch {
-            print("Error: cannot create JSON from todo")
-            return
-        }
-        
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: todosUrlRequest) {
-            (data, response, error) in
-            guard error == nil else {
-                print("error calling POST on /todos/1")
-                print(error)
-                return
-            }
-            guard let responseData = data else {
-                print("Error: did not receive data")
-                return
-            }
-            if let httpResponse = response as? HTTPURLResponse {
-                print("error \(httpResponse.statusCode)")
-                print("error \(httpResponse.description)")
-                //print("error \(httpResponse.)")
-                if httpResponse.statusCode == 200{
-                    if let str = String(data: responseData, encoding: String.Encoding.utf8) {
-                        print("Valor de retorno: \(str)")
-                        valordevuelto = str
-                    } else {
-                        print("not a valid UTF-8 sequence")
-                    }
-                }
-            }
-            
-            // parse the result as JSON, since that's what the API provides
-            do {
-                guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData,
-                                                                          options: []) as? [String: Any] else {
-                                                                            print("Could not get JSON from responseData as dictionary")
-                                                                            return
-                }
-                print("The todo is: " + receivedTodo.description)
-                
-                guard let todoID = receivedTodo["id"] as? Int else {
-                    print("Could not get todoID as int from JSON")
-                    return
-                }
-                print("The ID is: \(todoID)")
-            } catch  {
-                print("error parsing response from POST on /todos")
-                return
-            }
-        }
-        task.resume()
     }
     
 //*******************Function to get data with the celphone*********************************************

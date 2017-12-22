@@ -28,6 +28,7 @@ class CustomAlertViewController: UIViewController {
     
     @IBOutlet var prima: UILabel!
     @IBOutlet var basemes: UILabel!
+    @IBOutlet var baseshow: UILabel!
 
     @IBOutlet var totalapagar: UILabel!
     
@@ -97,6 +98,11 @@ class CustomAlertViewController: UIViewController {
             //basemes.text = "$ \(String.localizedStringWithFormat("%.2f", round(value)))"
             basemes.text = "$ \(String.localizedStringWithFormat("%.2f", (value)))"
             
+            if basemeslast == "0.0"{
+                baseshow.isHidden = true
+                basemes.isHidden = true
+            }
+            
             //let otrototal = numberFormatter.string(from: NSNumber(value: Double(totalapagarlast)!))
             let valuetotal: Float = Float(totalapagarlast)!
             totalapagar.text = "$ \(String.localizedStringWithFormat("%.2f", valuetotal))"
@@ -165,8 +171,7 @@ class CustomAlertViewController: UIViewController {
         //print("SALIDN3O....1")
         
         //self.alertaloading.dismiss(animated: true, completion: nil)
-        /*{
-            
+        /*{            
             print("SALIDN3O....2")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -198,9 +203,12 @@ class CustomAlertViewController: UIViewController {
         //open alert to sincronizar
         openloading(mensaje: "Subiendo información...")
         
+        let payment = arregloPolizas[rowsel]["payment"] as! String
+	
         /// ----------- send confirmreport ------------ ///
         let todosEndpoint: String = "\(ip)ReportOdometer/Confirmreport"
-        
+        let tok = arreglo[self.rowsel]["token"]!
+
         guard let todosURL = URL(string: todosEndpoint) else {
             print("Error: cannot create URL")
             return
@@ -210,7 +218,8 @@ class CustomAlertViewController: UIViewController {
         todosUrlRequest.httpMethod = "POST"
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         todosUrlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        
+        todosUrlRequest.addValue(tok, forHTTPHeaderField: "Authorization")
+
         let newTodo: [String: Any] = ["Type":"1","PolicyId":arregloPolizas[rowsel]["idpoliza"] as! String,"PolicyFolio":arregloPolizas[rowsel]["nopoliza"] as! String,"Odometer":odometro,"ClientId":arregloPolizas[rowsel]["idcliente"] as! String]
         
         let jsonTodo: Data
@@ -255,9 +264,21 @@ class CustomAlertViewController: UIViewController {
                             print("Valoe ------------ devuelro ----------")
                             print(valordevuelto)
                             
+                            var title = "Tu pago se ha realizado."
+                            var mensaje = "Gracias por ser parte del consumo equitativo."
+                            
+                            let valuetotal: Float = Float(totalapagarlast)!
+                            if valuetotal == 0{
+                                mensaje = "Recibimos tu reporte mensual de odómetro."
+                                title = "Gracias"
+                            }else if payment == "AMEX"{
+                                title = "Tu pago esta en proceso."
+                                mensaje = "En cuanto quede listo te lo haremos saber."
+                            }
+                            
                             if valordevuelto == "true" || valordevuelto == "false"{
                                 
-                                let refreshAlert = UIAlertController(title: "Tu pago se ha realizado", message: "Gracias por ser parte del consumo equitativo.", preferredStyle: UIAlertControllerStyle.alert)
+                                let refreshAlert = UIAlertController(title: title, message: mensaje, preferredStyle: UIAlertControllerStyle.alert)
                                 
                                 refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                                     
@@ -265,7 +286,9 @@ class CustomAlertViewController: UIViewController {
                                         //UpdatereportStet from CoreData
                                         //store do core data
                                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                                        let context = appDelegate.persistentContainer.viewContext
+                                        if #available(iOS 10.0, *) {
+                                            let context = appDelegate.persistentContainer.viewContext
+                                        
                                         let requestpolizas = NSFetchRequest<NSFetchRequestResult>(entityName: "Polizas")
                                         
                                         //var fetchRequest = NSFetchRequest(entityName: "LoginData")
@@ -286,24 +309,26 @@ class CustomAlertViewController: UIViewController {
                                             {
                                                 print(error)
                                             }
-                                        }                                        
+                                        }
+                                        } else {
+                                            // Fallback on earlier versions
+                                            showmessage(message: "Actualiza iOS para ver las mejoras del sistema.")
+                                        }
                                     }catch {
                                         showmessage(message: "Error al actualizar estatus")
                                     }
-                                    
                                     print("SALIDN3O....3")
                                     self.launchPolizas()
-
                                 }))
                                 
                                 self.present(refreshAlert, animated: true, completion: nil)
                             } else {
                                 // parse the result as JSON, since that's what the API provides
                                 do {
-                                    guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,
-                                                                                              options: []) as? [String: Any] else {
-                                                                                                print("Could not get JSON from responseData as dictionary")
-                                                                                                return
+                                    guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,                                                                                              options: []) as? [String: Any] else {
+                                            print("Could not get JSON from responseData as dictionary")
+                                        
+                                            return
                                     }
                                     print("The todo is: " + receivedTodo.description)
                                     
@@ -336,11 +361,10 @@ class CustomAlertViewController: UIViewController {
                 } else {
                     // parse the result as JSON, since that's what the API provides
                     do {
-                        guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,
-                                                                                  options: []) as? [String: Any] else {
-                                                                                    print("Could not get JSON from responseData as dictionary")
-                                                                                    return
-                        }
+                        guard let receivedTodo = try JSONSerialization.jsonObject(with: responseData!,                                                                                  options: []) as? [String: Any] else {
+                                print("Could not get JSON from responseData as dictionary")
+                                return
+                            }
                         print("The todo is: " + receivedTodo.description)
                         if receivedTodo.description.contains("Por el momento tu pago no se"){
                             if let meessage = receivedTodo["Message"] {
@@ -374,8 +398,6 @@ class CustomAlertViewController: UIViewController {
                                 self.launchPolizas()
                                 
                             }))
-                            
-                            
                             self.present(refreshAlert, animated: true, completion: nil)
                         })
                         }
@@ -384,11 +406,8 @@ class CustomAlertViewController: UIViewController {
                     }
                 }
             }
-            
-            
         }
         task.resume()
-        
     }
     
     func launchPolizas(){

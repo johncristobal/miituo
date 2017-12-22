@@ -12,6 +12,10 @@ pod 'SideMenu'
 pod 'SwiftGifOrigin', '~> 1.6.1'
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
+pod 'Alamofire', '~> 4.2.0'
 
   target 'miituoTests' do
     inherit! :search_paths

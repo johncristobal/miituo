@@ -17,7 +17,7 @@ func showmessage(message: String){
     ToastView.appearance().font = UIFont(name: "DIN Next Rounded LT Pro", size: 18.0)
 
     //ToastView.appearance().backgroundColor = UIColor.blue
-    let to = Toast(text: message)
+    let to = Toast(text: message,duration: Delay.long)
     to.show()
     //Toast(text: message).show()
 }

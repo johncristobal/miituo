@@ -15,6 +15,9 @@ class PolizasTableViewCell: UITableViewCell {
     @IBOutlet var imageicon: UIImageView!    
     @IBOutlet weak var labelalerta: UILabel!
     
+    @IBOutlet var mensajelimite: UILabel!
+    @IBOutlet var mensajelimitedos: UILabel!
+    
     //@IBOutlet var imagecar: UIImageView!
     //@IBOutlet var label: UILabel!
     //@IBOutlet var imageicon: UIImageView!

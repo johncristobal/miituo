@@ -45,11 +45,11 @@ class PerfilViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let filename = getDocumentsDirectory().appendingPathComponent("frontal_\(pliza).png")
         if fileManager.fileExists(atPath: filename.path){
             let image = UIImage(contentsOfFile: filename.path)
-            imagencarro.layer.cornerRadius = 20.0
-            imagencarro.transform = imagencarro.transform.rotated(by: CGFloat(Double.pi/2))
+            imagencarro.layer.cornerRadius = 25.0
+            //imagencarro.transform = imagencarro.transform.rotated(by: CGFloat(Double.pi/2))
             imagencarro.layer.masksToBounds = true
             imagencarro.image = image
-        }else{
+        } else {
             print("No existe foto")
         }
     }

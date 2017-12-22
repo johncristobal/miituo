@@ -1,4 +1,30 @@
 PODS:
+  - Alamofire (4.2.0)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - FacebookCore (0.2.0):
+    - Bolts (~> 1.8)
+    - FBSDKCoreKit (~> 4.15)
+  - FacebookLogin (0.2.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.2)
+    - FBSDKCoreKit (~> 4.15)
+    - FBSDKLoginKit (~> 4.15)
+  - FacebookShare (0.2.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.2)
+    - FBSDKCoreKit (~> 4.15)
+    - FBSDKShareKit (~> 4.15)
+  - FBSDKCoreKit (4.21.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.21.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.21.0):
+    - FBSDKCoreKit
   - Firebase/Core (3.16.0):
     - FirebaseAnalytics (= 3.8.0)
     - FirebaseCore (= 3.6.0)
@@ -29,6 +55,10 @@ PODS:
   - Toaster (2.0.3)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.2.0)
+  - FacebookCore
+  - FacebookLogin
+  - FacebookShare
   - Firebase/Core
   - Firebase/Messaging
   - SideMenu
@@ -36,6 +66,14 @@ DEPENDENCIES:
   - Toaster (~> 2.0)
 
 SPEC CHECKSUMS:
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
+  FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
+  FacebookShare: 8e9ee8ea06505e6a1d3d719b0cc63e840fb8aaeb
+  FBSDKCoreKit: 8a372ab194b5c7c26355c1920ef52dbeb44bc222
+  FBSDKLoginKit: a1a5f4b4ac445823a020fbeeaf5f03714a67ff9c
+  FBSDKShareKit: 649a7acfd01a3e056a33994c1bfbb997814cc8a2
   Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
   FirebaseAnalytics: 920e46455f27b0a52a80907a6d9b73ee4bd1c635
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
@@ -47,6 +85,6 @@ SPEC CHECKSUMS:
   SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
   Toaster: 77c0b03d78e680bbbab0071c9c7ee392b0034010
 
-PODFILE CHECKSUM: a5b9e5aab089b087279793d0f871c62c5c876eed
+PODFILE CHECKSUM: 8895731db4610ac03cb1ee301ea8a02c82cdeb1b
 
 COCOAPODS: 1.2.0

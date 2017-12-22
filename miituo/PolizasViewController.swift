@@ -15,6 +15,10 @@ import SideMenu
 import Photos
 import CoreData
 
+import Social
+
+import FacebookShare
+
 var valueToPass = ""
 var arreglo = [[String:String]]()
 var arregloPolizas = [[String:String]]()
@@ -132,8 +136,7 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         //print("Herefisrt")
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
-            
+
             //request for  tables
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users")
             let requestpoli = NSFetchRequest<NSFetchRequestResult>(entityName: "Polizas")
@@ -146,10 +149,11 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
             //requestpoli.returnsObjectsAsFaults = false
             requestcarro.returnsObjectsAsFaults = false
             
+            if #available(iOS 10.0, *) {
+            let context = appDelegate.persistentContainer.viewContext
             let results = try context.fetch(request)
             let resultpolizas = try context.fetch(requestpoli)
             let resultcarros = try context.fetch(requestcarro)
-            
             //get data from users
             var i = 0;
             if results.count > 0 {
@@ -199,6 +203,7 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                         let vehic = result.value(forKey: "vehiclepie") as? String
                         let repor = result.value(forKey: "reportstate") as? String
                         let idpoli = result.value(forKey: "idpoliza") as? String
+                        let pay = result.value(forKey: "payment") as? String
                         let fecha = result.value(forKey: "limitefecha") as? Date
                         
                         let idcliente = result.value(forKey: "idcliente") as! Int
@@ -216,8 +221,9 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                         tempdict2["reportstate"] = repor//result.value(forKey: "vehiclepie") as? String
                         tempdict2["idpoliza"] = idpoli//result.value(forKey: "vehiclepie") as? String
                         tempdict2["idcliente"] = String(idcliente)//result.value(forKey: "vehiclepie") as? String
+                        tempdict2["payment"] = pay//result.value(forKey: "vehiclepie") as? String
                         let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "dd-MM-yyyy"
+                        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
                         let dateStringfin = dateFormatter.string(from:fecha!)
                         //let lastdate = fecha?.description.components(separatedBy: " ")
                         //dateFormatter.dateFormat = "yyyy-mm-dd"
@@ -260,7 +266,10 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
             } else {
                 print("No results")
             }
-            
+            } else {
+                // Fallback on earlier versions
+                showmessage(message: "Actualiza iOS para ver las mejoras del sistema.")
+            }
         } catch {
             print("Couldn't fetch results")
         }
@@ -345,7 +354,7 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         var maxWidth : CGFloat = image.size.width/16//400.0
         var imgRatio : CGFloat = actualWidth/actualHeight
         var maxRatio : CGFloat = maxWidth/maxHeight
-        var compressionQuality : CGFloat = 0.8
+        var compressionQuality : CGFloat = 1
         
         if (actualHeight > maxHeight || actualWidth > maxWidth){
             if(imgRatio < maxRatio){
@@ -385,8 +394,6 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
 // ******************************** initializes every row of th table ******************************** //
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-     
-        
         //Define el contenido de la celda
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PolizasTableViewCell
 
@@ -408,14 +415,14 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if fileManager.fileExists(atPath: filename.path){
                     
                     let image = UIImage(contentsOfFile: filename.path)
-                    let comrimidad = self.compressImage(image: image!)
-                    cell.imagecar.layer.cornerRadius = 20.0
+                    //let comrimidad = self.compressImage(image: image!)
+                    cell.imagecar.layer.cornerRadius = 30.0
                     //if volteado == "0"{
                         //volteado = "1"
                         //cell.imagecar.transform = cell.imagecar.transform.rotated(by: CGFloat(Double.pi/2))
                     //}
                     cell.imagecar.layer.masksToBounds = true
-                    cell.imagecar.image = comrimidad
+                    cell.imagecar.image = image
                 }else{
                     //print("No existe foto")
                     let image = UIImage(named: "foto.png")
@@ -440,6 +447,8 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.imageicon.backgroundColor = UIColor.red
                     cell.labelalerta.textColor = UIColor.red
                     cell.labelalerta.text = "Solicitud ajuste odómetro \(arreglocarro[indexPath.row]["subtype"]! as String)"
+                    cell.mensajelimite.isHidden = true
+
                 }
                 if reportstate == "14" {
                     //cell.imageicon.backgroundColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
@@ -448,6 +457,8 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.imageicon.backgroundColor = UIColor.red
                     cell.labelalerta.textColor = UIColor.red
                     cell.labelalerta.text = "Solicitud cancelación voluntaria \(arreglocarro[indexPath.row]["subtype"]! as String)"
+                    cell.mensajelimite.isHidden = true
+
                 }
                 if reportstate == "13" {
                     //cell.imageicon.backgroundColor = UIColor.init(red: 62/255, green: 253/255, blue: 202/255, alpha: 1.0)
@@ -457,6 +468,28 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     //UIColor.red
                     cell.labelalerta.text = "Es hora de reportar tu odómetro \(arreglocarro[indexPath.row]["subtype"]! as String)"
+                    cell.mensajelimite.isHidden = true
+                    
+                    let dateString = arregloPolizas[indexPath.row]["limitefecha"]! as String
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+                    let date = dateFormatter.date(from: dateString)
+                    
+                    //get name month
+                    let dateFormattermes = DateFormatter()
+                    dateFormattermes.dateFormat = "MMM"
+                    let nameOfMonthcinco = dateFormattermes.string(from: date!)
+                    let valmes = getNombreMes(nombre: nameOfMonthcinco)
+                    dateFormattermes.dateFormat = "dd"
+                    let valdia = dateFormattermes.string(from: date!)
+                    let calendar = Calendar.current
+                    let hour = calendar.component(.hour, from: date!)
+                    let minutes = calendar.component(.minute, from: date!)
+                    let seconds = calendar.component(.second, from: date!)
+                    
+                    cell.mensajelimite.text = "Tienes hasta el:\n\(valdia) del \(valmes) a las \(hour):\(minutes) hrs."
+                    cell.mensajelimite.textColor = UIColor.red
+                    cell.mensajelimite.isHidden = false
                 }
                 if reportstate == "12" {
                     cell.imageicon.backgroundColor = UIColor.init(red: 34/255, green: 201/255, blue: 252/255, alpha: 1.0)
@@ -466,18 +499,62 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     //cell.labelalerta.textColor = UIColor.init(red: 0.0, green: 200.0, blue: 255.0, alpha: 1.0)
                     cell.labelalerta.text = "Ver información \(arreglocarro[indexPath.row]["subtype"]! as String)"
+                    cell.mensajelimite.isHidden = true
                 }
                 if vehiclepie == "false" && odometerpie == "false"{
                     //cell.imageicon.backgroundColor = UIColor.green
                     cell.imageicon.backgroundColor = UIColor.red
                     cell.labelalerta.textColor = UIColor.red
                     cell.labelalerta.text = "No has enviado fotos de tu \(arreglocarro[indexPath.row]["subtype"]! as String)"
+                    
+                    let dateString = arregloPolizas[indexPath.row]["limitefecha"]! as String
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+                    let date = dateFormatter.date(from: dateString)
+                    
+                    //get name month
+                    let dateFormattermes = DateFormatter()
+                    dateFormattermes.dateFormat = "MMM"
+                    let nameOfMonthcinco = dateFormattermes.string(from: date!)
+                    let valmes = getNombreMes(nombre: nameOfMonthcinco)
+                    dateFormattermes.dateFormat = "dd"
+                    let valdia = dateFormattermes.string(from: date!)
+                    let calendar = Calendar.current
+                    let hour = calendar.component(.hour, from: date!)
+                    let minutes = calendar.component(.minute, from: date!)
+                    let seconds = calendar.component(.second, from: date!)
+                    
+                    cell.mensajelimite.text = "Tienes hasta el:\n\(valdia) del \(valmes) a las \(hour):\(minutes) hrs."
+                    cell.mensajelimite.textColor = UIColor.red
+
+                    cell.mensajelimite.isHidden = false
                 }
                 if vehiclepie == "true" && odometerpie == "false"{
                     //cell.imageicon.backgroundColor = UIColor.green
                     cell.imageicon.backgroundColor = UIColor.red
                     cell.labelalerta.textColor = UIColor.red
                     cell.labelalerta.text = "No has enviado foto de tu odómetro \(arreglocarro[indexPath.row]["subtype"]! as String)"
+                    
+                    let dateString = arregloPolizas[indexPath.row]["limitefecha"]! as String
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+                    let date = dateFormatter.date(from: dateString)
+                    
+                    //get name month
+                    let dateFormattermes = DateFormatter()
+                    dateFormattermes.dateFormat = "MMM"
+                    let nameOfMonthcinco = dateFormattermes.string(from: date!)
+                    let valmes = getNombreMes(nombre: nameOfMonthcinco)
+                    dateFormattermes.dateFormat = "dd"
+                    let valdia = dateFormattermes.string(from: date!)
+                    let calendar = Calendar.current
+                    let hour = calendar.component(.hour, from: date!)
+                    let minutes = calendar.component(.minute, from: date!)
+                    let seconds = calendar.component(.second, from: date!)
+                    
+                    cell.mensajelimite.text = "Tienes hasta el:\n\(valdia) del \(valmes) a las \(hour):\(minutes) hrs."
+                    cell.mensajelimite.textColor = UIColor.red
+                    cell.mensajelimite.isHidden = false
                 }
                 
                 //cell background
@@ -499,6 +576,35 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
 
+    func getNombreMes(nombre: String) -> String{
+        if nombre == "ene" || nombre == "Jan" || nombre == "jan" || nombre == "Ene"{
+            return "enero"
+        }else if nombre == "feb" || nombre == "Feb"{
+            return "febrero"
+        }else if nombre == "mar" || nombre == "Mar"{
+            return "marzo"
+        }else if nombre == "abr" || nombre == "apr" || nombre == "Apr"{
+            return "abril"
+        }else if nombre == "may" || nombre == "May"{
+            return "mayo"
+        }else if nombre == "jun" || nombre == "Jun"{
+            return "junio"
+        }else if nombre == "jul" || nombre == "Jul"{
+            return "julio"
+        }else if nombre == "ago" || nombre == "aug" || nombre == "Aug" || nombre == "Ago"{
+            return "agosto"
+        }else if nombre == "sep" || nombre == "Sep"{
+            return "septiembre"
+        }else if nombre == "oct" || nombre == "Oct"{
+            return "octubre"
+        }else if nombre == "nov" || nombre == "Nov"{
+            return "noviembre"
+        }else if nombre == "dic" || nombre == "dec" || nombre == "Dic" || nombre == "Dec"{
+            return "diciembre"
+        }else{
+            return nombre
+        }
+    }
 /*************************************************************************************************
      When clic in row -> open detalle poliza / fotos 
      It's upon the status fotos
@@ -535,6 +641,54 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
             }))
             present(refreshAlert, animated: true, completion: nil)
         } else {
+            
+            /*do{
+
+            let image = UIImage(named: "logoatlas.png")
+            let photo = Photo(image: image!, userGenerated: true)
+            let content = PhotoShareContent(photos: [photo])
+            let shareDialog = ShareDialog(content: content)
+            shareDialog.mode = .automatic
+            shareDialog.failsOnInvalidData = true
+            shareDialog.completion = { result in
+                // Handle share results
+            }
+            
+            try shareDialog.show()
+            }catch {
+            }*/
+            
+            /*let screen = UIScreen.main
+            let imag = UIImage(named: "logoatlas.png")
+            let frame = CGRect(x: 0, y: 0, width: (imag?.size.width)!, height: (imag?.size.height)!)
+            
+            if let window = UIApplication.shared.keyWindow {
+                UIGraphicsBeginImageContextWithOptions((imag?.size)!, false, 0);
+                window.drawHierarchy(in: window.bounds, afterScreenUpdates: false)
+                let image = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                
+                InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: image!, instagramCaption: "Gracias!", view: self.view)
+                let composeSheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                composeSheet?.setInitialText("Gracias por ser parte del consumo equitativo.!")
+                composeSheet?.add(imag)
+                
+                present(composeSheet!, animated: true, completion: nil)
+            }*/
+            
+            //prueba compartir
+
+            //let imag = UIImage(named: "miituo.png")
+            //InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: imag!, instagramCaption: "Gracias!", view: self.view)
+
+            
+            //let imag = UIImage(named: "miituo.png")
+            //InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: imag!, instagramCaption: "Gracias!", view: self.view)
+
+            //let activityVC = UIActivityViewController(activityItems:[imag,"Gracias por ser parte del consumo equitativo."], applicationActivities:nil)
+            //activityVC.popoverPresentationController?.sourceView = self.view
+            //self.present(activityVC, animated: true, completion: nil)
+            
             //check the options to show the specific viewcontroller
             if vehiclepie == "false" && odometerpie == "false" {
                 currentCell.imageicon.backgroundColor = UIColor.red
@@ -731,7 +885,9 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //store do core data
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
+        if #available(iOS 10.0, *) {
+            let context = appDelegate.persistentContainer.viewContext
+        
         
         let moc = NSManagedObjectContext(concurrencyType:.mainQueueConcurrencyType)
         let privateMOC = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
@@ -780,7 +936,8 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                     newUser.setValue(motherna, forKey: "mothername")
                     let nameee = (cli["Name"] as! String).description
                     newUser.setValue(nameee, forKey: "name")
-                    let tokene = ""//(cli["Token"] as! String).description
+                    //let tokene = (cli["Token"] as! String).description
+                    let tokene = ""
                     newUser.setValue(tokene, forKey: "token")
                     //let celppp = String(describing: (cli["Celphone"]))
                     newUser.setValue(telefon, forKey: "celphone")
@@ -829,7 +986,7 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     
                     let s = dateFormatter.date(from:dateString)
-                    dateFormatter.dateFormat = "dd-MM-yyyy"
+                    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
                     let dateStringfin = dateFormatter.string(from:s!)
                     print("fecha linite: \(dateStringfin)")
                     newPoli.setValue(s, forKey: "limitefecha")
@@ -858,7 +1015,10 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                     newPoli.setValue(rattt, forKey: "rate")
                     let reportsta = (poli["ReportState"] as! Int).description
                     newPoli.setValue(reportsta, forKey: "reportstate")
-                    
+
+                    let pay = (poli["PaymentType"] as! String).description
+                    newPoli.setValue(pay, forKey: "payment")
+
                     //with this let we cna get dat from the vehicle
                     let vehiculo = poli["Vehicle"] as! NSDictionary
                     do {
@@ -954,9 +1114,12 @@ class PolizasViewController: UIViewController, UITableViewDelegate, UITableViewD
                  self.tableview.reloadData()
                  self.refreshControl.endRefreshing()
              }
+        }            
+        } else {
+            // Fallback on earlier versions
+            showmessage(message: "Actualiza iOS para ver las mejoras del sistema.")
         }
     }
-    
     
     /*override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

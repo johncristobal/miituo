@@ -35,6 +35,8 @@
 		7D13F57E1E9FE2F1001356D2 /* miituoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F57D1E9FE2F1001356D2 /* miituoTests.swift */; };
 		7D13F5891E9FE2F1001356D2 /* miituoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13F5881E9FE2F1001356D2 /* miituoUITests.swift */; };
 		7D1493481F4CA62E00B902CC /* MensajeFotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1493471F4CA62E00B902CC /* MensajeFotosViewController.swift */; };
+		7D170E0D1F68473F002BADE4 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D170E0C1F68473F002BADE4 /* camera.png */; };
+		7D170E0F1F687F66002BADE4 /* InstagramManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D170E0E1F687F66002BADE4 /* InstagramManager.swift */; };
 		7D19A1A31EAE83B500030A53 /* SwiftyAccordionCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */; };
 		7D19A1A51EAE84F800030A53 /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */; };
 		7D19A1D81EAFDBC200030A53 /* TokenSmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */; };
@@ -50,6 +52,8 @@
 		7D70138E1ED7412800F04BC5 /* comp31.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7D70138D1ED7412800F04BC5 /* comp31.mp4 */; };
 		7D8A20911F28E5340090DB95 /* ico_ayuda.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D8A208F1F28E5340090DB95 /* ico_ayuda.png */; };
 		7D8A20921F28E5340090DB95 /* ico_poliza.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D8A20901F28E5340090DB95 /* ico_poliza.png */; };
+		7DADA6C71F6068AA00435DDE /* pushfin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7DADA6C61F6068AA00435DDE /* pushfin.wav */; };
+		7DADA6C91F6068B600435DDE /* pushfin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7DADA6C81F6068B600435DDE /* pushfin.wav */; };
 		7DB461161EFABF890022B082 /* logo_miituo_app.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DB461151EFABF890022B082 /* logo_miituo_app.png */; };
 		7DC1AADA1EB29A21005F067F /* onb3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7DC1AAD91EB29A21005F067F /* onb3.mp4 */; };
 		7DDB23C41ED3939600D0D075 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DDB23C31ED3939600D0D075 /* GoogleService-Info.plist */; };
@@ -163,6 +167,8 @@
 		7D13F5881E9FE2F1001356D2 /* miituoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miituoUITests.swift; sourceTree = "<group>"; };
 		7D13F58A1E9FE2F1001356D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D1493471F4CA62E00B902CC /* MensajeFotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensajeFotosViewController.swift; sourceTree = "<group>"; };
+		7D170E0C1F68473F002BADE4 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		7D170E0E1F687F66002BADE4 /* InstagramManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramManager.swift; sourceTree = "<group>"; };
 		7D19A1A21EAE83B500030A53 /* SwiftyAccordionCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyAccordionCells.swift; sourceTree = "<group>"; };
 		7D19A1A41EAE84F800030A53 /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
 		7D19A1D71EAFDBC200030A53 /* TokenSmsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenSmsViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +184,8 @@
 		7D70138D1ED7412800F04BC5 /* comp31.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = comp31.mp4; sourceTree = "<group>"; };
 		7D8A208F1F28E5340090DB95 /* ico_ayuda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico_ayuda.png; path = images/ico_ayuda.png; sourceTree = "<group>"; };
 		7D8A20901F28E5340090DB95 /* ico_poliza.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico_poliza.png; path = images/ico_poliza.png; sourceTree = "<group>"; };
+		7DADA6C61F6068AA00435DDE /* pushfin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pushfin.wav; sourceTree = "<group>"; };
+		7DADA6C81F6068B600435DDE /* pushfin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pushfin.wav; sourceTree = "<group>"; };
 		7DB461151EFABF890022B082 /* logo_miituo_app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_miituo_app.png; sourceTree = "<group>"; };
 		7DC1AAD91EB29A21005F067F /* onb3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onb3.mp4; sourceTree = "<group>"; };
 		7DDB23BE1ED36E9F00D0D075 /* miituo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = miituo.entitlements; sourceTree = "<group>"; };
@@ -304,6 +312,7 @@
 		7D13F5591E9FE2F0001356D2 = {
 			isa = PBXGroup;
 			children = (
+				7DADA6C61F6068AA00435DDE /* pushfin.wav */,
 				7D13F5641E9FE2F0001356D2 /* miituo */,
 				7D13F5871E9FE2F1001356D2 /* miituoUITests */,
 				7D13F5631E9FE2F0001356D2 /* Products */,
@@ -325,6 +334,7 @@
 		7D13F5641E9FE2F0001356D2 /* miituo */ = {
 			isa = PBXGroup;
 			children = (
+				7DADA6C81F6068B600435DDE /* pushfin.wav */,
 				7D1067F31F059F9D004D66D1 /* Assets.xcassets */,
 				7DF3565E1EE6DCCA0047C3B0 /* MenuSlide */,
 				7DFCD0241EDDBDC200E53193 /* SWRevealViewController */,
@@ -369,6 +379,7 @@
 				7D13F57C1E9FE2F1001356D2 /* miituoTests */,
 				7D70138B1ED6291A00F04BC5 /* Reach.swift */,
 				7DF3565F1EE8570C0047C3B0 /* AppUtiliti.swift */,
+				7D170E0E1F687F66002BADE4 /* InstagramManager.swift */,
 			);
 			path = miituo;
 			sourceTree = "<group>";
@@ -405,6 +416,7 @@
 		7D19A1A61EAFBAF600030A53 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7D170E0C1F68473F002BADE4 /* camera.png */,
 				7D8A208F1F28E5340090DB95 /* ico_ayuda.png */,
 				7D8A20901F28E5340090DB95 /* ico_poliza.png */,
 				7D1067F91F06C624004D66D1 /* segurosatlas.png */,
@@ -621,6 +633,7 @@
 				7D0EB7DD1ECB8E120057D68A /* herne1.ttf in Resources */,
 				7DF282D81EB0D7D1001A24C4 /* atlas.png in Resources */,
 				7DF29AAC1ED4AD21008493B5 /* cameramini.png in Resources */,
+				7DADA6C71F6068AA00435DDE /* pushfin.wav in Resources */,
 				7DF282D11EB0D7D1001A24C4 /* lateral-i.png in Resources */,
 				7DF282E21EB0D7D1001A24C4 /* historial-a.png in Resources */,
 				7DFCD0391EE0878D00E53193 /* cerrar.png in Resources */,
@@ -644,6 +657,7 @@
 				7D13F5731E9FE2F1001356D2 /* LaunchScreen.storyboard in Resources */,
 				7D1067FA1F06C624004D66D1 /* segurosatlas.png in Resources */,
 				7D1067F81F05A636004D66D1 /* icon_cotiza.png in Resources */,
+				7D170E0D1F68473F002BADE4 /* camera.png in Resources */,
 				7D0EB7B21ECA47A70057D68A /* Camera_100.png in Resources */,
 				7D66777F1ECE25460047EF0E /* din-next-rounded-lt-pro-bold-591dedad134cf.otf in Resources */,
 				7DF282E11EB0D7D1001A24C4 /* general.g.png in Resources */,
@@ -656,6 +670,7 @@
 				7DF282D51EB0D7D1001A24C4 /* historial.png in Resources */,
 				7D19A1DC1EAFFDAA00030A53 /* miituoonb2.mp4 in Resources */,
 				7DF282E41EB0D7D1001A24C4 /* cerrars.png in Resources */,
+				7DADA6C91F6068B600435DDE /* pushfin.wav in Resources */,
 				7DF282DA1EB0D7D1001A24C4 /* mp.png in Resources */,
 				7DF282DC1EB0D7D1001A24C4 /* foto.png in Resources */,
 				7D601E6F1F03129600EE87AB /* logo_hz.png in Resources */,
@@ -838,6 +853,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D1493481F4CA62E00B902CC /* MensajeFotosViewController.swift in Sources */,
+				7D170E0F1F687F66002BADE4 /* InstagramManager.swift in Sources */,
 				7D19A1A31EAE83B500030A53 /* SwiftyAccordionCells.swift in Sources */,
 				7DFCD0371EE0840F00E53193 /* AcercaViewController.swift in Sources */,
 				7DF70C521E9FEBF200F4AAA7 /* PolizasTableViewCell.swift in Sources */,
@@ -1033,8 +1049,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Leonardo Cortina Riveroll (E76TC722VF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 954C95V3JL;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = miituo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.payasyoudrive.miituo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1055,8 +1075,12 @@
 				CODE_SIGN_ENTITLEMENTS = miituo/miituo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 954C95V3JL;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = miituo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.payasyoudrive.miituo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -15,6 +15,8 @@ import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
 
+import FacebookCore
+
 var token = ""
 
 var ventana = ""
@@ -30,8 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        
         //FIRApp.configure()
         
         FIRApp.configure()
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
         }
         //print("Registration succeeded! Token: ", token)
-        
+        //let refreshedToken2 = FIRInstanceID.instanceID().token()
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
             token = refreshedToken
@@ -151,6 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         } else {
             // Fallback on earlier versions
+            showmessage(message: "Actualiza iOS para ver las mejoras del sistema.")
         }
     }
     
@@ -204,6 +205,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: buttonTitle, style: UIAlertActionStyle.default, handler: nil))
         window.rootViewController?.present(alert, animated: false, completion: nil)
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        // Call the 'activate' method to log an app event for use
+        // in analytics and advertising reporting.
+        AppEventsLogger.activate(application)
+        // ...
     }
         
 }

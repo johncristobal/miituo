@@ -75,6 +75,11 @@ class SplashViewController: UIViewController {
         player?.play()
         
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        
+        //delete this code for prod -- 1
+        //if let varip = UserDefaults.standard.value(forKey: "api"){
+        //    ip = varip as! String
+        //}
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,11 +100,15 @@ class SplashViewController: UIViewController {
         alertaloading?.view.addSubview(loadingIndicator)
         present(alertaloading!, animated: true, completion: nil)
         
+        let application: UIApplication = UIApplication.shared
+        application.registerForRemoteNotifications()
+        
         DispatchQueue.global(qos: .userInitiated).sync {
         //update token
-        self.sendToken(telefono: cel as! String)
+        //self.sendToken(telefono: cel as! String)
         //get data from WS
         getJson(telefon: cel as! String, vistafrom: self,dedonde:"splash")
+
         //get data from WS
         //self.getSms(telefon: cel as! String);
         
